@@ -1,12 +1,10 @@
+# Ignore everything outside this folder
+../../*
+../*
+# Keep these
+!.gitignore
+!index.html
+!vercel.json
+!package.json
+!README.md
 .DS_Store
-*.zip
-*.JPG
-*.HEIC
-*.JPEG
-*.png
-*.pdf
-*.csv
-*.dmg
-*.jsx
-*.js
-*.rtf
