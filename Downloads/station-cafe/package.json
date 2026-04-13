@@ -1,0 +1,7 @@
+{
+  "name": "deploymh",
+  "version": "1.0.0",
+  "scripts": {
+    "deploy": "git add . && git commit -m 'deploy update' && git push && vercel --prod"
+  }
+}

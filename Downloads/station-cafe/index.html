@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Station Café · MedStar Health Food Services</title>
+<meta name="description" content="The Station Café — three stations, a 24/7 micro market, and fresh daily menus powered by Così. A MedStar Health Food Services concept.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & ROOT ─────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy:       #0d2d6b;
+  --navy-dark:  #071d4a;
+  --navy-mid:   #1a3f80;
+  --navy-light: #2a5298;
+  --gold:       #f5c400;
+  --gold-dark:  #d4a800;
+  --gold-light: #fde847;
+  --off-white:  #f4f6fb;
+  --white:      #ffffff;
+  --border:     #d0d8ea;
+  --stone:      #5a6a8a;
+  --text:       #1a2a4a;
+  --serif:      'Playfair Display', Georgia, serif;
+  --sans:       'DM Sans', Arial, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--off-white); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+
+/* ─── LAYOUT ───────────────────────────────────────────── */
+.page-wrap { width: 100%; max-width: 1100px; margin: 0 auto; }
+
+/* ─── HERO ─────────────────────────────────────────────── */
+.hero {
+  position: relative; width: 100%; min-height: 500px;
+  display: flex; flex-direction: column; overflow: hidden;
+  background: var(--navy-dark);
+}
+.hero-geo { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; }
+.hero-bowl-img {
+  position: absolute; inset: 0; z-index: 1;
+  width: 100%; height: 100%; object-fit: cover; object-position: center 40%;
+  opacity: 0.45;
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 2;
+  background: linear-gradient(105deg, rgba(7,29,74,.98) 0%, rgba(13,45,107,.95) 40%, rgba(13,45,107,.7) 65%, rgba(7,29,74,.3) 100%);
+}
+.hero-content { position: relative; z-index: 3; flex: 1; display: flex; flex-direction: column; }
+.hero-split {
+  flex: 1; display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 0;
+}
+.hero-text-col { padding: 2.5rem 2.5rem 3.5rem; }
+.hero-img-col {
+  display: flex; align-items: center; justify-content: center;
+  padding: 2.5rem 2.5rem 3.5rem 1rem;
+}
+.hero-bowl-card {
+  position: relative; width: 100%; max-width: 420px;
+  border-radius: 12px; overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(245,196,0,.2);
+}
+.hero-bowl-card img {
+  width: 100%; height: 320px; object-fit: cover; object-position: center;
+  display: block;
+}
+.hero-bowl-card-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(7,29,74,.95) 0%, transparent 100%);
+  padding: 1.5rem 1.25rem .85rem;
+  font-family: var(--sans); font-size: .72rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--gold);
+}
+@media (max-width: 768px) {
+  .hero-split { grid-template-columns: 1fr; }
+  .hero-img-col { display: none; }
+  .hero-text-col { padding: 2rem 1.25rem 3rem; }
+}
+
+/* ─── NAV ──────────────────────────────────────────────── */
+.site-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.4rem 2.5rem; border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.logo-wrap { display: flex; flex-direction: column; gap: 3px; }
+.logo-sub {
+  font-family: var(--sans); font-size: .6rem; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--gold); font-weight: 600;
+}
+.logo-main { font-family: var(--serif); font-size: 1.75rem; color: #fff; letter-spacing: .02em; line-height: 1; }
+.logo-main span { color: var(--gold); }
+.nav-links { display: flex; gap: 0; list-style: none; }
+.nav-links li a {
+  color: rgba(255,255,255,.7); text-decoration: none;
+  font-family: var(--sans); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+  padding: .5rem 1.25rem; transition: color .2s; cursor: pointer;
+  border-bottom: 2px solid transparent; display: block;
+}
+.nav-links li a:hover,
+.nav-links li a.active { color: var(--gold); border-bottom-color: var(--gold); }
+.nav-toggle {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  background: none; border: none; padding: .5rem;
+}
+.nav-toggle span {
+  display: block; width: 24px; height: 2px; background: #fff;
+  border-radius: 2px; transition: all .3s;
+}
+
+/* ─── HERO BODY ────────────────────────────────────────── */
+.hero-center {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding: 2.5rem 2.5rem 3.5rem;
+}
+.hero-badge {
+  display: inline-block; background: var(--gold); color: var(--navy-dark);
+  font-family: var(--sans); font-size: .68rem; letter-spacing: .18em;
+  text-transform: uppercase; padding: 5px 18px; margin-bottom: 1.25rem; font-weight: 700;
+}
+.hero-h1 {
+  font-family: var(--serif); font-size: clamp(2.4rem, 5vw, 4.2rem);
+  color: #fff; line-height: 1.1; margin-bottom: 1rem;
+}
+.hero-h1 em { color: var(--gold); font-style: italic; }
+.hero-sub {
+  color: rgba(255,255,255,.65); font-family: var(--sans); font-size: .95rem;
+  max-width: 500px; line-height: 1.75; margin-bottom: 2rem; font-weight: 300;
+}
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+.btn-gold {
+  background: var(--gold); color: var(--navy-dark); border: none;
+  padding: .85rem 2.25rem; font-family: var(--sans); font-size: .85rem;
+  font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  cursor: pointer; transition: background .2s; border-radius: 2px;
+}
+.btn-gold:hover { background: var(--gold-dark); }
+.btn-ghost {
+  background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.4);
+  padding: .85rem 2.25rem; font-family: var(--sans); font-size: .85rem;
+  letter-spacing: .06em; text-transform: uppercase; cursor: pointer;
+  transition: all .2s; border-radius: 2px;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ─── TOP SECTION TABS ─────────────────────────────────── */
+.top-tabs-wrap {
+  background: var(--navy-dark); display: flex;
+  border-bottom: 4px solid var(--gold); overflow-x: auto;
+}
+.top-tab {
+  padding: 1rem 2.25rem; font-family: var(--sans); font-size: .82rem;
+  font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  cursor: pointer; background: none; border: none;
+  color: rgba(255,255,255,.45); position: relative; transition: color .2s;
+  white-space: nowrap; flex-shrink: 0;
+}
+.top-tab.active { color: #fff; background: rgba(255,255,255,.04); }
+.top-tab.active::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 4px; background: var(--gold);
+}
+.top-tab:hover:not(.active) { color: rgba(255,255,255,.8); }
+.top-panel { display: none; }
+.top-panel.active { display: block; }
+
+/* ─── MAIN CONTENT AREA ────────────────────────────────── */
+.main { background: var(--off-white); padding: 2.5rem 2.5rem 0; }
+
+/* ─── SECTION INTRO ────────────────────────────────────── */
+.section-intro { padding-top: 2rem; margin-bottom: .25rem; }
+.section-eyebrow {
+  font-family: var(--sans); font-size: .68rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--navy-light); font-weight: 700; margin-bottom: .35rem;
+}
+.section-title {
+  font-family: var(--serif); font-size: 2rem; color: var(--navy-dark); margin-bottom: .3rem;
+}
+.section-sub {
+  font-family: var(--sans); font-size: .88rem; color: var(--stone);
+  line-height: 1.6; margin-bottom: 1.5rem;
+}
+
+/* ─── MEAL TABS ────────────────────────────────────────── */
+.meal-tabs-wrap {
+  display: flex; border-bottom: 2px solid var(--border); margin-bottom: 2rem;
+  overflow-x: auto;
+}
+.meal-tab {
+  padding: .85rem 2rem; font-family: var(--sans); font-size: .82rem;
+  font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  cursor: pointer; background: none; border: none; color: var(--stone);
+  position: relative; transition: color .2s; white-space: nowrap; flex-shrink: 0;
+}
+.meal-tab.active { color: var(--navy-dark); }
+.meal-tab.active::after {
+  content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 2px; background: var(--gold);
+}
+.meal-tab:hover:not(.active) { color: var(--navy); }
+.meal-panel { display: none; }
+.meal-panel.active { display: block; }
+
+/* ─── MENU LIST ────────────────────────────────────────── */
+.menu-intro {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
+}
+.menu-section-label {
+  font-family: var(--sans); font-size: .68rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--navy-light); font-weight: 700; margin-bottom: .3rem;
+}
+.menu-section-title { font-family: var(--serif); font-size: 1.6rem; color: var(--navy-dark); }
+.menu-note { font-family: var(--sans); font-size: .78rem; color: var(--stone); font-style: italic; }
+
+.customizer-note {
+  background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--gold);
+  padding: 1rem 1.25rem; margin-bottom: 2rem;
+  font-family: var(--sans); font-size: .83rem; color: var(--stone); line-height: 1.6;
+}
+.customizer-note strong { color: var(--navy-dark); font-weight: 600; }
+
+.menu-category { margin-bottom: 2rem; }
+.menu-cat-header { display: flex; align-items: center; gap: 1rem; margin-bottom: .75rem; }
+.menu-cat-name {
+  font-family: var(--sans); font-size: .72rem; font-weight: 700;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--navy-light); white-space: nowrap;
+}
+.menu-cat-line { flex: 1; height: 1px; background: var(--border); }
+
+.menu-item {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding: 1rem 0; border-bottom: 1px solid var(--border); gap: 1rem;
+}
+.menu-item:last-child { border-bottom: none; }
+.item-left { flex: 1; }
+.item-name {
+  font-family: var(--serif); font-size: 1.05rem;
+  color: var(--navy-dark); margin-bottom: .25rem;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.cosi-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #1a3f80; border-radius: 3px;
+  padding: 2px 7px; flex-shrink: 0; height: 20px;
+}
+.cosi-badge svg { display: block; }
+.item-desc { font-family: var(--sans); font-size: .82rem; color: var(--stone); line-height: 1.55; }
+.item-tags { display: flex; gap: 6px; margin-top: .4rem; flex-wrap: wrap; }
+.tag {
+  font-family: var(--sans); font-size: .6rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; padding: 2px 7px; border-radius: 2px;
+}
+.tag-v  { background: #edf5ee; color: #2d5a32; }
+.tag-gf { background: #fff8e0; color: #7a5a00; }
+.tag-vg { background: #eeeeff; color: #3a3a8a; }
+.tag-pop{ background: #fff0f0; color: #8a2222; }
+.item-right { text-align: right; flex-shrink: 0; }
+.item-price { font-family: var(--serif); font-size: 1rem; color: var(--navy-dark); font-weight: 600; }
+.item-cal   { font-family: var(--sans); font-size: .72rem; color: var(--stone); margin-top: 2px; }
+
+/* ─── HOURS BAR ────────────────────────────────────────── */
+.hours-bar {
+  background: #fff; border-top: 3px solid var(--gold); border-bottom: 3px solid var(--gold);
+  padding: 1.25rem 2.5rem; margin: 0 -2.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+.hour-item { text-align: center; }
+.hour-label {
+  font-family: var(--sans); font-size: .65rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--navy-light); font-weight: 700;
+}
+.hour-time { font-family: var(--serif); font-size: .95rem; color: var(--navy-dark); margin-top: 4px; }
+.hour-div { width: 1px; height: 36px; background: var(--border); }
+
+/* ─── STATS ROW ────────────────────────────────────────── */
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; padding: 2.5rem 0; }
+.stat-card {
+  background: #fff; border: 1px solid var(--border);
+  padding: 1.75rem; text-align: center; border-top: 4px solid var(--gold);
+}
+.stat-num  { font-family: var(--serif); font-size: 2.8rem; color: var(--navy); }
+.stat-label{
+  font-family: var(--sans); font-size: .72rem; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--navy-dark); font-weight: 700; margin-top: 4px;
+}
+.stat-desc { font-family: var(--sans); font-size: .78rem; color: var(--stone); margin-top: 8px; line-height: 1.5; }
+
+/* ─── PILLAR SECTIONS ──────────────────────────────────── */
+.pillar-panel { padding: 2.5rem 0 2rem; }
+.pillar-hero  { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 2.5rem; }
+.pill-eye     {
+  font-family: var(--sans); font-size: .68rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--navy-light); font-weight: 700; margin-bottom: .5rem;
+}
+.pillar-text h2 {
+  font-family: var(--serif); font-size: 1.9rem; color: var(--navy-dark);
+  margin-bottom: .85rem; line-height: 1.25;
+}
+.pillar-text p { font-family: var(--sans); font-size: .88rem; color: var(--stone); line-height: 1.75; }
+
+.pillar-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.p-card {
+  background: #fff; border: 1px solid var(--border);
+  padding: 1.5rem; border-top: 4px solid var(--gold);
+}
+.p-card-icon  { font-size: 1.5rem; margin-bottom: .85rem; }
+.p-card-title { font-family: var(--serif); font-size: 1.05rem; color: var(--navy-dark); margin-bottom: .5rem; }
+.p-card-desc  { font-family: var(--sans); font-size: .8rem; color: var(--stone); line-height: 1.6; }
+
+/* ─── PILLAR VISUAL (bar chart) ────────────────────────── */
+.pillar-visual { background: var(--navy); padding: 2rem; display: flex; flex-direction: column; gap: .85rem; }
+.pv-row {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+  padding: .85rem 1rem; display: flex; align-items: center; gap: 1rem;
+}
+.pv-label {
+  font-family: var(--sans); font-size: .75rem; color: rgba(255,255,255,.5);
+  min-width: 130px; text-transform: uppercase; letter-spacing: .05em;
+}
+.pv-bar-wrap { flex: 1; background: rgba(255,255,255,.06); height: 8px; border-radius: 4px; overflow: hidden; }
+.pv-bar { height: 100%; border-radius: 4px; background: var(--gold); }
+.pv-val { font-family: var(--sans); font-size: .75rem; color: rgba(255,255,255,.45); min-width: 36px; text-align: right; }
+
+/* ─── MARKET BAND ──────────────────────────────────────── */
+.market-band {
+  background: var(--navy); padding: 3rem 2.5rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+  margin: 0 -2.5rem;
+}
+.mkt-eyebrow {
+  font-family: var(--sans); font-size: .68rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: .75rem;
+}
+.mkt-title { font-family: var(--serif); font-size: 1.9rem; color: #fff; margin-bottom: .85rem; line-height: 1.25; }
+.mkt-sub   {
+  font-family: var(--sans); font-size: .88rem; color: rgba(255,255,255,.55);
+  line-height: 1.75; margin-bottom: 1.75rem;
+}
+.mkt-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; }
+.mkt-feat  {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  padding: 1rem; border-left: 3px solid var(--gold);
+}
+.mkt-feat-name { font-family: var(--sans); font-size: .8rem; font-weight: 600; color: #fff; margin-bottom: 3px; }
+.mkt-feat-sub  { font-family: var(--sans); font-size: .72rem; color: rgba(255,255,255,.4); }
+.mkt-visual    { display: flex; flex-direction: column; gap: 8px; }
+.shelf-row {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+  height: 52px; display: flex; align-items: center; padding: 0 14px;
+  gap: 10px; border-left: 3px solid var(--gold);
+}
+.shelf-row span {
+  font-family: var(--sans); font-size: .7rem; color: rgba(255,255,255,.35);
+  margin-left: auto; letter-spacing: .05em; text-transform: uppercase;
+}
+.dot { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; }
+
+/* ─── FOOTER ───────────────────────────────────────────── */
+footer {
+  background: var(--navy-dark); color: rgba(255,255,255,.4);
+  padding: 1.75rem 2.5rem; display: flex; justify-content: space-between;
+  align-items: center; font-family: var(--sans); font-size: .8rem;
+  border-top: 4px solid var(--gold); flex-wrap: wrap; gap: 1rem;
+}
+.footer-logo { font-family: var(--serif); color: #fff; font-size: 1.1rem; }
+.footer-logo span { color: var(--gold); }
+
+/* ─── RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .site-nav { padding: 1rem 1.25rem; }
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--navy-dark); padding: 1rem 0; z-index: 50; }
+  .nav-links.open { display: flex; }
+  .nav-links li a { padding: .75rem 1.5rem; border-bottom: none; border-left: 3px solid transparent; }
+  .nav-links li a.active { border-left-color: var(--gold); }
+  .nav-toggle { display: flex; }
+  .hero-center { padding: 2rem 1.25rem; }
+  .hero-h1 { font-size: 2.2rem; }
+  .hero-sub { font-size: .88rem; }
+  .main { padding: 1.5rem 1.25rem 0; }
+  .section-title { font-size: 1.6rem; }
+  .hours-bar { padding: 1rem 1.25rem; margin: 0 -1.25rem; justify-content: center; }
+  .hour-div { display: none; }
+  .stats-row { grid-template-columns: 1fr; }
+  .pillar-hero { grid-template-columns: 1fr; gap: 1.5rem; }
+  .pillar-cards { grid-template-columns: 1fr; }
+  .market-band { grid-template-columns: 1fr; padding: 2rem 1.25rem; margin: 0 -1.25rem; }
+  footer { padding: 1.25rem; flex-direction: column; text-align: center; }
+  .top-tab { padding: .85rem 1.25rem; font-size: .75rem; }
+  .meal-tab { padding: .75rem 1.25rem; font-size: .75rem; }
+}
+@media (max-width: 480px) {
+  .hero-btns { flex-direction: column; align-items: center; }
+  .btn-gold, .btn-ghost { width: 100%; max-width: 280px; text-align: center; }
+}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ─── HERO ──────────────────────────────────────────── -->
+<div class="hero">
+  <img class="hero-bowl-img"
+    src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1400&q=80&fit=crop&crop=center"
+    alt="Fresh grain bowl with vegetables"
+    loading="eager">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <nav class="site-nav">
+      <div class="logo-wrap">
+        <div class="logo-sub">MedStar Health · Food Services</div>
+        <div class="logo-main">The <span>Station</span> Café</div>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" onclick="switchTop('prog',this);closeMobileNav();return false;" class="active">Programming</a></li>
+        <li><a href="#" onclick="switchTop('flex',this);closeMobileNav();return false;">Flexibility</a></li>
+        <li><a href="#" onclick="switchTop('tech',this);closeMobileNav();return false;">Technology</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="hero-split">
+      <div class="hero-text-col">
+        <div class="hero-badge">Three Stations · Micro Market · Powered by Così</div>
+        <h1 class="hero-h1">Where great food<br>finds <em>its station.</em></h1>
+        <p class="hero-sub">Fresh chef-driven menus, a curated 24/7 micro market, and bright welcoming spaces built for every part of your day at MedStar Health.</p>
+        <div class="hero-btns">
+          <button class="btn-gold" onclick="switchTop('prog', document.querySelectorAll('.top-tab')[0])">See Today's Menu</button>
+          <button class="btn-ghost" onclick="switchTop('flex', document.querySelectorAll('.top-tab')[1])">Visit the Market</button>
+        </div>
+      </div>
+      <div class="hero-img-col">
+        <div class="hero-bowl-card">
+          <img
+            src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=85&fit=crop&crop=center"
+            alt="Fresh grain bowl with roasted vegetables, greens, and vibrant toppings">
+          <div class="hero-bowl-card-label">Fresh · Daily · Made to order</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── TOP SECTION TABS ───────────────────────────────── -->
+<div class="top-tabs-wrap">
+  <button class="top-tab active" onclick="switchTop('prog',this)">Programming</button>
+  <button class="top-tab" onclick="switchTop('flex',this)">Flexibility</button>
+  <button class="top-tab" onclick="switchTop('tech',this)">Technology</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!--  PROGRAMMING                                          -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="prog" class="top-panel active">
+  <div class="main">
+    <div class="section-intro">
+      <div class="section-eyebrow">Sample Menu</div>
+      <h2 class="section-title">Daily Programming</h2>
+      <p class="section-sub">Rotating seasonal selections served fresh each day, inspired by Così favorites. Select a meal period below.</p>
+    </div>
+
+    <div class="meal-tabs-wrap">
+      <button class="meal-tab active" onclick="switchMeal('breakfast',this)">Breakfast</button>
+      <button class="meal-tab" onclick="switchMeal('lunch',this)">Lunch</button>
+      <button class="meal-tab" onclick="switchMeal('dinner',this)">Dinner</button>
+    </div>
+
+    <!-- ── BREAKFAST ──────────────────────────────────── -->
+    <div id="breakfast" class="meal-panel active">
+      <div class="menu-intro">
+        <div>
+          <div class="menu-section-label">Served 7:00 – 10:30 AM</div>
+          <div class="menu-section-title">Breakfast</div>
+        </div>
+        <div class="menu-note">Sample menu · items rotate seasonally</div>
+      </div>
+
+      <div class="customizer-note">
+        <strong>Build it your way.</strong> All egg sandwiches can be served on freshly baked original flatbread, multigrain flatbread, toasted bagel, or croissant. Egg whites available as a lighter substitute on any egg item (+$1.25).
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-cat-header"><span class="menu-cat-name">Egg Sandwiches</span><div class="menu-cat-line"></div></div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Tomato, Basil & Mozzarella Egg</div>
+            <div class="item-desc">Farm-fresh egg, sliced tomato, fresh basil, and creamy mozzarella finished with a house sun-dried tomato spread on your choice of bread.</div>
+            <div class="item-tags"><span class="tag tag-v">Vegetarian</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$9.50</div><div class="item-cal">380 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Spicy Southwest Egg</div>
+            <div class="item-desc">Farm-fresh egg, crispy bacon, pepper jack cheese, pickled jalapeño, house-made pico de gallo, and sun-dried tomato spread.</div>
+            <div class="item-tags"><span class="tag tag-pop">Fan Favorite</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$10.25</div><div class="item-cal">420 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Avocado Hot Honey Egg</div>
+            <div class="item-desc">Creamy avocado, farm-fresh egg, dried cranberries, crunchy pistachios, and a drizzle of Così hot honey on toasted flatbread.</div>
+            <div class="item-tags"><span class="tag tag-v">Vegetarian</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$10.75</div><div class="item-cal">395 cal</div></div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-cat-header"><span class="menu-cat-name">Bagels & Breads</span><div class="menu-cat-line"></div></div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Così Signature Bagel</div>
+            <div class="item-desc">Hearth-baked daily. Choose from plain, everything, cinnamon raisin, or Asiago — served with whipped cream cheese or butter.</div>
+            <div class="item-tags"><span class="tag tag-v">Vegetarian</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$4.75</div><div class="item-cal">290–300 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Pastry of the Day</div>
+            <div class="item-desc">Choice of house-baked muffin, scone, or croissant with a side fruit salad and your choice of cream cheese or whipped butter.</div>
+            <div class="item-tags"><span class="tag tag-v">Vegetarian</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$5.50</div><div class="item-cal">310–380 cal</div></div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-cat-header"><span class="menu-cat-name">Wholesome Starts</span><div class="menu-cat-line"></div></div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Steel-Cut Oatmeal</div>
+            <div class="item-desc">Nourishing steel-cut oats with your choice of toppings: dried cranberries, pistachios, strawberries, brown sugar, or granola.</div>
+            <div class="item-tags"><span class="tag tag-vg">Vegan</span><span class="tag tag-gf">Gluten-Free</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$5.75</div><div class="item-cal">210 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Overnight Oat Bowl</div>
+            <div class="item-desc">Steel-cut oats soaked overnight in almond milk, lightly sweetened with honey, topped with a medley of fresh seasonal berries.</div>
+            <div class="item-tags"><span class="tag tag-vg">Vegan Option</span><span class="tag tag-gf">Gluten-Free</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$7.00</div><div class="item-cal">260 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Yogurt Parfait</div>
+            <div class="item-desc">Creamy house-style yogurt layered with house-made granola, fresh seasonal fruit, and a drizzle of local honey.</div>
+            <div class="item-tags"><span class="tag tag-v">Vegetarian</span><span class="tag tag-gf">Gluten-Free</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$6.50</div><div class="item-cal">290 cal</div></div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-cat-header"><span class="menu-cat-name">Beverages</span><div class="menu-cat-line"></div></div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Freshly Brewed Coffee</div>
+            <div class="item-desc">House-roasted blend brewed fresh throughout service. Regular and decaf available. Oat, almond, and whole milk options.</div>
+            <div class="item-tags"><span class="tag tag-vg">Vegan Option</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$3.25</div><div class="item-cal">5 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Fresh Orange Juice</div>
+            <div class="item-desc">12 oz. chilled fresh-squeezed orange juice — the perfect complement to any breakfast item.</div>
+            <div class="item-tags"><span class="tag tag-vg">Vegan</span><span class="tag tag-gf">Gluten-Free</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$3.75</div><div class="item-cal">110 cal</div></div>
+        </div>
+      </div>
+    </div><!-- /breakfast -->
+
+    <!-- ── LUNCH ──────────────────────────────────────── -->
+    <div id="lunch" class="meal-panel">
+      <div class="menu-intro">
+        <div>
+          <div class="menu-section-label">Served 11:00 AM – 2:30 PM</div>
+          <div class="menu-section-title">Lunch</div>
+        </div>
+        <div class="menu-note">Sample menu · items rotate seasonally</div>
+      </div>
+
+      <div class="customizer-note">
+        <strong>Customize your order.</strong> All sandwiches are served on your choice of freshly baked original or multigrain flatbread, or a gluten-free wrap (+$2.50). Pair with chips, apple, or premium chips.
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-cat-header"><span class="menu-cat-name">Flatbread Sandwiches</span><div class="menu-cat-line"></div></div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Tomato, Basil & Mozzarella</div>
+            <div class="item-desc">The classic Così bistro sandwich — vibrant tomatoes, fragrant basil, and fresh mozzarella with signature vinaigrette. Available with chicken or prosciutto.</div>
+            <div class="item-tags"><span class="tag tag-v">Vegetarian Base</span><span class="tag tag-pop">Così Classic</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$10.50</div><div class="item-cal">410 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Prosciutto & Fig Flatbread</div>
+            <div class="item-desc">Dry-aged prosciutto, sweet fig spread, creamy fontina, peppery arugula, finished with extra virgin olive oil and a balsamic glaze.</div>
+            <div class="item-tags"><span class="tag tag-pop">Fan Favorite</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$12.25</div><div class="item-cal">460 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Adobo Chicken Flatbread</div>
+            <div class="item-desc">Chicken infused with rich adobo spices, roasted corn, black beans, hearth-roasted veggies, house-made pico de gallo, creamy avocado, cilantro, and pickled jalapeño with a lemon wedge.</div>
+            <div class="item-tags"><span class="tag tag-gf">Gluten-Free Wrap Available</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$12.75</div><div class="item-cal">490 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Spicy Buffalo Chicken Melt</div>
+            <div class="item-desc">Tender pulled chicken tossed in spicy buffalo sauce, melted provolone, crispy celery, and a cool house-made ranch drizzle on toasted flatbread.</div>
+            <div class="item-tags"><span class="tag tag-pop">New Favorite</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$12.50</div><div class="item-cal">475 cal</div></div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-cat-header"><span class="menu-cat-name">Bistro Bowls</span><div class="menu-cat-line"></div></div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Italian Beef Bistro Bowl</div>
+            <div class="item-desc">Shaved Italian beef, sliced fresh mozzarella, hot pepper relish, house-roasted Brussels sprouts, homemade parmesan crisps, pickled onion, and Così sherry shallot parmesan aioli.</div>
+            <div class="item-tags"><span class="tag tag-gf">Gluten-Free</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$13.50</div><div class="item-cal">450 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Falafel & Harissa Bowl</div>
+            <div class="item-desc">Crispy falafel, creamy harissa hummus, diced cucumber, tomato, house-pickled onions, peppery arugula, and hot harissa sauce.</div>
+            <div class="item-tags"><span class="tag tag-vg">Vegan</span><span class="tag tag-gf">Gluten-Free</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$12.50</div><div class="item-cal">310 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Sesame Ginger Chicken Bowl</div>
+            <div class="item-desc">Perfectly roasted chicken, house-roasted spicy broccoli, shredded carrots, cabbage, scallions, crispy wonton strips, and a bold ginger sesame sauce.</div>
+            <div class="item-tags"><span class="tag tag-gf">Gluten-Free</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$13.25</div><div class="item-cal">380 cal</div></div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-cat-header"><span class="menu-cat-name">Soups & Sides</span><div class="menu-cat-line"></div></div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Tomato Basil Soup</div>
+            <div class="item-desc">Così's signature slow-simmered tomato basil soup, served with a slice of freshly baked original flatbread.</div>
+            <div class="item-tags"><span class="tag tag-v">Vegetarian</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$6.75</div><div class="item-cal">210 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Fresh Fruit Salad</div>
+            <div class="item-desc">Artfully arranged seasonal fruit including cantaloupe, honeydew, pineapple, strawberries, and grapes.</div>
+            <div class="item-tags"><span class="tag tag-vg">Vegan</span><span class="tag tag-gf">Gluten-Free</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$4.50</div><div class="item-cal">90 cal</div></div>
+        </div>
+      </div>
+    </div><!-- /lunch -->
+
+    <!-- ── DINNER ─────────────────────────────────────── -->
+    <div id="dinner" class="meal-panel">
+      <div class="menu-intro">
+        <div>
+          <div class="menu-section-label">Served 5:00 – 9:00 PM</div>
+          <div class="menu-section-title">Dinner</div>
+        </div>
+        <div class="menu-note">Sample menu · items rotate seasonally</div>
+      </div>
+
+      <div class="customizer-note">
+        <strong>Evening service.</strong> Dinner features heartier portions and expanded options from the deli and beverage stations, with craft beverages available throughout the evening.
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-cat-header"><span class="menu-cat-name">Signature Flatbreads</span><div class="menu-cat-line"></div></div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Tuscan Chicken Flatbread Pizza</div>
+            <div class="item-desc">Herb-marinated roasted chicken, roasted garlic, sun-dried tomatoes, wilted spinach, shaved parmesan, and a drizzle of extra virgin olive oil on a hearth-baked flatbread crust.</div>
+            <div class="item-tags"><span class="tag tag-pop">Dinner Favorite</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$15.50</div><div class="item-cal">520 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Margherita Flatbread Pizza</div>
+            <div class="item-desc">Classic San Marzano tomato sauce, fresh mozzarella, torn basil, and a finishing drizzle of good olive oil. Simple and perfect.</div>
+            <div class="item-tags"><span class="tag tag-v">Vegetarian</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$13.50</div><div class="item-cal">470 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Chipotle Chicken Melt</div>
+            <div class="item-desc">Spiced chipotle chicken, pepper jack, roasted corn, pico de gallo, crispy jalapeños, and avocado crema — served warm on hearth-fired flatbread.</div>
+            <div class="item-tags"><span class="tag tag-pop">New This Season</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$14.75</div><div class="item-cal">510 cal</div></div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-cat-header"><span class="menu-cat-name">Evening Bowls</span><div class="menu-cat-line"></div></div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Harvest Grain Bowl</div>
+            <div class="item-desc">Warm farro, roasted seasonal vegetables, crispy chickpeas, dried cranberries, pepitas, arugula, and a lemon-herb tahini dressing.</div>
+            <div class="item-tags"><span class="tag tag-vg">Vegan</span><span class="tag tag-gf">Gluten-Free</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$14.25</div><div class="item-cal">420 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Vegan Chorizo Southwest Bowl</div>
+            <div class="item-desc">Perfectly spiced meatless chorizo crumbles, roasted corn, black beans, house-made pico de gallo, avocado, and fresh cilantro over seasoned rice.</div>
+            <div class="item-tags"><span class="tag tag-vg">Vegan</span><span class="tag tag-gf">Gluten-Free</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$13.75</div><div class="item-cal">390 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Italian Beef Bistro Bowl</div>
+            <div class="item-desc">Shaved Italian beef, fresh mozzarella, hot pepper relish, house-roasted Brussels sprouts, parmesan crisps, pickled onion, and sherry shallot parmesan aioli.</div>
+            <div class="item-tags"><span class="tag tag-gf">Gluten-Free</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$15.50</div><div class="item-cal">450 cal</div></div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-cat-header"><span class="menu-cat-name">Evening Beverages</span><div class="menu-cat-line"></div></div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Così Signature Lemonade</div>
+            <div class="item-desc">House-made fresh lemonade available in original, mojito, or raspberry mojito. Refreshing and made to order.</div>
+            <div class="item-tags"><span class="tag tag-vg">Vegan</span><span class="tag tag-gf">Gluten-Free</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$4.25</div><div class="item-cal">120 cal</div></div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left">
+            <div class="item-name">Craft Iced Tea</div>
+            <div class="item-desc">House-brewed iced tea served sweetened or unsweetened with fresh lemon. Also available as a Arnold Palmer with fresh lemonade.</div>
+            <div class="item-tags"><span class="tag tag-vg">Vegan</span><span class="tag tag-gf">Gluten-Free</span></div>
+          </div>
+          <div class="item-right"><div class="item-price">$3.50</div><div class="item-cal">0–80 cal</div></div>
+        </div>
+      </div>
+    </div><!-- /dinner -->
+
+    <div class="hours-bar">
+      <div class="hour-item"><div class="hour-label">Breakfast</div><div class="hour-time">7:00 – 10:30 AM</div></div>
+      <div class="hour-div"></div>
+      <div class="hour-item"><div class="hour-label">Lunch</div><div class="hour-time">11:00 AM – 2:30 PM</div></div>
+      <div class="hour-div"></div>
+      <div class="hour-item"><div class="hour-label">Dinner</div><div class="hour-time">5:00 – 9:00 PM</div></div>
+      <div class="hour-div"></div>
+      <div class="hour-item"><div class="hour-label">24/7 Market</div><div class="hour-time">Always Open</div></div>
+      <div class="hour-div"></div>
+      <div class="hour-item"><div class="hour-label">Kitchen</div><div class="hour-time">Mon – Sat</div></div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Service Stations</div>
+        <div class="stat-desc">Low, open counters with sneeze guards — designed for visibility, freshness, and easy browsing.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">48</div>
+        <div class="stat-label">Total Seats</div>
+        <div class="stat-desc">Communal tables, two-tops, counter seating, and lounge areas throughout the café floor.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4×</div>
+        <div class="stat-label">Menu Rotations / Year</div>
+        <div class="stat-desc">Quarterly refreshes keep offerings fresh and aligned with seasons and guest expectations.</div>
+      </div>
+    </div>
+  </div>
+</div><!-- /prog -->
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!--  FLEXIBILITY                                          -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="flex" class="top-panel">
+  <div class="main">
+    <div class="pillar-panel">
+      <div class="pillar-hero">
+        <div class="pillar-text">
+          <div class="pill-eye">Built to Adapt</div>
+          <h2>A café that flexes around your community.</h2>
+          <p>The Station Café is designed from the ground up for operational flexibility. Station counters are modular, menus are swappable, and service models can shift from full-service to grab-and-go depending on the time of day, event, or population needs. The 24/7 micro market ensures the space is always active and generating value even when the kitchen is closed.</p>
+        </div>
+        <div class="pillar-visual">
+          <div class="pv-row"><span class="pv-label">Grab & Go Mode</span><div class="pv-bar-wrap"><div class="pv-bar" style="width:100%"></div></div><span class="pv-val">✓</span></div>
+          <div class="pv-row"><span class="pv-label">Full-Service Mode</span><div class="pv-bar-wrap"><div class="pv-bar" style="width:100%"></div></div><span class="pv-val">✓</span></div>
+          <div class="pv-row"><span class="pv-label">Catering & Events</span><div class="pv-bar-wrap"><div class="pv-bar" style="width:100%"></div></div><span class="pv-val">✓</span></div>
+          <div class="pv-row"><span class="pv-label">Unmanned Market</span><div class="pv-bar-wrap"><div class="pv-bar" style="width:100%"></div></div><span class="pv-val">24/7</span></div>
+        </div>
+      </div>
+      <div class="pillar-cards">
+        <div class="p-card">
+          <div class="p-card-icon">🔄</div>
+          <div class="p-card-title">Modular Station Design</div>
+          <div class="p-card-desc">Low counters and flexible configurations allow stations to be reprogrammed, combined, or scaled depending on operational needs and daily demand.</div>
+        </div>
+        <div class="p-card">
+          <div class="p-card-icon">🕐</div>
+          <div class="p-card-title">Daypart Transitions</div>
+          <div class="p-card-desc">Seamless transitions between breakfast, lunch, and dinner service — with the 24/7 market bridging every gap around the clock without additional staffing.</div>
+        </div>
+        <div class="p-card">
+          <div class="p-card-icon">🎪</div>
+          <div class="p-card-title">Event-Ready Layout</div>
+          <div class="p-card-desc">Seating and station arrangements flex for catered events, private dining, or community programming after regular service hours.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="market-band">
+      <div>
+        <div class="mkt-eyebrow">Always Operational</div>
+        <h2 class="mkt-title">Flexibility starts with the market.</h2>
+        <p class="mkt-sub">When the kitchen closes, the micro market keeps the café alive. Self-checkout technology and constantly refreshed inventory mean guests always have access to quality food and beverages — no staff required overnight.</p>
+        <div class="mkt-grid">
+          <div class="mkt-feat"><div class="mkt-feat-name">No Staffing Overnight</div><div class="mkt-feat-sub">Self-checkout runs unmanned</div></div>
+          <div class="mkt-feat"><div class="mkt-feat-name">Daily Replenishment</div><div class="mkt-feat-sub">Restocked fresh each morning</div></div>
+          <div class="mkt-feat"><div class="mkt-feat-name">Bridges Every Daypart</div><div class="mkt-feat-sub">Always serving the community</div></div>
+          <div class="mkt-feat"><div class="mkt-feat-name">Scalable Inventory</div><div class="mkt-feat-sub">Adapts to demand patterns</div></div>
+        </div>
+      </div>
+      <div class="mkt-visual">
+        <div class="shelf-row">
+          <div class="dot" style="background:#f5c400"></div>
+          <div class="dot" style="background:#f5c400;opacity:.6"></div>
+          <div class="dot" style="background:#fff;opacity:.2"></div>
+          <div class="dot" style="background:#f5c400;opacity:.8"></div>
+          <span>Grab &amp; Go</span>
+        </div>
+        <div class="shelf-row">
+          <div class="dot" style="background:#fff;opacity:.25"></div>
+          <div class="dot" style="background:#f5c400;opacity:.5"></div>
+          <div class="dot" style="background:#f5c400"></div>
+          <span>Beverages</span>
+        </div>
+        <div class="shelf-row">
+          <div class="dot" style="background:#f5c400;opacity:.7"></div>
+          <div class="dot" style="background:#fff;opacity:.2"></div>
+          <div class="dot" style="background:#f5c400"></div>
+          <div class="dot" style="background:#f5c400;opacity:.4"></div>
+          <span>Snacks</span>
+        </div>
+        <div class="shelf-row">
+          <div class="dot" style="background:#fff;opacity:.15"></div>
+          <div class="dot" style="background:#f5c400;opacity:.6"></div>
+          <span>Local Pantry</span>
+        </div>
+        <p style="color:rgba(255,255,255,.22);font-family:var(--sans);font-size:.7rem;text-align:center;margin-top:.5rem;letter-spacing:.08em;text-transform:uppercase">Open 24 / 7 · Self-checkout available</p>
+      </div>
+    </div>
+    <div style="padding-bottom:2.5rem"></div>
+  </div>
+</div><!-- /flex -->
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!--  TECHNOLOGY                                           -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="tech" class="top-panel">
+  <div class="main">
+    <div class="pillar-panel">
+      <div class="pillar-hero">
+        <div class="pillar-text">
+          <div class="pill-eye">Powered by Tech</div>
+          <h2>Smart infrastructure for a modern food hall.</h2>
+          <p>The Station Café integrates technology at every touchpoint — from self-checkout in the micro market to digital menu boards at each station, contactless payment, and real-time inventory management. The result is a leaner operation, faster guest throughput, and data-driven insights that help operators continuously improve programming and profitability.</p>
+        </div>
+        <div class="pillar-visual">
+          <div class="pv-row"><span class="pv-label">Self-Checkout</span><div class="pv-bar-wrap"><div class="pv-bar" style="width:100%"></div></div><span class="pv-val">✓</span></div>
+          <div class="pv-row"><span class="pv-label">Digital Menus</span><div class="pv-bar-wrap"><div class="pv-bar" style="width:100%"></div></div><span class="pv-val">✓</span></div>
+          <div class="pv-row"><span class="pv-label">Contactless Pay</span><div class="pv-bar-wrap"><div class="pv-bar" style="width:100%"></div></div><span class="pv-val">✓</span></div>
+          <div class="pv-row"><span class="pv-label">Inventory Analytics</span><div class="pv-bar-wrap"><div class="pv-bar" style="width:100%"></div></div><span class="pv-val">✓</span></div>
+        </div>
+      </div>
+      <div class="pillar-cards">
+        <div class="p-card">
+          <div class="p-card-icon">📱</div>
+          <div class="p-card-title">Contactless & Mobile Pay</div>
+          <div class="p-card-desc">Every station and market checkout accepts tap-to-pay, mobile wallets, and badge/ID card payment for seamless MedStar campus integration.</div>
+        </div>
+        <div class="p-card">
+          <div class="p-card-icon">🖥️</div>
+          <div class="p-card-title">Digital Menu Boards</div>
+          <div class="p-card-desc">Backlit digital boards at each station display live menus, pricing, calorie counts, and allergen info — updated remotely in real time.</div>
+        </div>
+        <div class="p-card">
+          <div class="p-card-icon">📊</div>
+          <div class="p-card-title">Data & Reporting</div>
+          <div class="p-card-desc">Real-time sales, inventory depletion, and guest traffic data give operators the insights to optimize staffing, ordering, and programming.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hours-bar">
+      <div class="hour-item"><div class="hour-label">Stations</div><div class="hour-time">3 Open Counters</div></div>
+      <div class="hour-div"></div>
+      <div class="hour-item"><div class="hour-label">Payment</div><div class="hour-time">Contactless & Card</div></div>
+      <div class="hour-div"></div>
+      <div class="hour-item"><div class="hour-label">Market</div><div class="hour-time">Self-Checkout 24/7</div></div>
+      <div class="hour-div"></div>
+      <div class="hour-item"><div class="hour-label">Menus</div><div class="hour-time">Digital · Real-Time</div></div>
+      <div class="hour-div"></div>
+      <div class="hour-item"><div class="hour-label">Reporting</div><div class="hour-time">Live Dashboard</div></div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Digital Menu Boards</div>
+        <div class="stat-desc">One per station — remotely managed, displaying live menus, allergen info, and daily specials.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Self-Checkout Kiosk</div>
+        <div class="stat-desc">Market self-checkout with contactless payment runs fully unmanned around the clock.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Real-Time Data</div>
+        <div class="stat-desc">Continuous sales and inventory analytics feed into an operator dashboard for smarter daily decisions.</div>
+      </div>
+    </div>
+    <div style="padding-bottom:2.5rem"></div>
+  </div>
+</div><!-- /tech -->
+
+</div><!-- /page-wrap -->
+
+<footer>
+  <div class="footer-logo">The <span>Station</span> Café</div>
+  <div>© 2025 · MedStar Health Food Services</div>
+  <div>info@thestationcafe.com</div>
+</footer>
+
+<script>
+/* ── Così logo badge — injected next to every menu item name ── */
+const COSI_BADGE = `<span class="cosi-badge" title="A Così favorite" aria-label="Così">
+  <svg width="32" height="14" viewBox="0 0 64 22" xmlns="http://www.w3.org/2000/svg">
+    <!-- C -->
+    <path d="M10 4 C5 4 2 8 2 11 C2 14 5 18 10 18 C12.5 18 14.5 17 16 15.5 L14 13.5 C13 14.8 11.6 15.5 10 15.5 C6.8 15.5 4.5 13.5 4.5 11 C4.5 8.5 6.8 6.5 10 6.5 C11.6 6.5 13 7.2 14 8.5 L16 6.5 C14.5 5 12.5 4 10 4Z" fill="white"/>
+    <!-- o -->
+    <path d="M24 7 C20.5 7 18 9.5 18 12.5 C18 15.5 20.5 18 24 18 C27.5 18 30 15.5 30 12.5 C30 9.5 27.5 7 24 7Z M24 15.5 C22 15.5 20.5 14.2 20.5 12.5 C20.5 10.8 22 9.5 24 9.5 C26 9.5 27.5 10.8 27.5 12.5 C27.5 14.2 26 15.5 24 15.5Z" fill="white"/>
+    <!-- s -->
+    <path d="M38 7 C35 7 33 8.8 33 11 C33 13 34.5 14 36.5 14.5 L37.5 14.8 C38.8 15.1 39.5 15.5 39.5 16.2 C39.5 17 38.6 17.5 37.5 17.5 C36.2 17.5 35 16.8 34.2 15.8 L32.5 17.5 C33.6 18.8 35.4 19.5 37.5 19.5 C40.5 19.5 42.2 17.8 42.2 15.8 C42.2 13.7 40.8 12.8 38.6 12.2 L37.8 12 C36.6 11.7 35.7 11.3 35.7 10.5 C35.7 9.8 36.4 9.3 37.5 9.3 C38.6 9.3 39.6 9.8 40.3 10.6 L42 9 C41 7.8 39.6 7 38 7Z" fill="white"/>
+    <!-- ì (i with accent) -->
+    <path d="M45 7.5 L45 18 L47.5 18 L47.5 7.5 Z" fill="white"/>
+    <path d="M47.8 4 C47.1 5.2 46 5.8 44.8 5.6 L45.2 4.5 C45.8 4.7 46.5 4.4 47 3.5 Z" fill="#f5c400"/>
+  </svg>
+</span>`;
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.item-name').forEach(function(el) {
+    el.insertAdjacentHTML('beforeend', COSI_BADGE);
+  });
+});
+
+/* ── Tab switching ───────────────────────────────────────── */
+function switchTop(name, el) {
+  document.querySelectorAll('.top-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.top-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById(name).classList.add('active');
+  const i = { prog: 0, flex: 1, tech: 2 }[name];
+  document.querySelectorAll('.top-tab')[i].classList.add('active');
+  document.querySelectorAll('.nav-links a')[i].classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function switchMeal(name, el) {
+  document.querySelectorAll('.meal-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.meal-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(name).classList.add('active');
+  el.classList.add('active');
+}
+
+/* ── Mobile nav ──────────────────────────────────────────── */
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+function closeMobileNav() {
+  document.getElementById('navLinks').classList.remove('open');
+}
+document.addEventListener('click', function(e) {
+  const nav = document.getElementById('navLinks');
+  const toggle = document.getElementById('navToggle');
+  if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+    nav.classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>
