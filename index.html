@@ -236,6 +236,18 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
 .rest-panel { display: none; }
 .rest-panel.active { display: block; }
 
+.menu-two-col {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem;
+}
+.menu-two-col .menu-category { break-inside: avoid; }
+.menu-two-col .menu-item {
+  padding: .75rem 0; border-bottom: 1px solid var(--border);
+}
+.menu-two-col .menu-item:last-child { border-bottom: none; }
+@media (max-width: 768px) {
+  .menu-two-col { grid-template-columns: 1fr; }
+}
+
 .base-chooser {
   background: var(--off-white); border: 1px solid var(--border);
   padding: 1rem 1.25rem; margin-bottom: 1rem; border-radius: 3px;
@@ -546,6 +558,7 @@ footer {
         <strong>Build it your way.</strong> All egg sandwiches can be served on freshly baked original flatbread, multigrain flatbread, toasted bagel, or croissant. Egg whites available as a lighter substitute on any egg item (+$1.25).
       </div>
 
+      <div class="menu-two-col">
       <div class="menu-category">
         <div class="menu-cat-header"><span class="menu-cat-name">Egg Sandwiches</span><div class="menu-cat-line"></div></div>
         <div class="menu-item">
@@ -642,6 +655,7 @@ footer {
         </div>
       </div>
 
+      </div><!-- /menu-two-col -->
     </div><!-- /breakfast -->
 
     <!-- ── LUNCH ──────────────────────────────────────── -->
@@ -669,6 +683,7 @@ footer {
         <strong>Customize your order.</strong> All sandwiches are served on your choice of freshly baked original or multigrain flatbread, or a gluten-free wrap (+$2.50). Pair with chips, apple, or premium chips.
       </div>
 
+      <div class="menu-two-col">
       <div class="menu-category">
         <div class="menu-cat-header"><span class="menu-cat-name">Flatbread Sandwiches</span><div class="menu-cat-line"></div></div>
         <div class="menu-item">
@@ -799,12 +814,14 @@ footer {
           <div class="item-right"><div class="item-price">$4.50</div><div class="item-cal">90 cal</div></div>
         </div>
       </div>
+      </div><!-- /menu-two-col -->
       </div><!-- /lunch-cosi -->
 
       <div id="lunch-halal" class="rest-panel" style="display:none">
         <div class="customizer-note">
           <strong>The Halal Guys.</strong> One of New York's most iconic street food concepts — now in your café. Generous platters, crispy falafel, and the legendary white sauce that started it all.
         </div>
+        <div class="menu-two-col">
         <div class="menu-category">
           <div class="menu-cat-header"><span class="menu-cat-name">Platters</span><div class="menu-cat-line"></div></div>
           <div class="menu-item">
@@ -859,6 +876,7 @@ footer {
             <div class="item-right"><div class="item-price">$4.99</div><div class="item-cal">90 cal</div></div>
           </div>
         </div>
+        </div><!-- /menu-two-col -->
       </div><!-- /lunch-halal -->
     </div><!-- /lunch -->
 
