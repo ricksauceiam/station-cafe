@@ -420,7 +420,53 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
 }
 .dot { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; }
 
-/* ─── FOOTER ───────────────────────────────────────────── */
+/* ─── FLOOR PLANNER ────────────────────────────────────── */
+.fp-section { background: var(--off-white); padding: 2.5rem 2.5rem 0; }
+.fp-section-header { margin-bottom: 1.25rem; }
+.fp-wrap {
+  width: 100%; background: #f0ece6; border: 1px solid #d0c8bc;
+  overflow: hidden; position: relative; border-radius: 4px;
+}
+.fp-toolbar {
+  display: flex; align-items: center; gap: 8px; padding: 10px 14px;
+  background: var(--navy-dark); border-bottom: 3px solid var(--gold);
+  flex-wrap: wrap;
+}
+.fp-tlabel { color: rgba(255,255,255,.5); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; margin-right: 4px; font-family: var(--sans); }
+.fp-tbtn {
+  background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.2);
+  padding: 5px 11px; font-size: 11px; border-radius: 3px; cursor: pointer;
+  white-space: nowrap; font-family: var(--sans); letter-spacing: .04em;
+}
+.fp-tbtn:hover { background: rgba(255,255,255,.2); }
+.fp-tbtn.fp-active { background: var(--gold); color: var(--navy-dark); border-color: var(--gold); font-weight: 700; }
+.fp-tsep { width: 1px; height: 24px; background: rgba(255,255,255,.15); margin: 0 4px; }
+.fp-canvas-wrap { position: relative; overflow: hidden; width: 100%; background: #f0ece6; }
+.fp-canvas { display: block; width: 100%; height: auto; }
+.fp-item {
+  position: absolute; cursor: grab; user-select: none;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border-radius: 4px;
+}
+.fp-item:active { cursor: grabbing; }
+.fp-item.fp-selected { outline: 2px solid var(--gold); outline-offset: 1px; z-index: 100 !important; }
+.fp-item-label { font-size: 10px; font-weight: 700; color: #fff; text-align: center; line-height: 1.2; padding: 2px 4px; pointer-events: none; text-shadow: 0 1px 2px rgba(0,0,0,.5); font-family: var(--sans); }
+.fp-item-sub { font-size: 8px; color: rgba(255,255,255,.75); text-align: center; padding: 0 3px; pointer-events: none; font-family: var(--sans); }
+.fp-item-del { position: absolute; top: -8px; right: -8px; width: 16px; height: 16px; background: #e24b4a; color: #fff; border-radius: 50%; font-size: 10px; display: none; align-items: center; justify-content: center; cursor: pointer; font-weight: 700; z-index: 10; line-height: 1; }
+.fp-item.fp-selected .fp-item-del { display: flex; }
+.fp-tooltip { position: absolute; background: var(--navy-dark); color: #fff; font-family: var(--sans); font-size: 12px; line-height: 1.5; padding: 8px 12px; border-radius: 4px; pointer-events: none; opacity: 0; max-width: 200px; z-index: 200; border-top: 3px solid var(--gold); }
+.fp-tooltip strong { display: block; font-size: 13px; margin-bottom: 2px; color: var(--gold); }
+.fp-sidebar { padding: 12px; background: #fff; border-top: 1px solid #e0d8d0; display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; }
+.fp-cat-label { grid-column: 1/-1; font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: .08em; margin-top: 4px; border-top: 1px solid #e8e0d8; padding-top: 6px; font-family: var(--sans); }
+.fp-add-btn { background: #f4f0ea; border: 1.5px dashed #c0b8b0; border-radius: 4px; padding: 8px 6px; text-align: center; cursor: pointer; transition: all .15s; }
+.fp-add-btn:hover { background: #e8e0d8; border-color: #8a7a6a; }
+.fp-add-icon { display: inline-block; height: 14px; border-radius: 2px; margin: 0 auto 4px; }
+.fp-add-name { font-size: 11px; font-weight: 700; color: #2a3a5a; font-family: var(--sans); }
+.fp-add-size { font-size: 9px; color: #888; font-family: var(--sans); }
+.fp-infobar { padding: 8px 14px; background: #fff; border-top: 1px solid #e8e0d8; font-size: 11px; color: #5a6a8a; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; font-family: var(--sans); }
+.fp-infobar strong { color: var(--navy-dark); }
+
+
 footer {
   background: var(--navy-dark); color: rgba(255,255,255,.4);
   padding: 1.75rem 2.5rem; display: flex; justify-content: space-between;
@@ -1003,6 +1049,42 @@ footer {
       </div>
     </div>
   </div>
+
+  <!-- FLOOR PLANNER -->
+  <div class="fp-section">
+    <div class="fp-section-header">
+      <div class="section-eyebrow">Interactive Floor Plan</div>
+      <h2 class="section-title">Design the Space</h2>
+      <p class="section-sub">Drag and drop stations, seating, and equipment to explore different layout configurations.</p>
+    </div>
+    <div class="fp-wrap">
+      <div class="fp-toolbar">
+        <span class="fp-tlabel">Mode</span>
+        <button class="fp-tbtn fp-active" id="fp-btn-select" onclick="fpSetMode('select')">Select</button>
+        <div class="fp-tsep"></div>
+        <input type="checkbox" id="fp-snap" checked style="accent-color:#f5c400;cursor:pointer;width:14px;height:14px">
+        <label for="fp-snap" style="color:rgba(255,255,255,.75);font-size:11px;cursor:pointer;font-family:Arial,sans-serif">Snap to grid</label>
+        <div class="fp-tsep"></div>
+        <button class="fp-tbtn" onclick="fpReset()">Reset Layout</button>
+        <button class="fp-tbtn" onclick="fpClear()">Clear All</button>
+        <div class="fp-tsep"></div>
+        <button class="fp-tbtn" onclick="fpExport()" style="background:rgba(245,196,0,.2);border-color:#f5c400;color:#f5c400">Save Layout</button>
+      </div>
+      <div class="fp-canvas-wrap" id="fp-canvas-wrap">
+        <canvas class="fp-canvas" id="fp-canvas"></canvas>
+        <div class="fp-tooltip" id="fp-tooltip"></div>
+      </div>
+      <div class="fp-sidebar" id="fp-sidebar"></div>
+      <div class="fp-infobar">
+        <span>Selected: <strong id="fp-sel-name">none</strong></span>
+        <span>Position: <strong id="fp-sel-pos">—</strong></span>
+        <span style="margin-left:auto;color:#888">Click to select · Drag to move · Del to remove</span>
+      </div>
+    </div>
+  </div>
+
+    <div style="padding-bottom:2.5rem"></div>
+  </div>
 </div><!-- /prog -->
 
 <!-- ══════════════════════════════════════════════════════ -->
@@ -1235,7 +1317,209 @@ function switchRest(mealId, restId, btn) {
   btn.classList.add('active');
 }
 
-/* ── Tab switching ───────────────────────────────────────── */
+/* ── Floor Planner ───────────────────────────────────────── */
+(function(){
+const GRID=20;
+const FP_CATALOG=[
+  {id:'station1',label:'Station 1',sub:'Flatbread & Sandwiches',color:'#2a5298',w:160,h:50,cat:'Stations'},
+  {id:'station2',label:'Station 2',sub:'Bowls & Halal',color:'#1a5298',w:160,h:50,cat:'Stations'},
+  {id:'station3',label:'Station 3',sub:'Craft Bar',color:'#185fa5',w:160,h:50,cat:'Stations'},
+  {id:'market',label:'24/7 Market',sub:'Micro Market',color:'#1a3f80',w:100,h:160,cat:'Stations'},
+  {id:'kiosk',label:'Self-Checkout',sub:'Kiosk',color:'#2a2a3e',w:52,h:44,cat:'Stations'},
+  {id:'mobile',label:'Mobile Pickup',sub:'Order Ahead Kiosk',color:'#0d4a3a',w:52,h:52,cat:'Stations'},
+  {id:'table2',label:'Table',sub:'2-top',color:'#c8a050',w:60,h:40,cat:'Seating'},
+  {id:'table4',label:'Table',sub:'4-top',color:'#c8a050',w:80,h:60,cat:'Seating'},
+  {id:'table6',label:'Table',sub:'6-top',color:'#b89040',w:120,h:60,cat:'Seating'},
+  {id:'lounge',label:'Lounge',sub:'Soft seating',color:'#c8855a',w:80,h:60,cat:'Seating'},
+  {id:'counter',label:'Counter',sub:'Bar seating',color:'#d4a86a',w:120,h:24,cat:'Seating'},
+  {id:'chair',label:'Chair',sub:'',color:'#e8c878',w:28,h:28,cat:'Seating'},
+  {id:'menuboard',label:'Menu Board',sub:'Digital',color:'#1a1a2e',w:120,h:16,cat:'Equipment'},
+  {id:'sneeze',label:'Sneeze Guard',sub:'',color:'#b8e0c8',w:160,h:10,cat:'Equipment'},
+  {id:'wall',label:'Wall',sub:'Partition',color:'#8a8078',w:120,h:12,cat:'Structure'},
+  {id:'column',label:'Column',sub:'',color:'#6a6058',w:20,h:20,cat:'Structure'},
+];
+const CATS=['Stations','Seating','Equipment','Structure'];
+
+let fpCanvas,fpCtx,fpWrap,fpCW=800,fpCH=520;
+let fpItems=[],fpSelId=null,fpMode='select',fpSnap=true,fpIdCount=0;
+
+function fpInit(){
+  fpCanvas=document.getElementById('fp-canvas');
+  if(!fpCanvas)return;
+  fpWrap=document.getElementById('fp-canvas-wrap');
+  fpCtx=fpCanvas.getContext('2d');
+  fpCanvas.width=fpCW;fpCanvas.height=fpCH;
+  fpCanvas.style.width='100%';fpCanvas.style.height='auto';
+  fpWrap.style.height=fpCH*(fpWrap.offsetWidth/fpCW)+'px';
+  document.getElementById('fp-snap').addEventListener('change',e=>{fpSnap=e.target.checked;});
+  fpCanvas.addEventListener('mousedown',e=>{if(e.target===fpCanvas)fpSelect(null);});
+  window.addEventListener('resize',()=>{if(fpWrap)fpWrap.style.height=fpCH*(fpWrap.offsetWidth/fpCW)+'px';});
+  fpBuildSidebar();
+  fpDrawGrid();
+  fpLoadDefault();
+}
+
+function fpSnapping(v){return fpSnap?Math.round(v/GRID)*GRID:v;}
+
+function fpDrawGrid(){
+  fpCtx.clearRect(0,0,fpCW,fpCH);
+  fpCtx.fillStyle='#f0ece6';fpCtx.fillRect(0,0,fpCW,fpCH);
+  fpCtx.strokeStyle='#e8e0d8';fpCtx.lineWidth=0.5;
+  for(let x=0;x<=fpCW;x+=GRID){fpCtx.beginPath();fpCtx.moveTo(x,0);fpCtx.lineTo(x,fpCH);fpCtx.stroke();}
+  for(let y=0;y<=fpCH;y+=GRID){fpCtx.beginPath();fpCtx.moveTo(0,y);fpCtx.lineTo(fpCW,y);fpCtx.stroke();}
+  fpCtx.strokeStyle='#d8d0c8';fpCtx.lineWidth=0.8;
+  for(let x=0;x<=fpCW;x+=GRID*5){fpCtx.beginPath();fpCtx.moveTo(x,0);fpCtx.lineTo(x,fpCH);fpCtx.stroke();}
+  for(let y=0;y<=fpCH;y+=GRID*5){fpCtx.beginPath();fpCtx.moveTo(0,y);fpCtx.lineTo(fpCW,y);fpCtx.stroke();}
+  fpCtx.strokeStyle='#2c2c2c';fpCtx.lineWidth=6;fpCtx.strokeRect(3,3,fpCW-6,fpCH-6);
+  fpCtx.strokeStyle='#f5c400';fpCtx.lineWidth=2;fpCtx.strokeRect(7,7,fpCW-14,fpCH-14);
+  fpCtx.font='bold 8px Arial';fpCtx.fillStyle='#a0b0c8';fpCtx.textAlign='center';
+  fpCtx.fillText('ENTRANCE',fpCW/2,fpCH-10);
+  fpCtx.fillText('ENTRANCE',fpCW/2,18);
+  fpCtx.textAlign='left';
+}
+
+function fpAddItem(cat,x,y){
+  const id='fp_'+(++fpIdCount);
+  const ix=x!==undefined?x:fpSnapping(fpCW/2-cat.w/2);
+  const iy=y!==undefined?y:fpSnapping(fpCH/2-cat.h/2);
+  const item={id,catId:cat.id,x:ix,y:iy,w:cat.w,h:cat.h,label:cat.label,sub:cat.sub,color:cat.color};
+  fpItems.push(item);fpCreateEl(item);fpSelect(id);return id;
+}
+
+function fpCreateEl(item){
+  const el=document.createElement('div');
+  el.className='fp-item';el.id='fp-el-'+item.id;
+  el.style.cssText=`left:${item.x}px;top:${item.y}px;width:${item.w}px;height:${item.h}px;background:${item.color};z-index:${fpItems.indexOf(item)+10}`;
+  const lbl=document.createElement('div');lbl.className='fp-item-label';lbl.textContent=item.label;
+  const sub=document.createElement('div');sub.className='fp-item-sub';sub.textContent=item.sub||'';
+  const del=document.createElement('div');del.className='fp-item-del';del.textContent='×';
+  del.addEventListener('mousedown',e=>{e.stopPropagation();fpRemove(item.id);});
+  el.appendChild(lbl);if(item.sub)el.appendChild(sub);el.appendChild(del);
+  el.addEventListener('mousedown',e=>{e.preventDefault();e.stopPropagation();fpSelect(item.id);fpStartDrag(e,item.id);});
+  fpWrap.appendChild(el);
+}
+
+function fpSelect(id){
+  fpSelId=id;
+  document.querySelectorAll('.fp-item').forEach(el=>el.classList.remove('fp-selected'));
+  if(id){
+    const el=document.getElementById('fp-el-'+id);
+    if(el)el.classList.add('fp-selected');
+    const item=fpItems.find(i=>i.id===id);
+    if(item){
+      document.getElementById('fp-sel-name').textContent=item.label+(item.sub?' — '+item.sub:'');
+      document.getElementById('fp-sel-pos').textContent=`x:${item.x} y:${item.y}`;
+    }
+  } else {
+    document.getElementById('fp-sel-name').textContent='none';
+    document.getElementById('fp-sel-pos').textContent='—';
+  }
+}
+
+function fpStartDrag(e,id){
+  const item=fpItems.find(i=>i.id===id);if(!item)return;
+  const el=document.getElementById('fp-el-'+id);el.style.zIndex=999;
+  const rect=fpWrap.getBoundingClientRect();
+  const scaleX=fpCW/rect.width;
+  const offX=(e.clientX-rect.left)*scaleX-item.x;
+  const offY=(e.clientY-rect.top)*scaleX-item.y;
+  function onMove(ev){
+    const nx=fpSnapping(Math.max(0,Math.min(fpCW-item.w,(ev.clientX-rect.left)*scaleX-offX)));
+    const ny=fpSnapping(Math.max(0,Math.min(fpCH-item.h,(ev.clientY-rect.top)*scaleX-offY)));
+    item.x=nx;item.y=ny;el.style.left=nx+'px';el.style.top=ny+'px';
+    document.getElementById('fp-sel-pos').textContent=`x:${nx} y:${ny}`;
+  }
+  function onUp(){el.style.zIndex=fpItems.indexOf(item)+10;document.removeEventListener('mousemove',onMove);document.removeEventListener('mouseup',onUp);}
+  document.addEventListener('mousemove',onMove);document.addEventListener('mouseup',onUp);
+}
+
+function fpRemove(id){
+  fpItems=fpItems.filter(i=>i.id!==id);
+  const el=document.getElementById('fp-el-'+id);if(el)el.remove();
+  if(fpSelId===id)fpSelect(null);
+}
+
+document.addEventListener('keydown',e=>{
+  if((e.key==='Delete'||e.key==='Backspace')&&fpSelId&&document.activeElement.tagName!=='INPUT'){fpRemove(fpSelId);}
+});
+
+function fpBuildSidebar(){
+  const sb=document.getElementById('fp-sidebar');if(!sb)return;
+  sb.innerHTML='';
+  CATS.forEach(cat=>{
+    const items=FP_CATALOG.filter(c=>c.cat===cat);if(!items.length)return;
+    const cl=document.createElement('div');cl.className='fp-cat-label';cl.textContent=cat;sb.appendChild(cl);
+    items.forEach(c=>{
+      const btn=document.createElement('div');btn.className='fp-add-btn';
+      btn.innerHTML=`<span class="fp-add-icon" style="width:32px;background:${c.color}"></span><div class="fp-add-name">${c.label}</div><div class="fp-add-size">${c.sub||c.w+'×'+c.h}</div>`;
+      btn.addEventListener('click',()=>fpAddItem(c));sb.appendChild(btn);
+    });
+  });
+}
+
+window.fpSetMode=function(m){
+  fpMode=m;
+  document.querySelectorAll('.fp-tbtn').forEach(b=>b.classList.remove('fp-active'));
+  const btn=document.getElementById('fp-btn-'+m);if(btn)btn.classList.add('fp-active');
+};
+
+window.fpReset=function(){
+  fpItems.forEach(i=>{const el=document.getElementById('fp-el-'+i.id);if(el)el.remove();});
+  fpItems=[];fpIdCount=0;fpSelect(null);fpLoadDefault();
+};
+
+window.fpClear=function(){
+  fpItems.forEach(i=>{const el=document.getElementById('fp-el-'+i.id);if(el)el.remove();});
+  fpItems=[];fpIdCount=0;fpSelect(null);
+};
+
+window.fpExport=function(){
+  const data=JSON.stringify(fpItems,null,2);
+  const blob=new Blob([data],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='station-cafe-layout.json';a.click();
+};
+
+function fpLoadDefault(){
+  const def=[
+    {catId:'menuboard',x:80,y:12,w:160,h:16,label:'Menu Board',sub:'Digital',color:'#1a1a2e'},
+    {catId:'menuboard',x:300,y:12,w:160,h:16,label:'Menu Board',sub:'Digital',color:'#1a1a2e'},
+    {catId:'menuboard',x:520,y:12,w:160,h:16,label:'Menu Board',sub:'Digital',color:'#1a1a2e'},
+    {catId:'station1',x:80,y:28,w:160,h:50,label:'Station 1',sub:'Flatbread & Sandwiches',color:'#2a5298'},
+    {catId:'sneeze',x:80,y:78,w:160,h:10,label:'Sneeze Guard',sub:'',color:'#b8e0c8'},
+    {catId:'station2',x:300,y:28,w:160,h:50,label:'Station 2',sub:'Bowls & Halal',color:'#1a5298'},
+    {catId:'sneeze',x:300,y:78,w:160,h:10,label:'Sneeze Guard',sub:'',color:'#b8e0c8'},
+    {catId:'station3',x:520,y:28,w:160,h:50,label:'Station 3',sub:'Craft Bar',color:'#185fa5'},
+    {catId:'sneeze',x:520,y:78,w:160,h:10,label:'Sneeze Guard',sub:'',color:'#b8e0c8'},
+    {catId:'market',x:680,y:100,w:100,h:200,label:'24/7 Market',sub:'Micro Market',color:'#1a3f80'},
+    {catId:'kiosk',x:682,y:320,w:52,h:44,label:'Self-Checkout',sub:'Kiosk',color:'#2a2a3e'},
+    {catId:'mobile',x:682,y:380,w:52,h:52,label:'Mobile Pickup',sub:'Order Ahead',color:'#0d4a3a'},
+    {catId:'table4',x:120,y:180,w:80,h:60,label:'Table',sub:'4-top',color:'#c8a050'},
+    {catId:'table4',x:120,y:280,w:80,h:60,label:'Table',sub:'4-top',color:'#c8a050'},
+    {catId:'table4',x:120,y:380,w:80,h:60,label:'Table',sub:'4-top',color:'#c8a050'},
+    {catId:'table4',x:240,y:180,w:80,h:60,label:'Table',sub:'4-top',color:'#c8a050'},
+    {catId:'table4',x:240,y:280,w:80,h:60,label:'Table',sub:'4-top',color:'#c8a050'},
+    {catId:'table4',x:240,y:380,w:80,h:60,label:'Table',sub:'4-top',color:'#c8a050'},
+    {catId:'table4',x:360,y:180,w:80,h:60,label:'Table',sub:'4-top',color:'#c8a050'},
+    {catId:'table4',x:360,y:280,w:80,h:60,label:'Table',sub:'4-top',color:'#c8a050'},
+    {catId:'table4',x:360,y:380,w:80,h:60,label:'Table',sub:'4-top',color:'#c8a050'},
+    {catId:'table4',x:480,y:180,w:80,h:60,label:'Table',sub:'4-top',color:'#c8a050'},
+    {catId:'table4',x:480,y:280,w:80,h:60,label:'Table',sub:'4-top',color:'#c8a050'},
+    {catId:'lounge',x:580,y:380,w:80,h:60,label:'Lounge',sub:'Soft seating',color:'#c8855a'},
+    {catId:'lounge',x:580,y:460,w:80,h:50,label:'Lounge',sub:'Soft seating',color:'#c8855a'},
+    {catId:'counter',x:20,y:180,w:24,h:300,label:'Counter',sub:'Bar seating',color:'#d4a86a'},
+  ];
+  def.forEach(d=>{
+    const id='fp_'+(++fpIdCount);
+    const item={id,...d};fpItems.push(item);fpCreateEl(item);
+  });
+  fpDrawGrid();
+}
+
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fpInit);}else{setTimeout(fpInit,100);}
+})();
+
+
 function switchTop(name, el) {
   document.querySelectorAll('.top-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.top-tab').forEach(t => t.classList.remove('active'));
