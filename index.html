@@ -1662,10 +1662,6 @@ function switchTop(name, el) {
   }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-  document.querySelectorAll('.top-tab')[i].classList.add('active');
-  document.querySelectorAll('.nav-links a')[i].classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 
 function switchMeal(name, el) {
   document.querySelectorAll('.meal-panel').forEach(p => p.classList.remove('active'));
