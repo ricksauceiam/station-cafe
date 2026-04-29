@@ -33,6 +33,11 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
 /* ─── LAYOUT ───────────────────────────────────────────── */
 .page-wrap { width: 100%; max-width: 1100px; margin: 0 auto; }
 .hero-wrap { width: 100%; background: var(--navy-dark); }
+.sticky-nav {
+  position: sticky; top: 0; z-index: 500;
+  background: var(--navy-dark); border-bottom: 3px solid var(--gold);
+  box-shadow: 0 2px 20px rgba(0,0,0,.3);
+}
 
 /* ─── HERO ─────────────────────────────────────────────── */
 .hero {
@@ -498,6 +503,9 @@ footer {
   footer { padding: 1.25rem; flex-direction: column; text-align: center; }
   .top-tab { padding: .85rem 1.25rem; font-size: .75rem; }
   .meal-tab { padding: .75rem 1.25rem; font-size: .75rem; }
+  .home-cards { grid-template-columns: 1fr !important; }
+  .home-stats { grid-template-columns: repeat(2,1fr) !important; }
+  .home-props { grid-template-columns: 1fr !important; }
 }
 @media (max-width: 480px) {
   .hero-btns { flex-direction: column; align-items: center; }
@@ -513,15 +521,15 @@ footer {
     alt="Fresh grain bowl with vegetables"
     loading="eager">
   <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div style="max-width:1100px;margin:0 auto;width:100%">
+<div class="sticky-nav">
     <nav class="site-nav">
       <div class="logo-wrap">
         <div class="logo-sub">MedStar Health · Café Eatery</div>
         <div class="logo-main">The <span>Station</span> Café</div>
       </div>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#" onclick="switchTop('prog',this);closeMobileNav();return false;" class="active">Programming</a></li>
+        <li><a href="#" onclick="switchTop('home',this);closeMobileNav();return false;" class="active">Home</a></li>
+        <li><a href="#" onclick="switchTop('prog',this);closeMobileNav();return false;">Programming</a></li>
         <li><a href="#" onclick="switchTop('flex',this);closeMobileNav();return false;">Flexibility</a></li>
         <li><a href="#" onclick="switchTop('tech',this);closeMobileNav();return false;">Technology</a></li>
         <li><a href="#" onclick="switchTop('mguh',this);closeMobileNav();return false;">MGUH</a></li>
@@ -531,15 +539,17 @@ footer {
       </button>
     </nav>
     </div>
+  <div class="hero-content">
     <div style="max-width:1100px;margin:0 auto;width:100%;flex:1;display:flex">
     <div class="hero-split" style="flex:1">
       <div class="hero-text-col">
-        <div class="hero-badge">Three Stations · Micro Market · Powered by Così</div>
-        <h1 class="hero-h1">Where great food<br>finds <em>its station.</em></h1>
-        <p class="hero-sub">Fresh chef-driven menus, a curated 24/7 micro market, and bright welcoming spaces built for every part of your day at MedStar Health.</p>
+        <div class="hero-badge">Orange by Fooda · Washington D.C.</div>
+        <h1 class="hero-h1">A vibrant food hall.<br><em>Powered by local<br>restaurants.</em></h1>
+        <p class="hero-sub">24/7 dining. A flexible, hospitality-forward solution. Multiple restaurants under one roof — delivering unmatched variety, a cohesive café experience, and a fully managed model built for MedStar Health.</p>
         <div class="hero-btns">
-          <button class="btn-gold" onclick="switchTop('prog', document.querySelectorAll('.top-tab')[0])">See Today's Menu</button>
-          <button class="btn-ghost" onclick="switchTop('flex', document.querySelectorAll('.top-tab')[1])">Visit the Market</button>
+          <button class="btn-gold" onclick="switchTop('prog', document.querySelectorAll('.top-tab')[0])">See the Menu</button>
+          <button class="btn-ghost" onclick="switchTop('mguh', document.querySelectorAll('.top-tab')[3])">Why MGUH</button>
+          <button class="btn-ghost" onclick="switchTop('flex', document.querySelectorAll('.top-tab')[1])">Our Model</button>
         </div>
       </div>
       <div class="hero-img-col">
@@ -558,8 +568,118 @@ footer {
 
 </div><!-- /hero-wrap -->
 
-<!-- ─── TOP SECTION TABS ───────────────────────────────── -->
-<div class="top-tabs-wrap">
+<!-- ══════════════════════════════════════════════════════ -->
+<!--  HOME LANDING PAGE                                    -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="home" class="top-panel active">
+
+  <!-- VALUE PROPS -->
+  <div style="background:#fff;padding:3rem 2.5rem 2rem;border-bottom:1px solid var(--border)">
+    <div style="max-width:1100px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:2.5rem">
+        <div class="section-eyebrow" style="justify-content:center;display:block">The Orange by Fooda Difference</div>
+        <h2 class="section-title" style="font-size:2.2rem">A new kind of café experience<br>for MedStar Health.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem">
+        <div style="text-align:center;padding:2rem 1.5rem;border:1px solid var(--border);border-top:4px solid var(--gold);background:var(--off-white)">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🍽️</div>
+          <h3 style="font-family:var(--serif);font-size:1.25rem;color:var(--navy-dark);margin-bottom:.75rem">Local Restaurant Partners</h3>
+          <p style="font-family:var(--sans);font-size:.88rem;color:var(--stone);line-height:1.7">High-quality meals from beloved local restaurants — not a cafeteria. Rotating daily variety that keeps your team excited to eat on campus.</p>
+          <button onclick="switchTop('prog',document.querySelectorAll('.top-tab')[0])" style="margin-top:1.25rem;background:none;border:1px solid var(--navy-light);color:var(--navy-light);padding:.5rem 1.25rem;font-family:var(--sans);font-size:.78rem;cursor:pointer;letter-spacing:.06em;text-transform:uppercase">See the Menu →</button>
+        </div>
+        <div style="text-align:center;padding:2rem 1.5rem;border:1px solid var(--border);border-top:4px solid var(--gold);background:var(--off-white)">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🕐</div>
+          <h3 style="font-family:var(--serif);font-size:1.25rem;color:var(--navy-dark);margin-bottom:.75rem">24/7 Dining Access</h3>
+          <p style="font-family:var(--sans);font-size:.88rem;color:var(--stone);line-height:1.7">A fully stocked micro market bridges every gap when the kitchen closes — grab-and-go meals, beverages, and snacks available around the clock with self-checkout.</p>
+          <button onclick="switchTop('flex',document.querySelectorAll('.top-tab')[1])" style="margin-top:1.25rem;background:none;border:1px solid var(--navy-light);color:var(--navy-light);padding:.5rem 1.25rem;font-family:var(--sans);font-size:.78rem;cursor:pointer;letter-spacing:.06em;text-transform:uppercase">Our Model →</button>
+        </div>
+        <div style="text-align:center;padding:2rem 1.5rem;border:1px solid var(--border);border-top:4px solid var(--gold);background:var(--off-white)">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🤝</div>
+          <h3 style="font-family:var(--serif);font-size:1.25rem;color:var(--navy-dark);margin-bottom:.75rem">Fully Managed. Hands-Off.</h3>
+          <p style="font-family:var(--sans);font-size:.88rem;color:var(--stone);line-height:1.7">A hospitality-forward, fully managed solution. Your team focuses on patient care — we handle everything in the café. Our goals are aligned: we win when you win.</p>
+          <button onclick="switchTop('mguh',document.querySelectorAll('.top-tab')[3])" style="margin-top:1.25rem;background:none;border:1px solid var(--navy-light);color:var(--navy-light);padding:.5rem 1.25rem;font-family:var(--sans);font-size:.78rem;cursor:pointer;letter-spacing:.06em;text-transform:uppercase">Why MGUH →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS BAND -->
+  <div style="background:var(--navy-dark);padding:3rem 2.5rem;border-top:4px solid var(--gold)">
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;text-align:center">
+      <div>
+        <div style="font-family:var(--serif);font-size:2.8rem;color:var(--gold)">3</div>
+        <div style="font-family:var(--sans);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#fff;font-weight:700;margin-top:4px">Stations</div>
+        <div style="font-family:var(--sans);font-size:.75rem;color:rgba(255,255,255,.45);margin-top:4px">Open counters</div>
+      </div>
+      <div>
+        <div style="font-family:var(--serif);font-size:2.8rem;color:var(--gold)">24/7</div>
+        <div style="font-family:var(--sans);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#fff;font-weight:700;margin-top:4px">Micro Market</div>
+        <div style="font-family:var(--sans);font-size:.75rem;color:rgba(255,255,255,.45);margin-top:4px">Always open</div>
+      </div>
+      <div>
+        <div style="font-family:var(--serif);font-size:2.8rem;color:var(--gold)">#1</div>
+        <div style="font-family:var(--sans);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#fff;font-weight:700;margin-top:4px">D.C. Location</div>
+        <div style="font-family:var(--sans);font-size:.75rem;color:rgba(255,255,255,.45);margin-top:4px">Orange by Fooda</div>
+      </div>
+      <div>
+        <div style="font-family:var(--serif);font-size:2.8rem;color:var(--gold)">4</div>
+        <div style="font-family:var(--sans);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#fff;font-weight:700;margin-top:4px">Payment Modes</div>
+        <div style="font-family:var(--sans);font-size:.75rem;color:rgba(255,255,255,.45);margin-top:4px">Station to mobile</div>
+      </div>
+      <div>
+        <div style="font-family:var(--serif);font-size:2.8rem;color:var(--gold)">$0</div>
+        <div style="font-family:var(--sans);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#fff;font-weight:700;margin-top:4px">Upgrade Cost</div>
+        <div style="font-family:var(--sans);font-size:.75rem;color:rgba(255,255,255,.45);margin-top:4px">Tech always current</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPLORE SECTIONS -->
+  <div style="background:var(--off-white);padding:3rem 2.5rem">
+    <div style="max-width:1100px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:2rem">
+        <h2 class="section-title">Explore the proposal</h2>
+        <p style="font-family:var(--sans);font-size:.9rem;color:var(--stone)">Select a section to dive deeper.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem">
+        <div onclick="switchTop('prog',document.querySelectorAll('.top-tab')[0])" style="cursor:pointer;background:#fff;border:1px solid var(--border);padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.1)'" onmouseout="this.style.boxShadow='none'">
+          <div style="font-size:2rem;flex-shrink:0">📋</div>
+          <div>
+            <div style="font-family:var(--sans);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:.3rem">Programming</div>
+            <h3 style="font-family:var(--serif);font-size:1.2rem;color:var(--navy-dark);margin-bottom:.5rem">Daily menus & restaurant partners</h3>
+            <p style="font-family:var(--sans);font-size:.82rem;color:var(--stone);line-height:1.6">Browse sample breakfast, lunch, and dinner menus from Così and The Halal Guys. Explore the interactive café floor plan.</p>
+          </div>
+        </div>
+        <div onclick="switchTop('flex',document.querySelectorAll('.top-tab')[1])" style="cursor:pointer;background:#fff;border:1px solid var(--border);padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.1)'" onmouseout="this.style.boxShadow='none'">
+          <div style="font-size:2rem;flex-shrink:0">🔄</div>
+          <div>
+            <div style="font-family:var(--sans);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:.3rem">Flexibility</div>
+            <h3 style="font-family:var(--serif);font-size:1.2rem;color:var(--navy-dark);margin-bottom:.5rem">A model built to adapt</h3>
+            <p style="font-family:var(--sans);font-size:.82rem;color:var(--stone);line-height:1.6">Orange by Fooda vs. legacy operators. How our model drives engagement, shared savings, and a cohesive café experience.</p>
+          </div>
+        </div>
+        <div onclick="switchTop('tech',document.querySelectorAll('.top-tab')[2])" style="cursor:pointer;background:#fff;border:1px solid var(--border);padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.1)'" onmouseout="this.style.boxShadow='none'">
+          <div style="font-size:2rem;flex-shrink:0">📱</div>
+          <div>
+            <div style="font-family:var(--sans);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:.3rem">Technology</div>
+            <h3 style="font-family:var(--serif);font-size:1.2rem;color:var(--navy-dark);margin-bottom:.5rem">Proprietary end-to-end platform</h3>
+            <p style="font-family:var(--sans);font-size:.82rem;color:var(--stone);line-height:1.6">Four payment modes, digital menu boards, mobile pre-order, and continuous software upgrades at no added cost.</p>
+          </div>
+        </div>
+        <div onclick="switchTop('mguh',document.querySelectorAll('.top-tab')[3])" style="cursor:pointer;background:#fff;border:1px solid var(--border);padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,.1)'" onmouseout="this.style.boxShadow='none'">
+          <div style="font-size:2rem;flex-shrink:0">🏥</div>
+          <div>
+            <div style="font-family:var(--sans);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:.3rem">MGUH</div>
+            <h3 style="font-family:var(--serif);font-size:1.2rem;color:var(--navy-dark);margin-bottom:.5rem">Strategic partnership opportunity</h3>
+            <p style="font-family:var(--sans);font-size:.82rem;color:var(--stone);line-height:1.6">Why MGUH is a highly strategic partner for Fooda — D.C.'s first Orange by Fooda location, with dedicated leadership support.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /home -->
+<div class="top-tabs-wrap" style="display:none">
   <button class="top-tab active" onclick="switchTop('prog',this)">Programming</button>
   <button class="top-tab" onclick="switchTop('flex',this)">Flexibility</button>
   <button class="top-tab" onclick="switchTop('tech',this)">Technology</button>
@@ -569,7 +689,7 @@ footer {
 <!-- ══════════════════════════════════════════════════════ -->
 <!--  PROGRAMMING                                          -->
 <!-- ══════════════════════════════════════════════════════ -->
-<div id="prog" class="top-panel active">
+<div id="prog" class="top-panel">
   <div class="main">
     <div class="section-intro">
       <div class="section-eyebrow">Sample Menu</div>
@@ -1525,7 +1645,23 @@ function switchTop(name, el) {
   document.querySelectorAll('.top-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   document.getElementById(name).classList.add('active');
-  const i = { prog: 0, flex: 1, tech: 2, mguh: 3 }[name];
+
+  const heroWrap = document.querySelector('.hero-wrap');
+  const tabsWrap = document.querySelector('.top-tabs-wrap');
+
+  if(name === 'home') {
+    heroWrap.style.display = 'block';
+    tabsWrap.style.display = 'none';
+    document.querySelectorAll('.nav-links a')[0].classList.add('active');
+  } else {
+    heroWrap.style.display = 'none';
+    tabsWrap.style.display = 'flex';
+    const tabIdx = { prog: 0, flex: 1, tech: 2, mguh: 3 }[name];
+    document.querySelectorAll('.top-tab')[tabIdx].classList.add('active');
+    document.querySelectorAll('.nav-links a')[tabIdx + 1].classList.add('active');
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
   document.querySelectorAll('.top-tab')[i].classList.add('active');
   document.querySelectorAll('.nav-links a')[i].classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
