@@ -562,6 +562,62 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
   .fin-stats-grid { grid-template-columns: repeat(2,1fr); }
 }
 
+/* ─── FINANCIALS SUB-TABS ──────────────────────────────── */
+.fin-subtabs { display: flex; gap: 0; border-bottom: 2px solid var(--border); margin-bottom: 2rem; }
+.fin-subtab { padding: .75rem 1.75rem; font-family: var(--sans); font-size: .82rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; background: none; border: none; color: var(--stone); position: relative; transition: color .2s; }
+.fin-subtab.active { color: var(--navy-dark); }
+.fin-subtab.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--gold); }
+.fin-subtab:hover:not(.active) { color: var(--navy); }
+.fin-subpanel { display: none; }
+.fin-subpanel.active { display: block; }
+.staff-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+.staff-section-label { font-family: var(--sans); font-size: .68rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--stone); margin-bottom: 1rem; }
+.staff-role-card { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 1.1rem 1.25rem; margin-bottom: .85rem; }
+.staff-role-card.staff-primary { border-left: 4px solid var(--gold); }
+.staff-role-header { display: flex; align-items: center; gap: .75rem; margin-bottom: .85rem; }
+.staff-role-badge { font-family: var(--sans); font-size: .65rem; font-weight: 700; letter-spacing: .08em; padding: 4px 8px; border-radius: 3px; flex-shrink: 0; }
+.staff-role-name { font-family: var(--serif); font-size: 1rem; color: var(--navy-dark); }
+.staff-role-sub { font-family: var(--sans); font-size: .72rem; color: var(--stone); margin-top: 1px; }
+.staff-schedule-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; margin-bottom: .75rem; }
+.staff-day { text-align: center; padding: 5px 2px; border-radius: 3px; }
+.staff-day.active-am { background: #dbeafe; }
+.staff-day.active-pm { background: #e0e7ff; }
+.staff-day.off { background: var(--off-white); opacity: .6; }
+.staff-day-label { display: block; font-family: var(--sans); font-size: .62rem; font-weight: 700; margin-bottom: 2px; }
+.staff-day.active-am .staff-day-label { color: #1e40af; }
+.staff-day.active-pm .staff-day-label { color: #3730a3; }
+.staff-day.off .staff-day-label { color: var(--stone); }
+.staff-shift { display: block; font-family: var(--sans); font-size: .6rem; line-height: 1.2; }
+.staff-day.active-am .staff-shift { color: #1e40af; }
+.staff-day.active-pm .staff-shift { color: #3730a3; }
+.staff-day.off .staff-shift { color: var(--stone); }
+.staff-coverage-note { font-family: var(--sans); font-size: .75rem; color: var(--stone); line-height: 1.5; border-top: 1px solid var(--border); padding-top: .65rem; }
+.staff-cost-card { background: var(--navy-dark); border-radius: 4px; padding: 1.5rem; margin-bottom: 1rem; }
+.staff-cost-header { font-family: var(--sans); font-size: .68rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: .5rem; }
+.staff-cost-big { font-family: var(--serif); font-size: 2.5rem; color: #fff; margin-bottom: .35rem; }
+.staff-cost-sub { font-family: var(--sans); font-size: .78rem; color: rgba(255,255,255,.5); line-height: 1.5; margin-bottom: 1rem; }
+.staff-cost-divider { height: 1px; background: rgba(255,255,255,.1); margin-bottom: 1rem; }
+.staff-cost-row { display: flex; justify-content: space-between; align-items: center; padding: .35rem 0; border-bottom: 1px solid rgba(255,255,255,.08); font-family: var(--sans); font-size: .8rem; }
+.staff-cost-row:last-child { border-bottom: none; }
+.staff-cost-label { color: rgba(255,255,255,.6); }
+.staff-cost-val { color: rgba(255,255,255,.85); font-weight: 600; }
+.staff-billing-card { background: #1a3a1a; border: 1px solid #2d8a4e; border-radius: 4px; padding: 1.5rem; margin-bottom: 1rem; }
+.staff-billing-eyebrow { font-family: var(--sans); font-size: .68rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: #5cb85c; margin-bottom: .5rem; }
+.staff-billing-big { font-family: var(--serif); font-size: 2.5rem; color: #5cb85c; margin-bottom: .35rem; }
+.staff-billing-sub { font-family: var(--sans); font-size: .78rem; color: rgba(255,255,255,.5); line-height: 1.5; margin-bottom: 1.25rem; }
+.staff-savings-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: .5rem; }
+.staff-savings-item { text-align: center; }
+.staff-savings-val { font-family: var(--serif); font-size: 1.35rem; color: #fff; }
+.staff-savings-label { font-family: var(--sans); font-size: .7rem; color: rgba(255,255,255,.45); margin-top: 2px; }
+.staff-savings-divider { width: 1px; height: 40px; background: rgba(255,255,255,.15); }
+.staff-hours-card { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem; margin-bottom: 1rem; }
+.staff-hours-row { display: flex; justify-content: space-between; align-items: center; padding: .4rem 0; border-bottom: 1px solid var(--border); font-family: var(--sans); font-size: .8rem; }
+.staff-hours-row:last-child { border-bottom: none; }
+.staff-hours-label { color: var(--stone); }
+.staff-hours-val { font-weight: 600; color: var(--navy-dark); }
+.staff-note-card { background: var(--off-white); border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: 2px; padding: 1rem 1.25rem; font-family: var(--sans); font-size: .82rem; color: var(--stone); line-height: 1.65; }
+.staff-note-card strong { color: var(--navy-dark); }
+@media (max-width: 768px) { .staff-two-col { grid-template-columns: 1fr; } .staff-schedule-grid { grid-template-columns: repeat(4,1fr); } }
 
 .tech-feature-row {
   display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
@@ -2070,7 +2126,12 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
       <p class="section-sub">Drag the sliders to model participation scenarios. Restaurant allocations and minimum thresholds update live — green means the minimum is met, red means it falls short.</p>
     </div>
 
-    <div class="fin-two-col">
+    <div class="fin-subtabs">
+      <button class="fin-subtab active" onclick="switchFinTab('projections',this)">Revenue Projections</button>
+      <button class="fin-subtab" onclick="switchFinTab('staffing',this)">Staffing Model</button>
+    </div>
+
+    <div id="fin-projections" class="fin-subpanel active">
 
       <!-- ── LEFT: SLIDERS ── -->
       <div class="fin-left">
@@ -2203,7 +2264,7 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
         <!-- ALLOCATION LEGEND -->
         <div class="fin-alloc-block">
           <div class="fin-alloc-title">Revenue allocation rules</div>
-          <div class="fin-alloc-row"><span class="fin-alloc-meal">Breakfast</span><span class="fin-alloc-desc">95% → Resident #1 · 5% → Resident #2</span></div>
+          <div class="fin-alloc-row"><span class="fin-alloc-meal">Breakfast</span><span class="fin-alloc-desc">100% → Resident #1 · 0% → Resident #2</span></div>
           <div class="fin-alloc-row"><span class="fin-alloc-meal">Lunch</span><span class="fin-alloc-desc">32.5% → Resident #1 · 32.5% → Resident #2 · 30% → Daily Guest · 5% other</span></div>
           <div class="fin-alloc-row"><span class="fin-alloc-meal">Dinner</span><span class="fin-alloc-desc">2.5% → Resident #1 · 2.5% → Resident #2 · 90% → Daily Guest · 5% other</span></div>
         </div>
@@ -2222,7 +2283,7 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
             <span class="fin-rest-min-val">$9,000</span>
           </div>
           <div class="fin-rest-breakdown">
-            <div class="fin-rest-row"><span class="fin-rest-row-label">From breakfast (95%)</span><span class="fin-rest-row-val" id="r1-from-b">—</span></div>
+            <div class="fin-rest-row"><span class="fin-rest-row-label">From breakfast (100%)</span><span class="fin-rest-row-val" id="r1-from-b">—</span></div>
             <div class="fin-rest-row"><span class="fin-rest-row-label">From lunch (32.5%)</span><span class="fin-rest-row-val" id="r1-from-l">—</span></div>
             <div class="fin-rest-row"><span class="fin-rest-row-label">From dinner (2.5%)</span><span class="fin-rest-row-val" id="r1-from-d">—</span></div>
             <div class="fin-rest-row fin-rest-total-row"><span class="fin-rest-row-label">Weekly total</span><span class="fin-rest-row-val fin-threshold-val" id="r1-total">—</span></div>
@@ -2247,7 +2308,7 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
             <span class="fin-rest-min-val">$6,000</span>
           </div>
           <div class="fin-rest-breakdown">
-            <div class="fin-rest-row"><span class="fin-rest-row-label">From breakfast (5%)</span><span class="fin-rest-row-val" id="r2-from-b">—</span></div>
+            <div class="fin-rest-row"><span class="fin-rest-row-label">From breakfast (0%)</span><span class="fin-rest-row-val" id="r2-from-b">—</span></div>
             <div class="fin-rest-row"><span class="fin-rest-row-label">From lunch (32.5%)</span><span class="fin-rest-row-val" id="r2-from-l">—</span></div>
             <div class="fin-rest-row"><span class="fin-rest-row-label">From dinner (2.5%)</span><span class="fin-rest-row-val" id="r2-from-d">—</span></div>
             <div class="fin-rest-row fin-rest-total-row"><span class="fin-rest-row-label">Weekly total</span><span class="fin-rest-row-val fin-threshold-val" id="r2-total">—</span></div>
@@ -2290,8 +2351,208 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
 
       </div><!-- /fin-right -->
     </div><!-- /fin-two-col -->
+    </div><!-- /fin-projections -->
 
-    <div style="padding-bottom:2.5rem"></div>
+    <!-- STAFFING MODEL -->
+    <div id="fin-staffing" class="fin-subpanel" style="display:none">
+
+      <div class="staff-two-col">
+
+        <!-- LEFT: ROLE CARDS -->
+        <div>
+          <div class="staff-section-label">Team composition · 6 roles · ~40 hrs/wk each</div>
+
+          <div class="staff-role-card staff-primary">
+            <div class="staff-role-header">
+              <div class="staff-role-badge" style="background:#0d2d6b;color:#f5c400">MGR</div>
+              <div>
+                <div class="staff-role-name">Dining Manager</div>
+                <div class="staff-role-sub">Primary onsite point of contact</div>
+              </div>
+              <div class="staff-role-cost">$—</div>
+            </div>
+            <div class="staff-schedule-grid">
+              <div class="staff-day active-am"><span class="staff-day-label">Mon</span><span class="staff-shift">7am–3pm</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Tue</span><span class="staff-shift">7am–3pm</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Wed</span><span class="staff-shift">7am–3pm</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Thu</span><span class="staff-shift">7am–3pm</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Fri</span><span class="staff-shift">7am–3pm</span></div>
+              <div class="staff-day off"><span class="staff-day-label">Sat</span><span class="staff-shift">Off</span></div>
+              <div class="staff-day off"><span class="staff-day-label">Sun</span><span class="staff-shift">Off</span></div>
+            </div>
+            <div class="staff-coverage-note">Covers breakfast &amp; lunch service M–F · Key POC for MGUH leadership</div>
+          </div>
+
+          <div class="staff-role-card">
+            <div class="staff-role-header">
+              <div class="staff-role-badge" style="background:#1a3f80;color:#fff">SUP</div>
+              <div>
+                <div class="staff-role-name">Dining Supervisor</div>
+                <div class="staff-role-sub">Afternoon &amp; evening operations</div>
+              </div>
+            </div>
+            <div class="staff-schedule-grid">
+              <div class="staff-day active-pm"><span class="staff-day-label">Mon</span><span class="staff-shift">2–10pm</span></div>
+              <div class="staff-day active-pm"><span class="staff-day-label">Tue</span><span class="staff-shift">2–10pm</span></div>
+              <div class="staff-day active-pm"><span class="staff-day-label">Wed</span><span class="staff-shift">2–10pm</span></div>
+              <div class="staff-day active-pm"><span class="staff-day-label">Thu</span><span class="staff-shift">2–10pm</span></div>
+              <div class="staff-day active-pm"><span class="staff-day-label">Fri</span><span class="staff-shift">2–10pm</span></div>
+              <div class="staff-day active-pm"><span class="staff-day-label">Sat</span><span class="staff-shift">2–10pm</span></div>
+              <div class="staff-day active-pm"><span class="staff-day-label">Sun</span><span class="staff-shift">2–10pm</span></div>
+            </div>
+            <div class="staff-coverage-note">Covers dinner &amp; evening market 7 days/wk · 40 hrs/wk</div>
+          </div>
+
+          <div class="staff-role-card">
+            <div class="staff-role-header">
+              <div class="staff-role-badge" style="background:#2a5298;color:#fff">FTE</div>
+              <div>
+                <div class="staff-role-name">Weekend / Flex FTE</div>
+                <div class="staff-role-sub">Weekend AM + 3 weekday shifts</div>
+              </div>
+            </div>
+            <div class="staff-schedule-grid">
+              <div class="staff-day active-am"><span class="staff-day-label">Mon</span><span class="staff-shift">6am–2pm</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Tue</span><span class="staff-shift">6am–2pm</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Wed</span><span class="staff-shift">6am–2pm</span></div>
+              <div class="staff-day off"><span class="staff-day-label">Thu</span><span class="staff-shift">Off</span></div>
+              <div class="staff-day off"><span class="staff-day-label">Fri</span><span class="staff-shift">Off</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Sat</span><span class="staff-shift">6am–2pm</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Sun</span><span class="staff-shift">6am–2pm</span></div>
+            </div>
+            <div class="staff-coverage-note">Weekend AM coverage + 3 weekday support shifts · 40 hrs/wk</div>
+          </div>
+
+          <div class="staff-role-card">
+            <div class="staff-role-header">
+              <div class="staff-role-badge" style="background:#185fa5;color:#fff">MKT</div>
+              <div>
+                <div class="staff-role-name">Market Attendants (×2)</div>
+                <div class="staff-role-sub">24/7 micro market operations</div>
+              </div>
+            </div>
+            <div class="staff-schedule-grid">
+              <div class="staff-day active-am"><span class="staff-day-label">Mon</span><span class="staff-shift">Varies</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Tue</span><span class="staff-shift">Varies</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Wed</span><span class="staff-shift">Varies</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Thu</span><span class="staff-shift">Varies</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Fri</span><span class="staff-shift">Varies</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Sat</span><span class="staff-shift">Varies</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Sun</span><span class="staff-shift">Varies</span></div>
+            </div>
+            <div class="staff-coverage-note">2 FTEs × 40 hrs/wk · Stocking, restocking &amp; market support · 80 combined hrs/wk</div>
+          </div>
+
+          <div class="staff-role-card">
+            <div class="staff-role-header">
+              <div class="staff-role-badge" style="background:#6b6860;color:#fff">UTL</div>
+              <div>
+                <div class="staff-role-name">Utility / Support</div>
+                <div class="staff-role-sub">Peak hour weekday support</div>
+              </div>
+            </div>
+            <div class="staff-schedule-grid">
+              <div class="staff-day active-am"><span class="staff-day-label">Mon</span><span class="staff-shift">Peak hrs</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Tue</span><span class="staff-shift">Peak hrs</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Wed</span><span class="staff-shift">Peak hrs</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Thu</span><span class="staff-shift">Peak hrs</span></div>
+              <div class="staff-day active-am"><span class="staff-day-label">Fri</span><span class="staff-shift">Peak hrs</span></div>
+              <div class="staff-day off"><span class="staff-day-label">Sat</span><span class="staff-shift">Off</span></div>
+              <div class="staff-day off"><span class="staff-day-label">Sun</span><span class="staff-shift">Off</span></div>
+            </div>
+            <div class="staff-coverage-note">Primarily weekday peak hours · 40 hrs/wk · Multi-functional support role</div>
+          </div>
+        </div>
+
+        <!-- RIGHT: COST SUMMARY -->
+        <div>
+          <div class="staff-section-label">Cost structure &amp; client billing</div>
+
+          <div class="staff-cost-card">
+            <div class="staff-cost-header">Total Labor Investment</div>
+            <div class="staff-cost-big">$471,000</div>
+            <div class="staff-cost-sub">Annual all-in cost including salary, benefits, taxes, and overhead for all 6 roles (including 2 market attendants)</div>
+            <div class="staff-cost-divider"></div>
+
+            <div class="staff-cost-row">
+              <span class="staff-cost-label">Dining Manager</span>
+              <span class="staff-cost-val">Included</span>
+            </div>
+            <div class="staff-cost-row">
+              <span class="staff-cost-label">Dining Supervisor</span>
+              <span class="staff-cost-val">Included</span>
+            </div>
+            <div class="staff-cost-row">
+              <span class="staff-cost-label">Weekend / Flex FTE</span>
+              <span class="staff-cost-val">Included</span>
+            </div>
+            <div class="staff-cost-row">
+              <span class="staff-cost-label">Market Attendants (×2)</span>
+              <span class="staff-cost-val">Included</span>
+            </div>
+            <div class="staff-cost-row">
+              <span class="staff-cost-label">Utility / Support</span>
+              <span class="staff-cost-val">Included</span>
+            </div>
+          </div>
+
+          <div class="staff-billing-card">
+            <div class="staff-billing-eyebrow">Client Operational Cost</div>
+            <div class="staff-billing-big">$286,000</div>
+            <div class="staff-billing-sub">Annual amount charged to MGUH for staffing operations</div>
+            <div class="staff-savings-row">
+              <div class="staff-savings-item">
+                <div class="staff-savings-val">$185,000</div>
+                <div class="staff-savings-label">Fooda-absorbed cost</div>
+              </div>
+              <div class="staff-savings-divider"></div>
+              <div class="staff-savings-item">
+                <div class="staff-savings-val">39%</div>
+                <div class="staff-savings-label">Discount vs. true cost</div>
+              </div>
+              <div class="staff-savings-divider"></div>
+              <div class="staff-savings-item">
+                <div class="staff-savings-val">$23,833</div>
+                <div class="staff-savings-label">Monthly billing rate</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="staff-hours-card">
+            <div class="staff-section-label" style="margin-bottom:.75rem">Weekly coverage summary</div>
+            <div class="staff-hours-row">
+              <span class="staff-hours-label">Total weekly labor hours</span>
+              <span class="staff-hours-val">~240 hrs</span>
+            </div>
+            <div class="staff-hours-row">
+              <span class="staff-hours-label">Breakfast coverage (M–F)</span>
+              <span class="staff-hours-val">6am – 10:30am</span>
+            </div>
+            <div class="staff-hours-row">
+              <span class="staff-hours-label">Lunch coverage (M–F)</span>
+              <span class="staff-hours-val">10:30am – 3pm</span>
+            </div>
+            <div class="staff-hours-row">
+              <span class="staff-hours-label">Dinner &amp; evening coverage</span>
+              <span class="staff-hours-val">2pm – 10pm · 7 days</span>
+            </div>
+            <div class="staff-hours-row">
+              <span class="staff-hours-label">Weekend AM coverage</span>
+              <span class="staff-hours-val">6am – 2pm · Sat &amp; Sun</span>
+            </div>
+            <div class="staff-hours-row">
+              <span class="staff-hours-label">Market attendant hours</span>
+              <span class="staff-hours-val">80 hrs/wk combined</span>
+            </div>
+          </div>
+
+          <div class="staff-note-card">
+            <strong>Aligned incentives.</strong> By absorbing $185K of the annual labor cost, Fooda's investment is directly tied to the success of The Station Café at MGUH. We win when the program wins — and shared labor efficiencies identified over time will be passed back to MGUH.
+          </div>
+
+        </div>
+      </div><!-- /staff-two-col -->
+    </div><!-- /fin-staffing -->
   </div>
 </div><!-- /fin -->
 
@@ -2573,8 +2834,8 @@ function finCalc(){
 
   /* Restaurant allocations */
   const R1_MIN=9000,R2_MIN=6000,DG_MIN_DAILY=850;
-  const r1_b=bWeekly*0.95,r1_l=lWeekly*0.325,r1_d=dWeekly*0.025,r1_total=r1_b+r1_l+r1_d;
-  const r2_b=bWeekly*0.05,r2_l=lWeekly*0.325,r2_d=dWeekly*0.025,r2_total=r2_b+r2_l+r2_d;
+  const r1_b=bWeekly*1.00,r1_l=lWeekly*0.325,r1_d=dWeekly*0.025,r1_total=r1_b+r1_l+r1_d;
+  const r2_b=0,r2_l=lWeekly*0.325,r2_d=dWeekly*0.025,r2_total=r2_b+r2_l+r2_d;
   const dg_l=lWeekly*0.30,dg_d=dWeekly*0.90,dg_daily=(dg_l+dg_d)/7;
   document.getElementById('r1-from-b').textContent=finFmt(r1_b);
   document.getElementById('r1-from-l').textContent=finFmt(r1_l);
@@ -2603,6 +2864,14 @@ function finCalc(){
   else{sb.style.background='#7a5a00';st.textContent='Some minimums met — adjust sliders to close remaining gaps';const gaps=[];if(r1_total<R1_MIN)gaps.push('Resident #1 needs '+finFmt(R1_MIN-r1_total)+' more/wk');if(r2_total<R2_MIN)gaps.push('Resident #2 needs '+finFmt(R2_MIN-r2_total)+' more/wk');if(dg_daily<DG_MIN_DAILY)gaps.push('Daily Guest needs '+finFmt(DG_MIN_DAILY-dg_daily)+' more/day');ss.textContent=gaps.join(' · ');}
 }
 document.addEventListener('DOMContentLoaded',function(){if(document.getElementById('b-part'))finCalc();});
+
+function switchFinTab(name, el) {
+  document.querySelectorAll('.fin-subpanel').forEach(p => { p.style.display = 'none'; p.classList.remove('active'); });
+  document.querySelectorAll('.fin-subtab').forEach(t => t.classList.remove('active'));
+  const panel = document.getElementById('fin-' + name);
+  if(panel) { panel.style.display = 'block'; panel.classList.add('active'); }
+  el.classList.add('active');
+}
 
 function switchTop(name, el) {
   document.querySelectorAll('.top-panel').forEach(p => p.classList.remove('active'));
