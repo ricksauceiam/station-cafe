@@ -562,7 +562,48 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
   .fin-stats-grid { grid-template-columns: repeat(2,1fr); }
 }
 
-/* ─── ACTUAL MODEL ─────────────────────────────────────── */
+/* ─── PROGRAMMING OVERVIEW ─────────────────────────────── */
+.prog-overview-section { background: var(--off-white); border-top: 1px solid var(--border); padding: 2.5rem 2.5rem 0; }
+.prog-overview-header { margin-bottom: 1.5rem; }
+.prog-overview-body { }
+.prog-dp-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--border); margin-bottom: 1.5rem; }
+.prog-dp-tab { padding: .65rem 1.4rem; font-family: var(--sans); font-size: .8rem; font-weight: 600; cursor: pointer; background: none; border: none; color: var(--stone); position: relative; transition: color .15s; letter-spacing: .05em; text-transform: uppercase; }
+.prog-dp-tab.active { color: var(--navy-dark); }
+.prog-dp-tab.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: var(--gold); }
+.prog-dp-tab:hover:not(.active) { color: var(--navy); }
+.prog-layout { display: grid; grid-template-columns: 1fr 260px; gap: 1.5rem; align-items: start; padding-bottom: 2.5rem; }
+.prog-floor { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem; }
+.prog-floor-label { font-family: var(--sans); font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--stone); margin-bottom: .75rem; }
+.prog-hours-chip { display: inline-flex; align-items: center; background: var(--off-white); border: 1px solid var(--border); border-radius: 20px; padding: 3px 12px; font-family: var(--sans); font-size: .78rem; font-weight: 600; color: var(--navy-dark); margin-bottom: 1rem; }
+.prog-station-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 10px; }
+.prog-station { border-radius: 4px; padding: .85rem .75rem; text-align: center; transition: all .3s; border: 1.5px solid transparent; min-height: 88px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
+.prog-station-active { }
+.prog-station-inactive { opacity: .35; background: var(--off-white) !important; border-color: transparent !important; }
+.prog-st-badge { font-family: var(--sans); font-size: .65rem; font-weight: 700; letter-spacing: .06em; padding: 2px 8px; border-radius: 20px; margin-bottom: 3px; background: var(--off-white); color: var(--stone); }
+.prog-st-name { font-family: var(--serif); font-size: .95rem; color: var(--navy-dark); }
+.prog-st-sub { font-family: var(--sans); font-size: .68rem; color: var(--stone); line-height: 1.35; margin-top: 2px; }
+.prog-st-tag { font-family: var(--sans); font-size: .62rem; font-weight: 700; margin-top: 4px; padding: 2px 7px; border-radius: 20px; background: var(--off-white); color: var(--stone); }
+.prog-market-bar { background: #eff6ff; border: 1.5px solid #93c5fd; border-radius: 4px; padding: .65rem 1rem; display: flex; align-items: center; gap: 10px; }
+.prog-market-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; flex-shrink: 0; }
+.prog-market-name { font-family: var(--serif); font-size: .9rem; color: var(--navy-dark); }
+.prog-market-sub { font-family: var(--sans); font-size: .72rem; color: var(--stone); margin-left: auto; }
+.prog-market-badge { font-family: var(--sans); font-size: .65rem; font-weight: 700; background: #d1fae5; color: #064e3b; padding: 2px 8px; border-radius: 20px; white-space: nowrap; }
+.prog-sidebar { display: flex; flex-direction: column; gap: 10px; }
+.prog-info-card { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: .85rem 1rem; }
+.prog-info-title { font-family: var(--sans); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--stone); margin-bottom: .65rem; }
+.prog-info-row { display: flex; justify-content: space-between; align-items: baseline; padding: .3rem 0; border-bottom: 1px solid var(--border); font-family: var(--sans); font-size: .78rem; }
+.prog-info-row:last-child { border-bottom: none; }
+.prog-info-row span:first-child { color: var(--stone); }
+.prog-info-row span:last-child { font-weight: 600; color: var(--navy-dark); }
+.prog-legend { display: flex; flex-direction: column; gap: 6px; margin-bottom: .75rem; }
+.prog-leg-row { display: flex; align-items: center; gap: 7px; font-family: var(--sans); font-size: .76rem; }
+.prog-leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.prog-leg-label { color: var(--stone); }
+.prog-leg-val { font-weight: 600; color: var(--navy-dark); }
+.prog-note { font-family: var(--sans); font-size: .75rem; color: var(--stone); line-height: 1.55; background: var(--off-white); border-radius: 3px; padding: .6rem .75rem; }
+@media (max-width: 768px) { .prog-layout { grid-template-columns: 1fr; } .prog-station-grid { grid-template-columns: 1fr; } .prog-overview-section { padding: 1.5rem 1.25rem 0; } }
+
+
 .act-intro { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: stretch; margin-bottom: 1.5rem; background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: 4px; padding: 1.25rem; }
 .act-intro-text { display: flex; flex-direction: column; justify-content: center; }
 .act-compare-badge { background: var(--navy-dark); border-radius: 4px; padding: 1rem 1.25rem; text-align: center; min-width: 220px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: .5rem; }
@@ -1896,6 +1937,81 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
     </div>
   </div>
 
+  <!-- PROGRAMMING OVERVIEW -->
+  <div class="prog-overview-section">
+    <div class="prog-overview-header">
+      <div class="section-eyebrow">Café Activation by Daypart</div>
+      <h2 class="section-title">How the space programs each day</h2>
+      <p class="section-sub">Three stations flex across breakfast, lunch, and dinner — each daypart activates a different configuration of resident partners and the daily guest popup. The 24/7 market bridges every gap around the clock.</p>
+    </div>
+    <div class="prog-overview-body">
+
+      <div class="prog-dp-tabs" id="prog-dp-tabs">
+        <button class="prog-dp-tab active" onclick="progSetDP('breakfast',this)">Breakfast</button>
+        <button class="prog-dp-tab" onclick="progSetDP('lunch',this)">Lunch</button>
+        <button class="prog-dp-tab" onclick="progSetDP('dinner',this)">Dinner</button>
+        <button class="prog-dp-tab" onclick="progSetDP('overnight',this)">Overnight / 24/7</button>
+      </div>
+
+      <div class="prog-layout">
+        <div class="prog-floor">
+          <div class="prog-floor-label">Café floor — station activation</div>
+          <div class="prog-hours-chip" id="prog-hours-chip">7:00 – 10:30 AM</div>
+          <div class="prog-station-grid" id="prog-station-grid">
+            <div class="prog-station prog-station-active" id="ps1" style="background:#dbeafe;border-color:#93c5fd">
+              <div class="prog-st-badge" style="background:#bfdbfe;color:#1e40af">Station 1</div>
+              <div class="prog-st-name">Resident #1</div>
+              <div class="prog-st-sub">Così — flatbreads, egg sandwiches, bistro bowls</div>
+              <div class="prog-st-tag" style="background:#bfdbfe;color:#1e40af">Resident partner</div>
+            </div>
+            <div class="prog-station prog-station-active" id="ps2" style="background:#fef3c7;border-color:#fcd34d">
+              <div class="prog-st-badge" style="background:#fde68a;color:#92400e">Station 2</div>
+              <div class="prog-st-name">Coffee & Pastry</div>
+              <div class="prog-st-sub">Coffee, tea, pastries & breakfast beverages</div>
+              <div class="prog-st-tag" style="background:#fde68a;color:#92400e">Beverage bar</div>
+            </div>
+            <div class="prog-station prog-station-inactive" id="ps3">
+              <div class="prog-st-badge">Station 3</div>
+              <div class="prog-st-name">Closed</div>
+              <div class="prog-st-sub">Opens at lunch</div>
+              <div class="prog-st-tag">Inactive</div>
+            </div>
+          </div>
+          <div class="prog-market-bar">
+            <div class="prog-market-dot"></div>
+            <div class="prog-market-name">24/7 Micro Market</div>
+            <div class="prog-market-sub">Self-checkout · Always open · Refreshed daily</div>
+            <div class="prog-market-badge">Always on</div>
+          </div>
+        </div>
+
+        <div class="prog-sidebar">
+          <div class="prog-info-card">
+            <div class="prog-info-title" id="prog-sidebar-title">Breakfast overview</div>
+            <div id="prog-sidebar-rows">
+              <div class="prog-info-row"><span>Active stations</span><span>2 of 3</span></div>
+              <div class="prog-info-row"><span>Operators</span><span>Resident #1 + Bar</span></div>
+              <div class="prog-info-row"><span>Headcount M–F</span><span>2,000</span></div>
+              <div class="prog-info-row"><span>Headcount Wknd</span><span>1,000</span></div>
+              <div class="prog-info-row"><span>Revenue split</span><span>95% Resident</span></div>
+            </div>
+          </div>
+          <div class="prog-info-card">
+            <div class="prog-info-title">Station legend</div>
+            <div class="prog-legend" id="prog-legend">
+              <div class="prog-leg-row"><div class="prog-leg-dot" style="background:#3b82f6"></div><span class="prog-leg-label">Station 1 —</span><span class="prog-leg-val">Resident #1 (Così)</span></div>
+              <div class="prog-leg-row"><div class="prog-leg-dot" style="background:#f59e0b"></div><span class="prog-leg-label">Station 2 —</span><span class="prog-leg-val">Coffee & Pastry</span></div>
+              <div class="prog-leg-row"><div class="prog-leg-dot" style="background:#aaa"></div><span class="prog-leg-label">Station 3 —</span><span class="prog-leg-val">Closed</span></div>
+              <div class="prog-leg-row"><div class="prog-leg-dot" style="background:#10b981"></div><span class="prog-leg-label">Market —</span><span class="prog-leg-val">Always open</span></div>
+            </div>
+            <div class="prog-note" id="prog-note">Breakfast runs at reduced capacity — one full-service resident station handles hot food while a second covers beverages and pastries.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
     <div style="padding-bottom:2.5rem"></div>
   </div>
 </div><!-- /prog -->
@@ -2984,6 +3100,80 @@ function fpLoadDefault(){
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fpInit);}else{setTimeout(fpInit,100);}
 })();
 
+
+/* ── Programming overview switcher ──────────────────────── */
+const PROG_DP = {
+  breakfast: {
+    hours:'7:00 – 10:30 AM', title:'Breakfast overview',
+    rows:[['Active stations','2 of 3'],['Operators','Resident #1 + Bar'],['Headcount M–F','2,000'],['Headcount Wknd','1,000'],['Revenue split','95% Resident']],
+    note:'Breakfast runs at reduced capacity — one full-service resident station handles hot food while a second covers beverages and pastries.',
+    legend:[['#3b82f6','Station 1 —','Resident #1 (Così)'],['#f59e0b','Station 2 —','Coffee & Pastry'],['#aaa','Station 3 —','Closed'],['#10b981','Market —','Always open']],
+    stations:[
+      {active:true, bg:'#dbeafe', border:'#93c5fd', badgeBg:'#bfdbfe', badgeColor:'#1e40af', name:'Resident #1', sub:'Così — flatbreads, egg sandwiches, bistro bowls', tagBg:'#bfdbfe', tagColor:'#1e40af', tag:'Resident partner'},
+      {active:true, bg:'#fef3c7', border:'#fcd34d', badgeBg:'#fde68a', badgeColor:'#92400e', name:'Coffee & Pastry', sub:'Coffee, tea, pastries & breakfast beverages', tagBg:'#fde68a', tagColor:'#92400e', tag:'Beverage bar'},
+      {active:false, name:'Closed', sub:'Opens at lunch', tag:'Inactive'}
+    ]
+  },
+  lunch: {
+    hours:'11:00 AM – 2:30 PM', title:'Lunch overview',
+    rows:[['Active stations','3 of 3'],['Operators','R1 + R2 + Popup'],['Headcount M–F','2,000'],['Headcount Wknd','1,000'],['Revenue split','65% Resident / 30% Popup']],
+    note:'Full café activation — all three stations open. R1 and R2 run their full menus while the daily guest popup rotates through Station 3 with fresh variety every day.',
+    legend:[['#3b82f6','Station 1 —','Resident #1 (Così)'],['#7c3aed','Station 2 —','Resident #2 (Halal / Chopt)'],['#ef4444','Station 3 —','Daily Guest (popup)'],['#10b981','Market —','Always open']],
+    stations:[
+      {active:true, bg:'#dbeafe', border:'#93c5fd', badgeBg:'#bfdbfe', badgeColor:'#1e40af', name:'Resident #1', sub:'Così — sandwiches, bowls, flatbreads', tagBg:'#bfdbfe', tagColor:'#1e40af', tag:'Resident partner'},
+      {active:true, bg:'#ede9fe', border:'#c4b5fd', badgeBg:'#ddd6fe', badgeColor:'#4c1d95', name:'Resident #2', sub:'Halal Guys + Chopt — salads, platters', tagBg:'#ddd6fe', tagColor:'#4c1d95', tag:'Resident partner'},
+      {active:true, bg:'#fee2e2', border:'#fca5a5', badgeBg:'#fecaca', badgeColor:'#7f1d1d', name:'Daily Guest', sub:'Rotating popup restaurant — daily variety', tagBg:'#fecaca', tagColor:'#7f1d1d', tag:'Popup'}
+    ]
+  },
+  dinner: {
+    hours:'5:00 – 9:00 PM · M–F only', title:'Dinner overview',
+    rows:[['Active stations','2 of 3'],['Operators','Popup + G&G Station'],['Headcount','700 (M–F only)'],['Revenue split','90% Popup'],['Sat–Sun','No dinner service']],
+    note:'Streamlined two-station dinner service M–F. The popup restaurant leads while a dedicated grab-and-go station offers pre-packaged meals from café partners.',
+    legend:[['#aaa','Station 1 —','Closed at dinner'],['#ef4444','Station 2 —','Daily Guest (popup)'],['#10b981','Station 3 —','Grab & Go station'],['#10b981','Market —','Always open']],
+    stations:[
+      {active:false, name:'Closed', sub:'Dinner at Stations 2 & 3', tag:'Inactive'},
+      {active:true, bg:'#fee2e2', border:'#fca5a5', badgeBg:'#fecaca', badgeColor:'#7f1d1d', name:'Daily Guest', sub:'Rotating popup — evening service', tagBg:'#fecaca', tagColor:'#7f1d1d', tag:'Popup (90%)'},
+      {active:true, bg:'#d1fae5', border:'#6ee7b7', badgeBg:'#a7f3d0', badgeColor:'#064e3b', name:'Grab & Go Station', sub:'Pre-packaged meals from Così & Chopt', tagBg:'#a7f3d0', tagColor:'#064e3b', tag:'Market extension'}
+    ]
+  },
+  overnight: {
+    hours:'10:00 PM – 7:00 AM · All 7 days', title:'24/7 Market overview',
+    rows:[['Active stations','Market only'],['Kitchen','Closed'],['Payment','Self-checkout 24/7'],['Coverage','All 7 days / 24 hrs'],['Revenue split','65% Retail / 35% Resident']],
+    note:'When the kitchen closes, the micro market bridges every gap. Self-checkout and fresh inventory ensure campus employees always have access to quality food — no staff required overnight.',
+    legend:[['#aaa','Station 1 —','Closed'],['#aaa','Station 2 —','Closed'],['#aaa','Station 3 —','Closed'],['#10b981','Market —','Always open — 24/7']],
+    stations:[
+      {active:false, name:'Closed', sub:'Kitchen closed overnight', tag:'Inactive'},
+      {active:false, name:'Closed', sub:'Kitchen closed overnight', tag:'Inactive'},
+      {active:false, name:'Closed', sub:'Kitchen closed overnight', tag:'Inactive'}
+    ]
+  }
+};
+
+function progSetDP(name, btn) {
+  document.querySelectorAll('.prog-dp-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  const dp = PROG_DP[name];
+  document.getElementById('prog-hours-chip').textContent = dp.hours;
+  document.getElementById('prog-sidebar-title').textContent = dp.title;
+  document.getElementById('prog-note').textContent = dp.note;
+  document.getElementById('prog-sidebar-rows').innerHTML = dp.rows.map(([l,v])=>
+    `<div class="prog-info-row"><span>${l}</span><span>${v}</span></div>`).join('');
+  document.getElementById('prog-legend').innerHTML = dp.legend.map(([c,l,v])=>
+    `<div class="prog-leg-row"><div class="prog-leg-dot" style="background:${c}"></div><span class="prog-leg-label">${l}</span><span class="prog-leg-val">${v}</span></div>`).join('');
+  ['ps1','ps2','ps3'].forEach((id, i) => {
+    const el = document.getElementById(id);
+    const s = dp.stations[i];
+    if(s.active) {
+      el.className = 'prog-station prog-station-active';
+      el.style.background = s.bg; el.style.borderColor = s.border;
+      el.innerHTML = `<div class="prog-st-badge" style="background:${s.badgeBg};color:${s.badgeColor}">Station ${i+1}</div><div class="prog-st-name">${s.name}</div><div class="prog-st-sub">${s.sub}</div><div class="prog-st-tag" style="background:${s.tagBg};color:${s.tagColor}">${s.tag}</div>`;
+    } else {
+      el.className = 'prog-station prog-station-inactive';
+      el.style.background = ''; el.style.borderColor = '';
+      el.innerHTML = `<div class="prog-st-badge">Station ${i+1}</div><div class="prog-st-name">${s.name}</div><div class="prog-st-sub">${s.sub}</div><div class="prog-st-tag">${s.tag}</div>`;
+    }
+  });
+}
 
 /* ── Actual Model calculation ────────────────────────────── */
 function actCalc(){
