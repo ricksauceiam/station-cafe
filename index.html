@@ -471,7 +471,52 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
 .fp-infobar { padding: 8px 14px; background: #fff; border-top: 1px solid #e8e0d8; font-size: 11px; color: #5a6a8a; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; font-family: var(--sans); }
 .fp-infobar strong { color: var(--navy-dark); }
 
-/* ─── TECH FEATURE ROWS ────────────────────────────────── */
+/* ─── FINANCIALS ───────────────────────────────────────── */
+.fin-model-wrap { max-width: 860px; }
+.fin-assumptions { background: var(--navy-dark); border-radius: 4px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
+.fin-assume-label { font-family: var(--sans); font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: .85rem; }
+.fin-assume-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+.fin-assume-item { display: flex; flex-direction: column; gap: 3px; }
+.fin-assume-val { font-family: var(--serif); font-size: 1.4rem; color: #fff; }
+.fin-assume-sub { font-family: var(--sans); font-size: .72rem; color: rgba(255,255,255,.5); line-height: 1.4; }
+.fin-meal-block { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem; margin-bottom: 1rem; border-left: 4px solid var(--navy); }
+.fin-meal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+.fin-meal-name { font-family: var(--serif); font-size: 1.15rem; color: var(--navy-dark); }
+.fin-meal-meta { font-family: var(--sans); font-size: .78rem; color: var(--stone); margin-top: 2px; }
+.fin-meal-rev { text-align: right; }
+.fin-rev-num { font-family: var(--serif); font-size: 1.6rem; color: var(--navy); }
+.fin-rev-label { font-family: var(--sans); font-size: .72rem; color: var(--stone); }
+.fin-slider-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.fin-slider-label { font-family: var(--sans); font-size: .82rem; color: var(--stone); min-width: 110px; }
+.fin-slider-row input[type=range] { flex: 1; accent-color: var(--navy); cursor: pointer; }
+.fin-slider-val { font-family: var(--sans); font-size: .85rem; font-weight: 600; color: var(--navy-dark); min-width: 52px; text-align: right; }
+.fin-stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+.fin-stat { background: var(--off-white); padding: .65rem .85rem; border-radius: 3px; }
+.fin-stat-val { font-family: var(--serif); font-size: 1.2rem; color: var(--navy-dark); }
+.fin-stat-label { font-family: var(--sans); font-size: .7rem; color: var(--stone); margin-top: 2px; }
+.fin-totals { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin: 1.5rem 0; }
+.fin-total-card { background: #fff; border: 1px solid var(--border); border-top: 4px solid var(--gold); padding: 1.25rem; text-align: center; border-radius: 3px; }
+.fin-total-accent { background: var(--navy-dark); border-color: var(--navy-dark); border-top-color: var(--gold); }
+.fin-total-val { font-family: var(--serif); font-size: 1.75rem; color: var(--navy-dark); }
+.fin-total-accent .fin-total-val { color: var(--gold); }
+.fin-total-label { font-family: var(--sans); font-size: .72rem; color: var(--stone); margin-top: 4px; }
+.fin-total-accent .fin-total-label { color: rgba(255,255,255,.5); }
+.fin-chart-block { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem; }
+.fin-chart-title { font-family: var(--sans); font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--stone); margin-bottom: 1rem; }
+.fin-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.fin-bar-label { font-family: var(--sans); font-size: .82rem; color: var(--stone); min-width: 72px; }
+.fin-bar-track { flex: 1; height: 28px; background: var(--off-white); border-radius: 3px; overflow: hidden; }
+.fin-bar-fill { height: 100%; border-radius: 3px; transition: width .35s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; min-width: 32px; }
+.fin-bar-pct { font-family: var(--sans); font-size: .75rem; font-weight: 700; color: #fff; }
+.fin-bar-amt { font-family: var(--sans); font-size: .82rem; font-weight: 600; color: var(--navy-dark); min-width: 80px; text-align: right; }
+.fin-chart-note { font-family: var(--sans); font-size: .78rem; color: var(--stone); background: var(--off-white); border-radius: 3px; padding: .65rem 1rem; margin-top: 1rem; line-height: 1.6; }
+@media (max-width: 768px) {
+  .fin-assume-grid { grid-template-columns: repeat(2,1fr); }
+  .fin-totals { grid-template-columns: repeat(2,1fr); }
+  .fin-stats-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+
 .tech-feature-row {
   display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
   align-items: center; padding: 3rem 0; border-bottom: 1px solid var(--border);
@@ -552,6 +597,7 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
         <li><a href="#" onclick="switchTop('flex',this);closeMobileNav();return false;">Flexibility</a></li>
         <li><a href="#" onclick="switchTop('tech',this);closeMobileNav();return false;">Technology</a></li>
         <li><a href="#" onclick="switchTop('mguh',this);closeMobileNav();return false;">MGUH</a></li>
+        <li><a href="#" onclick="switchTop('fin',this);closeMobileNav();return false;">Financials</a></li>
       </ul>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" onclick="toggleNav()">
         <span></span><span></span><span></span>
@@ -703,6 +749,7 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
   <button class="top-tab" onclick="switchTop('flex',this)">Flexibility</button>
   <button class="top-tab" onclick="switchTop('tech',this)">Technology</button>
   <button class="top-tab" onclick="switchTop('mguh',this)">MGUH</button>
+  <button class="top-tab" onclick="switchTop('fin',this)">Financials</button>
 </div>
 
 <!-- ══════════════════════════════════════════════════════ -->
@@ -1626,39 +1673,6 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
     </div>
   </div>
 
-  <!-- FLOOR PLANNER -->
-  <div class="fp-section">
-    <div class="fp-section-header">
-      <div class="section-eyebrow">Interactive Floor Plan</div>
-      <h2 class="section-title">Design the Space</h2>
-      <p class="section-sub">Drag and drop stations, seating, and equipment to explore different layout configurations.</p>
-    </div>
-    <div class="fp-wrap">
-      <div class="fp-toolbar">
-        <span class="fp-tlabel">Mode</span>
-        <button class="fp-tbtn fp-active" id="fp-btn-select" onclick="fpSetMode('select')">Select</button>
-        <div class="fp-tsep"></div>
-        <input type="checkbox" id="fp-snap" checked style="accent-color:#f5c400;cursor:pointer;width:14px;height:14px">
-        <label for="fp-snap" style="color:rgba(255,255,255,.75);font-size:11px;cursor:pointer;font-family:Arial,sans-serif">Snap to grid</label>
-        <div class="fp-tsep"></div>
-        <button class="fp-tbtn" onclick="fpReset()">Reset Layout</button>
-        <button class="fp-tbtn" onclick="fpClear()">Clear All</button>
-        <div class="fp-tsep"></div>
-        <button class="fp-tbtn" onclick="fpExport()" style="background:rgba(245,196,0,.2);border-color:#f5c400;color:#f5c400">Save Layout</button>
-      </div>
-      <div class="fp-canvas-wrap" id="fp-canvas-wrap">
-        <canvas class="fp-canvas" id="fp-canvas"></canvas>
-        <div class="fp-tooltip" id="fp-tooltip"></div>
-      </div>
-      <div class="fp-sidebar" id="fp-sidebar"></div>
-      <div class="fp-infobar">
-        <span>Selected: <strong id="fp-sel-name">none</strong></span>
-        <span>Position: <strong id="fp-sel-pos">—</strong></span>
-        <span style="margin-left:auto;color:#888">Click to select · Drag to move · Del to remove</span>
-      </div>
-    </div>
-  </div>
-
     <div style="padding-bottom:2.5rem"></div>
   </div>
 </div><!-- /prog -->
@@ -1999,6 +2013,162 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
   </div>
 </div><!-- /mguh -->
 
+<!-- ══════════════════════════════════════════════════════ -->
+<!--  FINANCIALS                                           -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="fin" class="top-panel">
+  <div class="main">
+    <div class="section-intro">
+      <div class="section-eyebrow">Participation Model</div>
+      <h2 class="section-title">Financial Projections</h2>
+      <p class="section-sub">Drag the sliders to model different participation scenarios across breakfast, lunch, and dinner. All figures update live based on MedStar Health employee counts and your selected participation rates and average checks.</p>
+    </div>
+
+    <div class="fin-model-wrap">
+
+      <div class="fin-assumptions">
+        <div class="fin-assume-label">Base assumptions</div>
+        <div class="fin-assume-grid">
+          <div class="fin-assume-item"><span class="fin-assume-val">2,000</span><span class="fin-assume-sub">Employees M–F (breakfast & lunch)</span></div>
+          <div class="fin-assume-item"><span class="fin-assume-val">1,000</span><span class="fin-assume-sub">Employees Sat–Sun (breakfast & lunch)</span></div>
+          <div class="fin-assume-item"><span class="fin-assume-val">700</span><span class="fin-assume-sub">Employees (dinner, all days)</span></div>
+          <div class="fin-assume-item"><span class="fin-assume-val">52 wks</span><span class="fin-assume-sub">Annual operating weeks</span></div>
+        </div>
+      </div>
+
+      <!-- BREAKFAST -->
+      <div class="fin-meal-block">
+        <div class="fin-meal-header">
+          <div>
+            <div class="fin-meal-name">Breakfast</div>
+            <div class="fin-meal-meta">M–F: 2,000 · Sat–Sun: 1,000</div>
+          </div>
+          <div class="fin-meal-rev">
+            <div class="fin-rev-num" id="b-daily-rev">—</div>
+            <div class="fin-rev-label">avg daily revenue</div>
+          </div>
+        </div>
+        <div class="fin-slider-row">
+          <span class="fin-slider-label">Participation</span>
+          <input type="range" min="0.5" max="20" step="0.5" value="2.5" id="b-part" oninput="finCalc()">
+          <span class="fin-slider-val" id="b-part-out">2.5%</span>
+        </div>
+        <div class="fin-slider-row">
+          <span class="fin-slider-label">Avg check</span>
+          <input type="range" min="3" max="15" step="0.25" value="5" id="b-check" oninput="finCalc()">
+          <span class="fin-slider-val" id="b-check-out">$5.00</span>
+        </div>
+        <div class="fin-stats-grid">
+          <div class="fin-stat"><div class="fin-stat-val" id="b-cov-wd">—</div><div class="fin-stat-label">covers / weekday</div></div>
+          <div class="fin-stat"><div class="fin-stat-val" id="b-cov-we">—</div><div class="fin-stat-label">covers / weekend day</div></div>
+          <div class="fin-stat"><div class="fin-stat-val" id="b-weekly">—</div><div class="fin-stat-label">weekly revenue</div></div>
+        </div>
+      </div>
+
+      <!-- LUNCH -->
+      <div class="fin-meal-block">
+        <div class="fin-meal-header">
+          <div>
+            <div class="fin-meal-name">Lunch</div>
+            <div class="fin-meal-meta">M–F: 2,000 · Sat–Sun: 1,000</div>
+          </div>
+          <div class="fin-meal-rev">
+            <div class="fin-rev-num" id="l-daily-rev">—</div>
+            <div class="fin-rev-label">avg daily revenue</div>
+          </div>
+        </div>
+        <div class="fin-slider-row">
+          <span class="fin-slider-label">Participation</span>
+          <input type="range" min="1" max="40" step="0.5" value="15" id="l-part" oninput="finCalc()">
+          <span class="fin-slider-val" id="l-part-out">15.0%</span>
+        </div>
+        <div class="fin-slider-row">
+          <span class="fin-slider-label">Avg check</span>
+          <input type="range" min="8" max="22" step="0.25" value="13.50" id="l-check" oninput="finCalc()">
+          <span class="fin-slider-val" id="l-check-out">$13.50</span>
+        </div>
+        <div class="fin-stats-grid">
+          <div class="fin-stat"><div class="fin-stat-val" id="l-cov-wd">—</div><div class="fin-stat-label">covers / weekday</div></div>
+          <div class="fin-stat"><div class="fin-stat-val" id="l-cov-we">—</div><div class="fin-stat-label">covers / weekend day</div></div>
+          <div class="fin-stat"><div class="fin-stat-val" id="l-weekly">—</div><div class="fin-stat-label">weekly revenue</div></div>
+        </div>
+      </div>
+
+      <!-- DINNER -->
+      <div class="fin-meal-block">
+        <div class="fin-meal-header">
+          <div>
+            <div class="fin-meal-name">Dinner</div>
+            <div class="fin-meal-meta">700 employees · all 7 days</div>
+          </div>
+          <div class="fin-meal-rev">
+            <div class="fin-rev-num" id="d-daily-rev">—</div>
+            <div class="fin-rev-label">daily revenue</div>
+          </div>
+        </div>
+        <div class="fin-slider-row">
+          <span class="fin-slider-label">Participation</span>
+          <input type="range" min="1" max="40" step="0.5" value="16" id="d-part" oninput="finCalc()">
+          <span class="fin-slider-val" id="d-part-out">16.0%</span>
+        </div>
+        <div class="fin-slider-row">
+          <span class="fin-slider-label">Avg check</span>
+          <input type="range" min="8" max="22" step="0.25" value="13.50" id="d-check" oninput="finCalc()">
+          <span class="fin-slider-val" id="d-check-out">$13.50</span>
+        </div>
+        <div class="fin-stats-grid">
+          <div class="fin-stat"><div class="fin-stat-val" id="d-covers">—</div><div class="fin-stat-label">covers / day</div></div>
+          <div class="fin-stat"><div class="fin-stat-val" id="d-weekly">—</div><div class="fin-stat-label">weekly revenue</div></div>
+          <div class="fin-stat"><div class="fin-stat-val" id="d-annual">—</div><div class="fin-stat-label">annual revenue</div></div>
+        </div>
+      </div>
+
+      <!-- TOTALS -->
+      <div class="fin-totals">
+        <div class="fin-total-card">
+          <div class="fin-total-val" id="tot-daily">—</div>
+          <div class="fin-total-label">avg daily revenue</div>
+        </div>
+        <div class="fin-total-card fin-total-accent">
+          <div class="fin-total-val" id="tot-weekly">—</div>
+          <div class="fin-total-label">weekly revenue</div>
+        </div>
+        <div class="fin-total-card fin-total-accent">
+          <div class="fin-total-val" id="tot-annual">—</div>
+          <div class="fin-total-label">projected annual revenue</div>
+        </div>
+        <div class="fin-total-card">
+          <div class="fin-total-val" id="tot-covers">—</div>
+          <div class="fin-total-label">avg daily covers</div>
+        </div>
+      </div>
+
+      <!-- BAR CHART -->
+      <div class="fin-chart-block">
+        <div class="fin-chart-title">Weekly revenue by daypart</div>
+        <div class="fin-bar-row">
+          <span class="fin-bar-label">Breakfast</span>
+          <div class="fin-bar-track"><div class="fin-bar-fill" id="fbar-b" style="background:var(--navy-light,#2a5298)"><span class="fin-bar-pct" id="fbar-b-pct"></span></div></div>
+          <span class="fin-bar-amt" id="fbar-b-amt">—</span>
+        </div>
+        <div class="fin-bar-row">
+          <span class="fin-bar-label">Lunch</span>
+          <div class="fin-bar-track"><div class="fin-bar-fill" id="fbar-l" style="background:var(--navy,#0d2d6b)"><span class="fin-bar-pct" id="fbar-l-pct"></span></div></div>
+          <span class="fin-bar-amt" id="fbar-l-amt">—</span>
+        </div>
+        <div class="fin-bar-row">
+          <span class="fin-bar-label">Dinner</span>
+          <div class="fin-bar-track"><div class="fin-bar-fill" id="fbar-d" style="background:var(--gold,#f5c400)"><span class="fin-bar-pct" id="fbar-d-pct" style="color:var(--navy-dark,#071d4a)"></span></div></div>
+          <span class="fin-bar-amt" id="fbar-d-amt">—</span>
+        </div>
+        <div class="fin-chart-note" id="fin-note"></div>
+      </div>
+
+    </div>
+    <div style="padding-bottom:2.5rem"></div>
+  </div>
+</div><!-- /fin -->
+
 <footer>
   <div class="footer-logo">The <span>Station</span> Café</div>
   <div>© 2025 · MedStar Health Café Eatery</div>
@@ -2219,6 +2389,60 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
 })();
 
 
+/* ── Financial model ─────────────────────────────────────── */
+function finFmtK(n){return n>=1000000?'$'+(n/1000000).toFixed(2)+'M':n>=1000?'$'+(n/1000).toFixed(1)+'K':'$'+Math.round(n);}
+function finFmtM(n){return n>=1000000?'$'+(n/1000000).toFixed(2)+'M':n>=1000?'$'+(n/1000).toFixed(0)+'K':'$'+Math.round(n);}
+function finCalc(){
+  const bPart=parseFloat(document.getElementById('b-part').value)/100;
+  const bCheck=parseFloat(document.getElementById('b-check').value);
+  const lPart=parseFloat(document.getElementById('l-part').value)/100;
+  const lCheck=parseFloat(document.getElementById('l-check').value);
+  const dPart=parseFloat(document.getElementById('d-part').value)/100;
+  const dCheck=parseFloat(document.getElementById('d-check').value);
+  document.getElementById('b-part-out').textContent=(bPart*100).toFixed(1)+'%';
+  document.getElementById('b-check-out').textContent='$'+bCheck.toFixed(2);
+  document.getElementById('l-part-out').textContent=(lPart*100).toFixed(1)+'%';
+  document.getElementById('l-check-out').textContent='$'+lCheck.toFixed(2);
+  document.getElementById('d-part-out').textContent=(dPart*100).toFixed(1)+'%';
+  document.getElementById('d-check-out').textContent='$'+dCheck.toFixed(2);
+  const bCovWd=Math.round(2000*bPart),bCovWe=Math.round(1000*bPart);
+  const bWeekly=(bCovWd*bCheck*5)+(bCovWe*bCheck*2),bDaily=bWeekly/7;
+  const lCovWd=Math.round(2000*lPart),lCovWe=Math.round(1000*lPart);
+  const lWeekly=(lCovWd*lCheck*5)+(lCovWe*lCheck*2),lDaily=lWeekly/7;
+  const dCov=Math.round(700*dPart),dDaily=dCov*dCheck,dWeekly=dDaily*7,dAnnual=dWeekly*52;
+  const totW=bWeekly+lWeekly+dWeekly,totA=totW*52,totD=bDaily+lDaily+dDaily;
+  const totC=Math.round(((bCovWd+lCovWd+dCov)*5+(bCovWe+lCovWe+dCov)*2)/7);
+  document.getElementById('b-daily-rev').textContent=finFmtK(bDaily);
+  document.getElementById('b-cov-wd').textContent=bCovWd.toLocaleString();
+  document.getElementById('b-cov-we').textContent=bCovWe.toLocaleString();
+  document.getElementById('b-weekly').textContent=finFmtK(bWeekly);
+  document.getElementById('l-daily-rev').textContent=finFmtK(lDaily);
+  document.getElementById('l-cov-wd').textContent=lCovWd.toLocaleString();
+  document.getElementById('l-cov-we').textContent=lCovWe.toLocaleString();
+  document.getElementById('l-weekly').textContent=finFmtK(lWeekly);
+  document.getElementById('d-daily-rev').textContent=finFmtK(dDaily);
+  document.getElementById('d-covers').textContent=dCov.toLocaleString();
+  document.getElementById('d-weekly').textContent=finFmtK(dWeekly);
+  document.getElementById('d-annual').textContent=finFmtM(dAnnual);
+  document.getElementById('tot-daily').textContent=finFmtK(totD);
+  document.getElementById('tot-weekly').textContent=finFmtK(totW);
+  document.getElementById('tot-annual').textContent=finFmtM(totA);
+  document.getElementById('tot-covers').textContent=totC.toLocaleString();
+  const maxW=Math.max(bWeekly,lWeekly,dWeekly,1);
+  const bPct=Math.round((bWeekly/totW)*100),lPct=Math.round((lWeekly/totW)*100),dPct=100-bPct-lPct;
+  document.getElementById('fbar-b').style.width=Math.round((bWeekly/maxW)*100)+'%';
+  document.getElementById('fbar-l').style.width=Math.round((lWeekly/maxW)*100)+'%';
+  document.getElementById('fbar-d').style.width=Math.round((dWeekly/maxW)*100)+'%';
+  document.getElementById('fbar-b-pct').textContent=bPct+'%';
+  document.getElementById('fbar-l-pct').textContent=lPct+'%';
+  document.getElementById('fbar-d-pct').textContent=dPct+'%';
+  document.getElementById('fbar-b-amt').textContent=finFmtK(bWeekly)+' / wk';
+  document.getElementById('fbar-l-amt').textContent=finFmtK(lWeekly)+' / wk';
+  document.getElementById('fbar-d-amt').textContent=finFmtK(dWeekly)+' / wk';
+  document.getElementById('fin-note').textContent='At these participation rates, The Station Café at MGUH projects '+finFmtK(totW)+' in weekly revenue — '+finFmtK(bWeekly)+' breakfast, '+finFmtK(lWeekly)+' lunch, '+finFmtK(dWeekly)+' dinner. Annual projection: '+finFmtM(totA)+' across approximately '+totC.toLocaleString()+' daily covers.';
+}
+document.addEventListener('DOMContentLoaded',function(){if(document.getElementById('b-part'))finCalc();});
+
 function switchTop(name, el) {
   document.querySelectorAll('.top-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.top-tab').forEach(t => t.classList.remove('active'));
@@ -2235,7 +2459,7 @@ function switchTop(name, el) {
   } else {
     heroWrap.style.display = 'none';
     tabsWrap.style.display = 'flex';
-    const tabIdx = { prog: 0, flex: 1, tech: 2, mguh: 3 }[name];
+    const tabIdx = { prog: 0, flex: 1, tech: 2, mguh: 3, fin: 4 }[name];
     document.querySelectorAll('.top-tab')[tabIdx].classList.add('active');
     document.querySelectorAll('.nav-links a')[tabIdx + 1].classList.add('active');
   }
