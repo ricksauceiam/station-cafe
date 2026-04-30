@@ -471,7 +471,53 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
 .fp-infobar { padding: 8px 14px; background: #fff; border-top: 1px solid #e8e0d8; font-size: 11px; color: #5a6a8a; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; font-family: var(--sans); }
 .fp-infobar strong { color: var(--navy-dark); }
 
-/* ─── FINANCIALS ───────────────────────────────────────── */
+/* ─── FINANCIALS TWO-COL ───────────────────────────────── */
+.fin-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+.fin-left {}
+.fin-right {}
+.fin-rest-header { margin-bottom: 1rem; }
+.fin-rest-title { font-family: var(--serif); font-size: 1.35rem; color: var(--navy-dark); margin-bottom: .25rem; }
+.fin-rest-sub { font-family: var(--sans); font-size: .8rem; color: var(--stone); line-height: 1.5; }
+.fin-alloc-block { background: var(--off-white); border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
+.fin-alloc-title { font-family: var(--sans); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--stone); margin-bottom: .65rem; }
+.fin-alloc-row { display: flex; gap: 8px; align-items: baseline; margin-bottom: .4rem; font-family: var(--sans); font-size: .8rem; }
+.fin-alloc-meal { font-weight: 700; color: var(--navy-dark); min-width: 60px; }
+.fin-alloc-desc { color: var(--stone); font-size: .78rem; }
+.fin-rest-card { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem; margin-bottom: 1rem; transition: border-color .3s; }
+.fin-rest-card.above-min { border-left: 4px solid #2d8a4e; }
+.fin-rest-card.below-min { border-left: 4px solid #c0392b; }
+.fin-rest-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .85rem; }
+.fin-rest-name { font-family: var(--serif); font-size: 1.1rem; color: var(--navy-dark); }
+.fin-rest-role { font-family: var(--sans); font-size: .72rem; color: var(--stone); margin-top: 2px; }
+.fin-rest-badge { font-family: var(--sans); font-size: .72rem; font-weight: 700; padding: 4px 10px; border-radius: 3px; letter-spacing: .04em; text-transform: uppercase; }
+.fin-rest-badge.green { background: #eaf6ee; color: #1e6b3a; }
+.fin-rest-badge.red { background: #fcecea; color: #9b1c1c; }
+.fin-rest-badge.neutral { background: var(--off-white); color: var(--stone); }
+.fin-rest-min-row { display: flex; justify-content: space-between; align-items: center; padding: .5rem .75rem; background: var(--off-white); border-radius: 3px; margin-bottom: .85rem; }
+.fin-rest-min-label { font-family: var(--sans); font-size: .75rem; color: var(--stone); }
+.fin-rest-min-val { font-family: var(--sans); font-size: .82rem; font-weight: 700; color: var(--navy-dark); }
+.fin-rest-breakdown { margin-bottom: .85rem; }
+.fin-rest-row { display: flex; justify-content: space-between; align-items: center; padding: .35rem 0; border-bottom: 1px solid var(--border); font-family: var(--sans); }
+.fin-rest-row:last-child { border-bottom: none; }
+.fin-rest-row-label { font-size: .78rem; color: var(--stone); }
+.fin-rest-row-val { font-size: .82rem; font-weight: 600; color: var(--navy-dark); }
+.fin-rest-total-row { padding-top: .5rem; margin-top: .25rem; border-top: 2px solid var(--border) !important; border-bottom: none !important; }
+.fin-rest-total-row .fin-rest-row-label { font-weight: 700; color: var(--navy-dark); }
+.fin-threshold-val { font-size: 1rem !important; }
+.fin-threshold-val.green { color: #1e6b3a !important; }
+.fin-threshold-val.red { color: #9b1c1c !important; }
+.fin-rest-progress-wrap { }
+.fin-rest-progress-track { width: 100%; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 4px; }
+.fin-rest-progress-fill { height: 100%; border-radius: 4px; transition: width .35s ease, background .35s; }
+.fin-rest-progress-label { font-family: var(--sans); font-size: .72rem; color: var(--stone); }
+.fin-status-block { background: var(--navy-dark); border-radius: 4px; padding: 1.25rem; text-align: center; }
+.fin-status-title { font-family: var(--serif); font-size: 1.25rem; color: #fff; margin-bottom: .35rem; }
+.fin-status-sub { font-family: var(--sans); font-size: .8rem; color: rgba(255,255,255,.55); line-height: 1.6; }
+@media (max-width: 900px) {
+  .fin-two-col { grid-template-columns: 1fr; }
+}
+
+
 .fin-model-wrap { max-width: 860px; }
 .fin-assumptions { background: var(--navy-dark); border-radius: 4px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
 .fin-assume-label { font-family: var(--sans); font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: .85rem; }
@@ -2021,150 +2067,230 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
     <div class="section-intro">
       <div class="section-eyebrow">Participation Model</div>
       <h2 class="section-title">Financial Projections</h2>
-      <p class="section-sub">Drag the sliders to model different participation scenarios across breakfast, lunch, and dinner. All figures update live based on MedStar Health employee counts and your selected participation rates and average checks.</p>
+      <p class="section-sub">Drag the sliders to model participation scenarios. Restaurant allocations and minimum thresholds update live — green means the minimum is met, red means it falls short.</p>
     </div>
 
-    <div class="fin-model-wrap">
+    <div class="fin-two-col">
 
-      <div class="fin-assumptions">
-        <div class="fin-assume-label">Base assumptions</div>
-        <div class="fin-assume-grid">
-          <div class="fin-assume-item"><span class="fin-assume-val">2,000</span><span class="fin-assume-sub">Employees M–F (breakfast & lunch)</span></div>
-          <div class="fin-assume-item"><span class="fin-assume-val">1,000</span><span class="fin-assume-sub">Employees Sat–Sun (breakfast & lunch)</span></div>
-          <div class="fin-assume-item"><span class="fin-assume-val">700</span><span class="fin-assume-sub">Employees (dinner, all days)</span></div>
-          <div class="fin-assume-item"><span class="fin-assume-val">52 wks</span><span class="fin-assume-sub">Annual operating weeks</span></div>
-        </div>
-      </div>
+      <!-- ── LEFT: SLIDERS ── -->
+      <div class="fin-left">
 
-      <!-- BREAKFAST -->
-      <div class="fin-meal-block">
-        <div class="fin-meal-header">
-          <div>
-            <div class="fin-meal-name">Breakfast</div>
-            <div class="fin-meal-meta">M–F: 2,000 · Sat–Sun: 1,000</div>
-          </div>
-          <div class="fin-meal-rev">
-            <div class="fin-rev-num" id="b-daily-rev">—</div>
-            <div class="fin-rev-label">avg daily revenue</div>
+        <div class="fin-assumptions">
+          <div class="fin-assume-label">Base assumptions</div>
+          <div class="fin-assume-grid">
+            <div class="fin-assume-item"><span class="fin-assume-val">2,000</span><span class="fin-assume-sub">Employees M–F (B & L)</span></div>
+            <div class="fin-assume-item"><span class="fin-assume-val">1,000</span><span class="fin-assume-sub">Employees Sat–Sun (B & L)</span></div>
+            <div class="fin-assume-item"><span class="fin-assume-val">700</span><span class="fin-assume-sub">Employees (dinner, all days)</span></div>
+            <div class="fin-assume-item"><span class="fin-assume-val">52 wks</span><span class="fin-assume-sub">Annual operating weeks</span></div>
           </div>
         </div>
-        <div class="fin-slider-row">
-          <span class="fin-slider-label">Participation</span>
-          <input type="range" min="0.5" max="20" step="0.5" value="2.5" id="b-part" oninput="finCalc()">
-          <span class="fin-slider-val" id="b-part-out">2.5%</span>
-        </div>
-        <div class="fin-slider-row">
-          <span class="fin-slider-label">Avg check</span>
-          <input type="range" min="3" max="15" step="0.25" value="5" id="b-check" oninput="finCalc()">
-          <span class="fin-slider-val" id="b-check-out">$5.00</span>
-        </div>
-        <div class="fin-stats-grid">
-          <div class="fin-stat"><div class="fin-stat-val" id="b-cov-wd">—</div><div class="fin-stat-label">covers / weekday</div></div>
-          <div class="fin-stat"><div class="fin-stat-val" id="b-cov-we">—</div><div class="fin-stat-label">covers / weekend day</div></div>
-          <div class="fin-stat"><div class="fin-stat-val" id="b-weekly">—</div><div class="fin-stat-label">weekly revenue</div></div>
-        </div>
-      </div>
 
-      <!-- LUNCH -->
-      <div class="fin-meal-block">
-        <div class="fin-meal-header">
-          <div>
-            <div class="fin-meal-name">Lunch</div>
-            <div class="fin-meal-meta">M–F: 2,000 · Sat–Sun: 1,000</div>
+        <div class="fin-meal-block">
+          <div class="fin-meal-header">
+            <div><div class="fin-meal-name">Breakfast</div><div class="fin-meal-meta">M–F: 2,000 · Sat–Sun: 1,000</div></div>
+            <div class="fin-meal-rev"><div class="fin-rev-num" id="b-daily-rev">—</div><div class="fin-rev-label">avg daily revenue</div></div>
           </div>
-          <div class="fin-meal-rev">
-            <div class="fin-rev-num" id="l-daily-rev">—</div>
-            <div class="fin-rev-label">avg daily revenue</div>
+          <div class="fin-slider-row">
+            <span class="fin-slider-label">Participation</span>
+            <input type="range" min="0.5" max="20" step="0.5" value="2.5" id="b-part" oninput="finCalc()">
+            <span class="fin-slider-val" id="b-part-out">2.5%</span>
+          </div>
+          <div class="fin-slider-row">
+            <span class="fin-slider-label">Avg check</span>
+            <input type="range" min="3" max="15" step="0.25" value="5" id="b-check" oninput="finCalc()">
+            <span class="fin-slider-val" id="b-check-out">$5.00</span>
+          </div>
+          <div class="fin-stats-grid">
+            <div class="fin-stat"><div class="fin-stat-val" id="b-cov-wd">—</div><div class="fin-stat-label">covers / weekday</div></div>
+            <div class="fin-stat"><div class="fin-stat-val" id="b-cov-we">—</div><div class="fin-stat-label">covers / wknd day</div></div>
+            <div class="fin-stat"><div class="fin-stat-val" id="b-weekly">—</div><div class="fin-stat-label">weekly revenue</div></div>
           </div>
         </div>
-        <div class="fin-slider-row">
-          <span class="fin-slider-label">Participation</span>
-          <input type="range" min="1" max="40" step="0.5" value="15" id="l-part" oninput="finCalc()">
-          <span class="fin-slider-val" id="l-part-out">15.0%</span>
-        </div>
-        <div class="fin-slider-row">
-          <span class="fin-slider-label">Avg check</span>
-          <input type="range" min="8" max="22" step="0.25" value="13.50" id="l-check" oninput="finCalc()">
-          <span class="fin-slider-val" id="l-check-out">$13.50</span>
-        </div>
-        <div class="fin-stats-grid">
-          <div class="fin-stat"><div class="fin-stat-val" id="l-cov-wd">—</div><div class="fin-stat-label">covers / weekday</div></div>
-          <div class="fin-stat"><div class="fin-stat-val" id="l-cov-we">—</div><div class="fin-stat-label">covers / weekend day</div></div>
-          <div class="fin-stat"><div class="fin-stat-val" id="l-weekly">—</div><div class="fin-stat-label">weekly revenue</div></div>
-        </div>
-      </div>
 
-      <!-- DINNER -->
-      <div class="fin-meal-block">
-        <div class="fin-meal-header">
-          <div>
-            <div class="fin-meal-name">Dinner</div>
-            <div class="fin-meal-meta">700 employees · all 7 days</div>
+        <div class="fin-meal-block">
+          <div class="fin-meal-header">
+            <div><div class="fin-meal-name">Lunch</div><div class="fin-meal-meta">M–F: 2,000 · Sat–Sun: 1,000</div></div>
+            <div class="fin-meal-rev"><div class="fin-rev-num" id="l-daily-rev">—</div><div class="fin-rev-label">avg daily revenue</div></div>
           </div>
-          <div class="fin-meal-rev">
-            <div class="fin-rev-num" id="d-daily-rev">—</div>
-            <div class="fin-rev-label">daily revenue</div>
+          <div class="fin-slider-row">
+            <span class="fin-slider-label">Participation</span>
+            <input type="range" min="1" max="40" step="0.5" value="15" id="l-part" oninput="finCalc()">
+            <span class="fin-slider-val" id="l-part-out">15.0%</span>
+          </div>
+          <div class="fin-slider-row">
+            <span class="fin-slider-label">Avg check</span>
+            <input type="range" min="8" max="22" step="0.25" value="13.50" id="l-check" oninput="finCalc()">
+            <span class="fin-slider-val" id="l-check-out">$13.50</span>
+          </div>
+          <div class="fin-stats-grid">
+            <div class="fin-stat"><div class="fin-stat-val" id="l-cov-wd">—</div><div class="fin-stat-label">covers / weekday</div></div>
+            <div class="fin-stat"><div class="fin-stat-val" id="l-cov-we">—</div><div class="fin-stat-label">covers / wknd day</div></div>
+            <div class="fin-stat"><div class="fin-stat-val" id="l-weekly">—</div><div class="fin-stat-label">weekly revenue</div></div>
           </div>
         </div>
-        <div class="fin-slider-row">
-          <span class="fin-slider-label">Participation</span>
-          <input type="range" min="1" max="40" step="0.5" value="16" id="d-part" oninput="finCalc()">
-          <span class="fin-slider-val" id="d-part-out">16.0%</span>
-        </div>
-        <div class="fin-slider-row">
-          <span class="fin-slider-label">Avg check</span>
-          <input type="range" min="8" max="22" step="0.25" value="13.50" id="d-check" oninput="finCalc()">
-          <span class="fin-slider-val" id="d-check-out">$13.50</span>
-        </div>
-        <div class="fin-stats-grid">
-          <div class="fin-stat"><div class="fin-stat-val" id="d-covers">—</div><div class="fin-stat-label">covers / day</div></div>
-          <div class="fin-stat"><div class="fin-stat-val" id="d-weekly">—</div><div class="fin-stat-label">weekly revenue</div></div>
-          <div class="fin-stat"><div class="fin-stat-val" id="d-annual">—</div><div class="fin-stat-label">annual revenue</div></div>
-        </div>
-      </div>
 
-      <!-- TOTALS -->
-      <div class="fin-totals">
-        <div class="fin-total-card">
-          <div class="fin-total-val" id="tot-daily">—</div>
-          <div class="fin-total-label">avg daily revenue</div>
+        <div class="fin-meal-block">
+          <div class="fin-meal-header">
+            <div><div class="fin-meal-name">Dinner</div><div class="fin-meal-meta">700 employees · all 7 days</div></div>
+            <div class="fin-meal-rev"><div class="fin-rev-num" id="d-daily-rev">—</div><div class="fin-rev-label">daily revenue</div></div>
+          </div>
+          <div class="fin-slider-row">
+            <span class="fin-slider-label">Participation</span>
+            <input type="range" min="1" max="40" step="0.5" value="16" id="d-part" oninput="finCalc()">
+            <span class="fin-slider-val" id="d-part-out">16.0%</span>
+          </div>
+          <div class="fin-slider-row">
+            <span class="fin-slider-label">Avg check</span>
+            <input type="range" min="8" max="22" step="0.25" value="13.50" id="d-check" oninput="finCalc()">
+            <span class="fin-slider-val" id="d-check-out">$13.50</span>
+          </div>
+          <div class="fin-stats-grid">
+            <div class="fin-stat"><div class="fin-stat-val" id="d-covers">—</div><div class="fin-stat-label">covers / day</div></div>
+            <div class="fin-stat"><div class="fin-stat-val" id="d-weekly">—</div><div class="fin-stat-label">weekly revenue</div></div>
+            <div class="fin-stat"><div class="fin-stat-val" id="d-annual">—</div><div class="fin-stat-label">annual revenue</div></div>
+          </div>
         </div>
-        <div class="fin-total-card fin-total-accent">
-          <div class="fin-total-val" id="tot-weekly">—</div>
-          <div class="fin-total-label">weekly revenue</div>
-        </div>
-        <div class="fin-total-card fin-total-accent">
-          <div class="fin-total-val" id="tot-annual">—</div>
-          <div class="fin-total-label">projected annual revenue</div>
-        </div>
-        <div class="fin-total-card">
-          <div class="fin-total-val" id="tot-covers">—</div>
-          <div class="fin-total-label">avg daily covers</div>
-        </div>
-      </div>
 
-      <!-- BAR CHART -->
-      <div class="fin-chart-block">
-        <div class="fin-chart-title">Weekly revenue by daypart</div>
-        <div class="fin-bar-row">
-          <span class="fin-bar-label">Breakfast</span>
-          <div class="fin-bar-track"><div class="fin-bar-fill" id="fbar-b" style="background:var(--navy-light,#2a5298)"><span class="fin-bar-pct" id="fbar-b-pct"></span></div></div>
-          <span class="fin-bar-amt" id="fbar-b-amt">—</span>
+        <div class="fin-totals">
+          <div class="fin-total-card">
+            <div class="fin-total-val" id="tot-daily">—</div>
+            <div class="fin-total-label">avg daily revenue</div>
+          </div>
+          <div class="fin-total-card fin-total-accent">
+            <div class="fin-total-val" id="tot-weekly">—</div>
+            <div class="fin-total-label">weekly revenue</div>
+          </div>
+          <div class="fin-total-card fin-total-accent">
+            <div class="fin-total-val" id="tot-annual">—</div>
+            <div class="fin-total-label">annual projection</div>
+          </div>
+          <div class="fin-total-card">
+            <div class="fin-total-val" id="tot-covers">—</div>
+            <div class="fin-total-label">avg daily covers</div>
+          </div>
         </div>
-        <div class="fin-bar-row">
-          <span class="fin-bar-label">Lunch</span>
-          <div class="fin-bar-track"><div class="fin-bar-fill" id="fbar-l" style="background:var(--navy,#0d2d6b)"><span class="fin-bar-pct" id="fbar-l-pct"></span></div></div>
-          <span class="fin-bar-amt" id="fbar-l-amt">—</span>
-        </div>
-        <div class="fin-bar-row">
-          <span class="fin-bar-label">Dinner</span>
-          <div class="fin-bar-track"><div class="fin-bar-fill" id="fbar-d" style="background:var(--gold,#f5c400)"><span class="fin-bar-pct" id="fbar-d-pct" style="color:var(--navy-dark,#071d4a)"></span></div></div>
-          <span class="fin-bar-amt" id="fbar-d-amt">—</span>
-        </div>
-        <div class="fin-chart-note" id="fin-note"></div>
-      </div>
 
-    </div>
+        <div class="fin-chart-block">
+          <div class="fin-chart-title">Weekly revenue by daypart</div>
+          <div class="fin-bar-row">
+            <span class="fin-bar-label">Breakfast</span>
+            <div class="fin-bar-track"><div class="fin-bar-fill" id="fbar-b" style="background:#2a5298"><span class="fin-bar-pct" id="fbar-b-pct"></span></div></div>
+            <span class="fin-bar-amt" id="fbar-b-amt">—</span>
+          </div>
+          <div class="fin-bar-row">
+            <span class="fin-bar-label">Lunch</span>
+            <div class="fin-bar-track"><div class="fin-bar-fill" id="fbar-l" style="background:#0d2d6b"><span class="fin-bar-pct" id="fbar-l-pct"></span></div></div>
+            <span class="fin-bar-amt" id="fbar-l-amt">—</span>
+          </div>
+          <div class="fin-bar-row">
+            <span class="fin-bar-label">Dinner</span>
+            <div class="fin-bar-track"><div class="fin-bar-fill" id="fbar-d" style="background:#f5c400"><span class="fin-bar-pct" id="fbar-d-pct" style="color:#071d4a"></span></div></div>
+            <span class="fin-bar-amt" id="fbar-d-amt">—</span>
+          </div>
+          <div class="fin-chart-note" id="fin-note"></div>
+        </div>
+
+      </div><!-- /fin-left -->
+
+      <!-- ── RIGHT: RESTAURANT PROJECTIONS ── -->
+      <div class="fin-right">
+
+        <div class="fin-rest-header">
+          <div class="fin-rest-title">Restaurant Revenue Projections</div>
+          <div class="fin-rest-sub">Based on current slider values and allocation splits. Green = minimum met · Red = below minimum.</div>
+        </div>
+
+        <!-- ALLOCATION LEGEND -->
+        <div class="fin-alloc-block">
+          <div class="fin-alloc-title">Revenue allocation rules</div>
+          <div class="fin-alloc-row"><span class="fin-alloc-meal">Breakfast</span><span class="fin-alloc-desc">95% → Resident #1 · 5% → Resident #2</span></div>
+          <div class="fin-alloc-row"><span class="fin-alloc-meal">Lunch</span><span class="fin-alloc-desc">32.5% → Resident #1 · 32.5% → Resident #2 · 30% → Daily Guest · 5% other</span></div>
+          <div class="fin-alloc-row"><span class="fin-alloc-meal">Dinner</span><span class="fin-alloc-desc">32.5% → Resident #1 · 32.5% → Resident #2 · 30% → Daily Guest · 5% other</span></div>
+        </div>
+
+        <!-- RESIDENT #1 -->
+        <div class="fin-rest-card" id="card-r1">
+          <div class="fin-rest-card-header">
+            <div>
+              <div class="fin-rest-name">Resident #1</div>
+              <div class="fin-rest-role">Primary resident restaurant</div>
+            </div>
+            <div class="fin-rest-badge" id="badge-r1">—</div>
+          </div>
+          <div class="fin-rest-min-row">
+            <span class="fin-rest-min-label">Weekly minimum</span>
+            <span class="fin-rest-min-val">$9,000</span>
+          </div>
+          <div class="fin-rest-breakdown">
+            <div class="fin-rest-row"><span class="fin-rest-row-label">From breakfast (95%)</span><span class="fin-rest-row-val" id="r1-from-b">—</span></div>
+            <div class="fin-rest-row"><span class="fin-rest-row-label">From lunch (32.5%)</span><span class="fin-rest-row-val" id="r1-from-l">—</span></div>
+            <div class="fin-rest-row"><span class="fin-rest-row-label">From dinner (32.5%)</span><span class="fin-rest-row-val" id="r1-from-d">—</span></div>
+            <div class="fin-rest-row fin-rest-total-row"><span class="fin-rest-row-label">Weekly total</span><span class="fin-rest-row-val fin-threshold-val" id="r1-total">—</span></div>
+          </div>
+          <div class="fin-rest-progress-wrap">
+            <div class="fin-rest-progress-track"><div class="fin-rest-progress-fill" id="prog-r1"></div></div>
+            <div class="fin-rest-progress-label" id="prog-r1-label">—</div>
+          </div>
+        </div>
+
+        <!-- RESIDENT #2 -->
+        <div class="fin-rest-card" id="card-r2">
+          <div class="fin-rest-card-header">
+            <div>
+              <div class="fin-rest-name">Resident #2</div>
+              <div class="fin-rest-role">Secondary resident restaurant</div>
+            </div>
+            <div class="fin-rest-badge" id="badge-r2">—</div>
+          </div>
+          <div class="fin-rest-min-row">
+            <span class="fin-rest-min-label">Weekly minimum</span>
+            <span class="fin-rest-min-val">$6,000</span>
+          </div>
+          <div class="fin-rest-breakdown">
+            <div class="fin-rest-row"><span class="fin-rest-row-label">From breakfast (5%)</span><span class="fin-rest-row-val" id="r2-from-b">—</span></div>
+            <div class="fin-rest-row"><span class="fin-rest-row-label">From lunch (32.5%)</span><span class="fin-rest-row-val" id="r2-from-l">—</span></div>
+            <div class="fin-rest-row"><span class="fin-rest-row-label">From dinner (32.5%)</span><span class="fin-rest-row-val" id="r2-from-d">—</span></div>
+            <div class="fin-rest-row fin-rest-total-row"><span class="fin-rest-row-label">Weekly total</span><span class="fin-rest-row-val fin-threshold-val" id="r2-total">—</span></div>
+          </div>
+          <div class="fin-rest-progress-wrap">
+            <div class="fin-rest-progress-track"><div class="fin-rest-progress-fill" id="prog-r2"></div></div>
+            <div class="fin-rest-progress-label" id="prog-r2-label">—</div>
+          </div>
+        </div>
+
+        <!-- DAILY GUEST / POP-UP -->
+        <div class="fin-rest-card" id="card-dg">
+          <div class="fin-rest-card-header">
+            <div>
+              <div class="fin-rest-name">Daily Guest Restaurant</div>
+              <div class="fin-rest-role">Pop-up / rotating restaurant</div>
+            </div>
+            <div class="fin-rest-badge" id="badge-dg">—</div>
+          </div>
+          <div class="fin-rest-min-row">
+            <span class="fin-rest-min-label">Daily minimum</span>
+            <span class="fin-rest-min-val">$850 / day</span>
+          </div>
+          <div class="fin-rest-breakdown">
+            <div class="fin-rest-row"><span class="fin-rest-row-label">From lunch (30%)</span><span class="fin-rest-row-val" id="dg-from-l">—</span></div>
+            <div class="fin-rest-row"><span class="fin-rest-row-label">From dinner (30%)</span><span class="fin-rest-row-val" id="dg-from-d">—</span></div>
+            <div class="fin-rest-row fin-rest-total-row"><span class="fin-rest-row-label">Avg daily total</span><span class="fin-rest-row-val fin-threshold-val" id="dg-total">—</span></div>
+          </div>
+          <div class="fin-rest-progress-wrap">
+            <div class="fin-rest-progress-track"><div class="fin-rest-progress-fill" id="prog-dg"></div></div>
+            <div class="fin-rest-progress-label" id="prog-dg-label">—</div>
+          </div>
+        </div>
+
+        <!-- SUMMARY STATUS -->
+        <div class="fin-status-block" id="fin-status-block">
+          <div class="fin-status-title" id="fin-status-title">—</div>
+          <div class="fin-status-sub" id="fin-status-sub">—</div>
+        </div>
+
+      </div><!-- /fin-right -->
+    </div><!-- /fin-two-col -->
+
     <div style="padding-bottom:2.5rem"></div>
   </div>
 </div><!-- /fin -->
@@ -2392,6 +2518,10 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
 /* ── Financial model ─────────────────────────────────────── */
 function finFmtK(n){return n>=1000000?'$'+(n/1000000).toFixed(2)+'M':n>=1000?'$'+(n/1000).toFixed(1)+'K':'$'+Math.round(n);}
 function finFmtM(n){return n>=1000000?'$'+(n/1000000).toFixed(2)+'M':n>=1000?'$'+(n/1000).toFixed(0)+'K':'$'+Math.round(n);}
+function finFmt(n){return '$'+Math.round(n).toLocaleString();}
+function setThreshold(elId,val,min,isDaily){const el=document.getElementById(elId);if(!el)return;el.textContent=isDaily?finFmt(val)+'/day':finFmt(val)+'/wk';el.className='fin-rest-row-val fin-threshold-val '+(val>=min?'green':'red');}
+function setProgress(fillId,labelId,val,min){const fill=document.getElementById(fillId);const label=document.getElementById(labelId);if(!fill||!label)return;const pct=Math.min(Math.round((val/min)*100),150);const met=val>=min;fill.style.width=Math.min(pct,100)+'%';fill.style.background=met?'#2d8a4e':'#c0392b';const diff=Math.abs(val-min);label.textContent=met?pct+'% of minimum — '+finFmt(diff)+' above target':pct+'% of minimum — '+finFmt(diff)+' below target';}
+function setBadge(badgeId,cardId,met){const badge=document.getElementById(badgeId);const card=document.getElementById(cardId);if(!badge||!card)return;badge.textContent=met?'✓ Minimum Met':'✗ Below Minimum';badge.className='fin-rest-badge '+(met?'green':'red');card.className='fin-rest-card '+(met?'above-min':'below-min');}
 function finCalc(){
   const bPart=parseFloat(document.getElementById('b-part').value)/100;
   const bCheck=parseFloat(document.getElementById('b-check').value);
@@ -2439,7 +2569,38 @@ function finCalc(){
   document.getElementById('fbar-b-amt').textContent=finFmtK(bWeekly)+' / wk';
   document.getElementById('fbar-l-amt').textContent=finFmtK(lWeekly)+' / wk';
   document.getElementById('fbar-d-amt').textContent=finFmtK(dWeekly)+' / wk';
-  document.getElementById('fin-note').textContent='At these participation rates, The Station Café at MGUH projects '+finFmtK(totW)+' in weekly revenue — '+finFmtK(bWeekly)+' breakfast, '+finFmtK(lWeekly)+' lunch, '+finFmtK(dWeekly)+' dinner. Annual projection: '+finFmtM(totA)+' across approximately '+totC.toLocaleString()+' daily covers.';
+  document.getElementById('fin-note').textContent='Weekly total: '+finFmtK(totW)+' — '+finFmtK(bWeekly)+' breakfast, '+finFmtK(lWeekly)+' lunch, '+finFmtK(dWeekly)+' dinner. Annual: '+finFmtM(totA)+'.';
+
+  /* Restaurant allocations */
+  const R1_MIN=9000,R2_MIN=6000,DG_MIN_DAILY=850;
+  const r1_b=bWeekly*0.95,r1_l=lWeekly*0.325,r1_d=dWeekly*0.325,r1_total=r1_b+r1_l+r1_d;
+  const r2_b=bWeekly*0.05,r2_l=lWeekly*0.325,r2_d=dWeekly*0.325,r2_total=r2_b+r2_l+r2_d;
+  const dg_l=lWeekly*0.30,dg_d=dWeekly*0.30,dg_daily=(dg_l+dg_d)/7;
+  document.getElementById('r1-from-b').textContent=finFmt(r1_b);
+  document.getElementById('r1-from-l').textContent=finFmt(r1_l);
+  document.getElementById('r1-from-d').textContent=finFmt(r1_d);
+  setThreshold('r1-total',r1_total,R1_MIN,false);
+  setBadge('badge-r1','card-r1',r1_total>=R1_MIN);
+  setProgress('prog-r1','prog-r1-label',r1_total,R1_MIN);
+  document.getElementById('r2-from-b').textContent=finFmt(r2_b);
+  document.getElementById('r2-from-l').textContent=finFmt(r2_l);
+  document.getElementById('r2-from-d').textContent=finFmt(r2_d);
+  setThreshold('r2-total',r2_total,R2_MIN,false);
+  setBadge('badge-r2','card-r2',r2_total>=R2_MIN);
+  setProgress('prog-r2','prog-r2-label',r2_total,R2_MIN);
+  document.getElementById('dg-from-l').textContent=finFmt(dg_l/7)+'/day';
+  document.getElementById('dg-from-d').textContent=finFmt(dg_d/7)+'/day';
+  setThreshold('dg-total',dg_daily,DG_MIN_DAILY,true);
+  setBadge('badge-dg','card-dg',dg_daily>=DG_MIN_DAILY);
+  setProgress('prog-dg','prog-dg-label',dg_daily,DG_MIN_DAILY);
+  const allMet=r1_total>=R1_MIN&&r2_total>=R2_MIN&&dg_daily>=DG_MIN_DAILY;
+  const noneMet=r1_total<R1_MIN&&r2_total<R2_MIN&&dg_daily<DG_MIN_DAILY;
+  const sb=document.getElementById('fin-status-block');
+  const st=document.getElementById('fin-status-title');
+  const ss=document.getElementById('fin-status-sub');
+  if(allMet){sb.style.background='#1e6b3a';st.textContent='All minimums met at these participation rates';ss.textContent='Resident #1: '+finFmt(r1_total)+'/wk · Resident #2: '+finFmt(r2_total)+'/wk · Daily Guest: '+finFmt(dg_daily)+'/day';}
+  else if(noneMet){sb.style.background='#9b1c1c';st.textContent='No minimums met — increase participation to reach targets';ss.textContent='Try raising lunch or dinner participation rates to close the gap.';}
+  else{sb.style.background='#7a5a00';st.textContent='Some minimums met — adjust sliders to close remaining gaps';const gaps=[];if(r1_total<R1_MIN)gaps.push('Resident #1 needs '+finFmt(R1_MIN-r1_total)+' more/wk');if(r2_total<R2_MIN)gaps.push('Resident #2 needs '+finFmt(R2_MIN-r2_total)+' more/wk');if(dg_daily<DG_MIN_DAILY)gaps.push('Daily Guest needs '+finFmt(DG_MIN_DAILY-dg_daily)+' more/day');ss.textContent=gaps.join(' · ');}
 }
 document.addEventListener('DOMContentLoaded',function(){if(document.getElementById('b-part'))finCalc();});
 
