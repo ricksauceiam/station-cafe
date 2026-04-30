@@ -562,7 +562,36 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
   .fin-stats-grid { grid-template-columns: repeat(2,1fr); }
 }
 
-/* ─── FINANCIALS 2 TABLES ──────────────────────────────── */
+/* ─── ACTUAL MODEL ─────────────────────────────────────── */
+.act-intro { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: start; margin-bottom: 1.75rem; background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: 4px; padding: 1.25rem; }
+.act-compare-badge { background: var(--navy-dark); border-radius: 4px; padding: .85rem 1.25rem; text-align: center; min-width: 240px; }
+.act-compare-label { font-family: var(--sans); font-size: .75rem; font-weight: 700; color: var(--gold); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+.act-compare-sub { font-family: var(--sans); font-size: .72rem; color: rgba(255,255,255,.5); line-height: 1.4; }
+.act-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+.act-left {}
+.act-right {}
+.act-split-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-top: .85rem; padding-top: .85rem; border-top: 1px solid var(--border); }
+.act-split-item { text-align: center; background: var(--off-white); border-radius: 3px; padding: .5rem .25rem; }
+.act-split-pct { font-family: var(--sans); font-size: .8rem; font-weight: 700; margin-bottom: 2px; }
+.act-split-label { font-family: var(--sans); font-size: .65rem; color: var(--stone); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
+.act-split-val { font-family: var(--serif); font-size: .95rem; color: var(--navy-dark); font-weight: 600; }
+.act-totals-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin: 1rem 0; }
+.act-total-block { border-radius: 4px; padding: .85rem .75rem; text-align: center; }
+.act-total-popup { background: #fff5f5; border: 1px solid #fca5a5; }
+.act-total-resident { background: #eff6ff; border: 1px solid #93c5fd; }
+.act-total-retail { background: #f0fdf4; border: 1px solid #86efac; }
+.act-total-label { font-family: var(--sans); font-size: .65rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--stone); margin-bottom: 4px; }
+.act-total-val { font-family: var(--serif); font-size: 1.1rem; color: var(--navy-dark); }
+.act-annual-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 1rem; }
+.act-annual-block { background: #fff; border: 1px solid var(--border); border-top: 3px solid var(--gold); border-radius: 3px; padding: .85rem; text-align: center; }
+.act-annual-label { font-family: var(--sans); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--stone); margin-bottom: 4px; }
+.act-annual-val { font-family: var(--serif); font-size: 1.25rem; color: var(--navy-dark); }
+.act-compare-note { background: var(--off-white); border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.25rem; margin-top: 1rem; }
+.act-compare-note-title { font-family: var(--sans); font-size: .72rem; font-weight: 700; color: var(--navy-dark); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .5rem; }
+.act-compare-note-body { font-family: var(--sans); font-size: .78rem; color: var(--stone); line-height: 1.65; }
+@media (max-width: 768px) { .act-two-col { grid-template-columns: 1fr; } .act-intro { grid-template-columns: 1fr; } .act-totals-row { grid-template-columns: repeat(2,1fr); } .act-annual-row { grid-template-columns: 1fr; } }
+
+
 .f2-header-row { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; margin-bottom: 1.5rem; background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem; }
 .f2-fooda-badge { display: inline-block; background: #e83e3e; color: #fff; font-family: var(--sans); font-size: 1.1rem; font-weight: 900; letter-spacing: .05em; padding: 4px 10px; border-radius: 3px; margin-bottom: .5rem; }
 .f2-main-title { font-family: var(--serif); font-size: 1.5rem; color: var(--navy-dark); margin-bottom: .2rem; }
@@ -2168,6 +2197,7 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
 
     <div class="fin-subtabs">
       <button class="fin-subtab active" onclick="switchFinTab('projections',this)">Revenue Projections</button>
+      <button class="fin-subtab" onclick="switchFinTab('actual',this)">Actual Model</button>
       <button class="fin-subtab" onclick="switchFinTab('staffing',this)">Staffing Model</button>
       <button class="fin-subtab" onclick="switchFinTab('fin2',this)">Detailed Breakdown</button>
     </div>
@@ -2395,7 +2425,277 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
     </div><!-- /fin-projections -->
 
     <!-- STAFFING MODEL -->
-    <div id="fin-staffing" class="fin-subpanel" style="display:none">
+    </div><!-- /fin-projections -->
+
+    <!-- ══ ACTUAL MODEL ══ -->
+    <div id="fin-actual" class="fin-subpanel" style="display:none">
+
+      <div class="act-intro">
+        <div class="act-intro-text">
+          <div class="section-eyebrow">Fooda Financial Model — Actual Allocation</div>
+          <h2 class="section-title" style="font-size:1.6rem;margin-bottom:.3rem">Actual Model Projections</h2>
+          <p class="section-sub" style="margin-bottom:0">Based on the Fooda Daily Gross Food Sales model. Adjust participation sliders — sales flow to Popup, Resident, and Retail buckets using actual allocation splits from the spreadsheet. Compare resident partner projections against minimums in real time.</p>
+        </div>
+        <div class="act-compare-badge">
+          <div class="act-compare-label">Comparing vs. Revenue Projections tab</div>
+          <div class="act-compare-sub">Same employee counts · Same minimums · Different allocation logic</div>
+        </div>
+      </div>
+
+      <div class="act-two-col">
+
+        <!-- ── LEFT: SLIDERS + DAYPART TABLES ── -->
+        <div class="act-left">
+
+          <div class="fin-assumptions">
+            <div class="fin-assume-label">Base assumptions</div>
+            <div class="fin-assume-grid">
+              <div class="fin-assume-item"><span class="fin-assume-val">2,000</span><span class="fin-assume-sub">Employees M–F (B & L)</span></div>
+              <div class="fin-assume-item"><span class="fin-assume-val">1,000</span><span class="fin-assume-sub">Employees Sat–Sun (B & L)</span></div>
+              <div class="fin-assume-item"><span class="fin-assume-val">700</span><span class="fin-assume-sub">Employees (dinner, M–F)</span></div>
+              <div class="fin-assume-item"><span class="fin-assume-val">28%</span><span class="fin-assume-sub">Grab & Go participation</span></div>
+            </div>
+          </div>
+
+          <!-- BREAKFAST SLIDER -->
+          <div class="fin-meal-block" style="border-left-color:#2a5298">
+            <div class="fin-meal-header">
+              <div><div class="fin-meal-name">Breakfast</div><div class="fin-meal-meta">95% Resident · 5% Retail · No Popup</div></div>
+              <div class="fin-meal-rev"><div class="fin-rev-num" id="ab-weekly">—</div><div class="fin-rev-label">weekly</div></div>
+            </div>
+            <div class="fin-slider-row">
+              <span class="fin-slider-label">Participation</span>
+              <input type="range" min="0.5" max="20" step="0.5" value="2.5" id="ab-part" oninput="actCalc()">
+              <span class="fin-slider-val" id="ab-part-out">2.5%</span>
+            </div>
+            <div class="fin-slider-row">
+              <span class="fin-slider-label">Avg check</span>
+              <input type="range" min="3" max="15" step="0.25" value="5" id="ab-check" oninput="actCalc()">
+              <span class="fin-slider-val" id="ab-check-out">$5.00</span>
+            </div>
+            <div class="act-split-row">
+              <div class="act-split-item"><div class="act-split-pct" style="color:#e53e3e">0%</div><div class="act-split-label">Popup</div><div class="act-split-val" id="ab-popup">$0</div></div>
+              <div class="act-split-item"><div class="act-split-pct" style="color:#2a5298">95%</div><div class="act-split-label">Resident</div><div class="act-split-val" id="ab-resident">—</div></div>
+              <div class="act-split-item"><div class="act-split-pct" style="color:#1a3f80">5%</div><div class="act-split-label">Retail</div><div class="act-split-val" id="ab-retail">—</div></div>
+            </div>
+          </div>
+
+          <!-- LUNCH SLIDER -->
+          <div class="fin-meal-block" style="border-left-color:#0d2d6b">
+            <div class="fin-meal-header">
+              <div><div class="fin-meal-name">Lunch</div><div class="fin-meal-meta">M–F: 30% Popup / 65% Resident / 5% Retail · Wknd: 85% Popup / 10% Resident / 5% Retail</div></div>
+              <div class="fin-meal-rev"><div class="fin-rev-num" id="al-weekly">—</div><div class="fin-rev-label">weekly</div></div>
+            </div>
+            <div class="fin-slider-row">
+              <span class="fin-slider-label">Participation</span>
+              <input type="range" min="1" max="40" step="0.5" value="15" id="al-part" oninput="actCalc()">
+              <span class="fin-slider-val" id="al-part-out">15.0%</span>
+            </div>
+            <div class="fin-slider-row">
+              <span class="fin-slider-label">Avg check</span>
+              <input type="range" min="8" max="22" step="0.25" value="13.50" id="al-check" oninput="actCalc()">
+              <span class="fin-slider-val" id="al-check-out">$13.50</span>
+            </div>
+            <div class="act-split-row">
+              <div class="act-split-item"><div class="act-split-pct" style="color:#e53e3e">~39%</div><div class="act-split-label">Popup</div><div class="act-split-val" id="al-popup">—</div></div>
+              <div class="act-split-item"><div class="act-split-pct" style="color:#2a5298">~56%</div><div class="act-split-label">Resident</div><div class="act-split-val" id="al-resident">—</div></div>
+              <div class="act-split-item"><div class="act-split-pct" style="color:#1a3f80">5%</div><div class="act-split-label">Retail</div><div class="act-split-val" id="al-retail">—</div></div>
+            </div>
+          </div>
+
+          <!-- DINNER SLIDER -->
+          <div class="fin-meal-block" style="border-left-color:#185fa5">
+            <div class="fin-meal-header">
+              <div><div class="fin-meal-name">Dinner</div><div class="fin-meal-meta">M–F only · 90% Popup · 5% Resident · 5% Retail</div></div>
+              <div class="fin-meal-rev"><div class="fin-rev-num" id="ad-weekly">—</div><div class="fin-rev-label">weekly</div></div>
+            </div>
+            <div class="fin-slider-row">
+              <span class="fin-slider-label">Participation</span>
+              <input type="range" min="1" max="40" step="0.5" value="16" id="ad-part" oninput="actCalc()">
+              <span class="fin-slider-val" id="ad-part-out">16.0%</span>
+            </div>
+            <div class="fin-slider-row">
+              <span class="fin-slider-label">Avg check</span>
+              <input type="range" min="8" max="22" step="0.25" value="13.50" id="ad-check" oninput="actCalc()">
+              <span class="fin-slider-val" id="ad-check-out">$13.50</span>
+            </div>
+            <div class="act-split-row">
+              <div class="act-split-item"><div class="act-split-pct" style="color:#e53e3e">90%</div><div class="act-split-label">Popup</div><div class="act-split-val" id="ad-popup">—</div></div>
+              <div class="act-split-item"><div class="act-split-pct" style="color:#2a5298">5%</div><div class="act-split-label">Resident</div><div class="act-split-val" id="ad-resident">—</div></div>
+              <div class="act-split-item"><div class="act-split-pct" style="color:#1a3f80">5%</div><div class="act-split-label">Retail</div><div class="act-split-val" id="ad-retail">—</div></div>
+            </div>
+          </div>
+
+          <!-- GRAB & GO -->
+          <div class="fin-meal-block" style="border-left-color:#1a3f80">
+            <div class="fin-meal-header">
+              <div><div class="fin-meal-name">Grab &amp; Go Market</div><div class="fin-meal-meta">0% Popup · 35% Resident · 65% Retail · 28% of headcount / $6 check</div></div>
+              <div class="fin-meal-rev"><div class="fin-rev-num" id="ag-weekly">—</div><div class="fin-rev-label">weekly</div></div>
+            </div>
+            <div class="fin-slider-row">
+              <span class="fin-slider-label">Participation</span>
+              <input type="range" min="5" max="60" step="1" value="28" id="ag-part" oninput="actCalc()">
+              <span class="fin-slider-val" id="ag-part-out">28%</span>
+            </div>
+            <div class="fin-slider-row">
+              <span class="fin-slider-label">Avg check</span>
+              <input type="range" min="3" max="15" step="0.25" value="6" id="ag-check" oninput="actCalc()">
+              <span class="fin-slider-val" id="ag-check-out">$6.00</span>
+            </div>
+            <div class="act-split-row">
+              <div class="act-split-item"><div class="act-split-pct" style="color:#888">0%</div><div class="act-split-label">Popup</div><div class="act-split-val">$0</div></div>
+              <div class="act-split-item"><div class="act-split-pct" style="color:#2a5298">35%</div><div class="act-split-label">Resident</div><div class="act-split-val" id="ag-resident">—</div></div>
+              <div class="act-split-item"><div class="act-split-pct" style="color:#1a3f80">65%</div><div class="act-split-label">Retail</div><div class="act-split-val" id="ag-retail">—</div></div>
+            </div>
+          </div>
+
+          <!-- WEEKLY TOTALS SUMMARY -->
+          <div class="act-totals-row">
+            <div class="act-total-block act-total-popup">
+              <div class="act-total-label">Total Popup / Weekly</div>
+              <div class="act-total-val" id="at-popup">—</div>
+            </div>
+            <div class="act-total-block act-total-resident">
+              <div class="act-total-label">Total Resident / Weekly</div>
+              <div class="act-total-val" id="at-resident">—</div>
+            </div>
+            <div class="act-total-block act-total-retail">
+              <div class="act-total-label">Total Retail / Weekly</div>
+              <div class="act-total-val" id="at-retail">—</div>
+            </div>
+            <div class="act-total-block act-total-grand" style="background:var(--navy-dark)">
+              <div class="act-total-label" style="color:rgba(255,255,255,.55)">Total Weekly GFS</div>
+              <div class="act-total-val" id="at-gfs" style="color:var(--gold)">—</div>
+            </div>
+          </div>
+
+          <!-- ANNUAL + CLIENT COST -->
+          <div class="act-annual-row">
+            <div class="act-annual-block">
+              <div class="act-annual-label">Annual GFS</div>
+              <div class="act-annual-val" id="at-annual-gfs">—</div>
+            </div>
+            <div class="act-annual-block">
+              <div class="act-annual-label">Client Cost (annual)</div>
+              <div class="act-annual-val">$285,323</div>
+            </div>
+            <div class="act-annual-block">
+              <div class="act-annual-label">Client Cost % of GFS</div>
+              <div class="act-annual-val" id="at-client-pct">—</div>
+            </div>
+          </div>
+
+        </div><!-- /act-left -->
+
+        <!-- ── RIGHT: RESIDENT PARTNER PROJECTIONS ── -->
+        <div class="act-right">
+
+          <div class="fin-rest-header">
+            <div class="fin-rest-title">Resident Partner Revenue</div>
+            <div class="fin-rest-sub">Weekly projections by resident. Green = minimum met · Red = below minimum. Based on actual Fooda allocation logic.</div>
+          </div>
+
+          <!-- ALLOCATION RULES -->
+          <div class="fin-alloc-block">
+            <div class="fin-alloc-title">Actual allocation rules</div>
+            <div class="fin-alloc-row"><span class="fin-alloc-meal">Breakfast</span><span class="fin-alloc-desc">R1: 95% of all breakfast · R2: 0%</span></div>
+            <div class="fin-alloc-row"><span class="fin-alloc-meal">Lunch M–F</span><span class="fin-alloc-desc">Popup 30% · R1+R2 split 65% (~32.5% each) · Retail 5%</span></div>
+            <div class="fin-alloc-row"><span class="fin-alloc-meal">Lunch Wknd</span><span class="fin-alloc-desc">Popup 85% · R1+R2 split 10% (~5% each) · Retail 5%</span></div>
+            <div class="fin-alloc-row"><span class="fin-alloc-meal">Dinner M–F</span><span class="fin-alloc-desc">Popup 90% · R1 2.5% · R2 2.5% · Retail 5%</span></div>
+            <div class="fin-alloc-row"><span class="fin-alloc-meal">Grab &amp; Go</span><span class="fin-alloc-desc">R1+R2 split 35% (~17.5% each) · Retail 65%</span></div>
+          </div>
+
+          <!-- RESIDENT #1 -->
+          <div class="fin-rest-card" id="act-card-r1">
+            <div class="fin-rest-card-header">
+              <div>
+                <div class="fin-rest-name">Resident #1</div>
+                <div class="fin-rest-role">Primary resident — gets breakfast, lunch, dinner &amp; G&amp;G share</div>
+              </div>
+              <div class="fin-rest-badge" id="act-badge-r1">—</div>
+            </div>
+            <div class="fin-rest-min-row">
+              <span class="fin-rest-min-label">Weekly minimum</span>
+              <span class="fin-rest-min-val">$9,000</span>
+            </div>
+            <div class="fin-rest-breakdown">
+              <div class="fin-rest-row"><span class="fin-rest-row-label">From breakfast (95%)</span><span class="fin-rest-row-val" id="ar1-b">—</span></div>
+              <div class="fin-rest-row"><span class="fin-rest-row-label">From lunch (32.5% wkday / 5% wknd)</span><span class="fin-rest-row-val" id="ar1-l">—</span></div>
+              <div class="fin-rest-row"><span class="fin-rest-row-label">From dinner (2.5% M–F)</span><span class="fin-rest-row-val" id="ar1-d">—</span></div>
+              <div class="fin-rest-row"><span class="fin-rest-row-label">From Grab &amp; Go (17.5%)</span><span class="fin-rest-row-val" id="ar1-g">—</span></div>
+              <div class="fin-rest-row fin-rest-total-row"><span class="fin-rest-row-label">Weekly total</span><span class="fin-rest-row-val fin-threshold-val" id="ar1-total">—</span></div>
+            </div>
+            <div class="fin-rest-progress-wrap">
+              <div class="fin-rest-progress-track"><div class="fin-rest-progress-fill" id="act-prog-r1"></div></div>
+              <div class="fin-rest-progress-label" id="act-prog-r1-label">—</div>
+            </div>
+          </div>
+
+          <!-- RESIDENT #2 -->
+          <div class="fin-rest-card" id="act-card-r2">
+            <div class="fin-rest-card-header">
+              <div>
+                <div class="fin-rest-name">Resident #2</div>
+                <div class="fin-rest-role">Secondary resident — lunch, dinner &amp; G&amp;G share only (no breakfast)</div>
+              </div>
+              <div class="fin-rest-badge" id="act-badge-r2">—</div>
+            </div>
+            <div class="fin-rest-min-row">
+              <span class="fin-rest-min-label">Weekly minimum</span>
+              <span class="fin-rest-min-val">$6,000</span>
+            </div>
+            <div class="fin-rest-breakdown">
+              <div class="fin-rest-row"><span class="fin-rest-row-label">From breakfast (0%)</span><span class="fin-rest-row-val">$0</span></div>
+              <div class="fin-rest-row"><span class="fin-rest-row-label">From lunch (32.5% wkday / 5% wknd)</span><span class="fin-rest-row-val" id="ar2-l">—</span></div>
+              <div class="fin-rest-row"><span class="fin-rest-row-label">From dinner (2.5% M–F)</span><span class="fin-rest-row-val" id="ar2-d">—</span></div>
+              <div class="fin-rest-row"><span class="fin-rest-row-label">From Grab &amp; Go (17.5%)</span><span class="fin-rest-row-val" id="ar2-g">—</span></div>
+              <div class="fin-rest-row fin-rest-total-row"><span class="fin-rest-row-label">Weekly total</span><span class="fin-rest-row-val fin-threshold-val" id="ar2-total">—</span></div>
+            </div>
+            <div class="fin-rest-progress-wrap">
+              <div class="fin-rest-progress-track"><div class="fin-rest-progress-fill" id="act-prog-r2"></div></div>
+              <div class="fin-rest-progress-label" id="act-prog-r2-label">—</div>
+            </div>
+          </div>
+
+          <!-- DAILY GUEST POPUP -->
+          <div class="fin-rest-card" id="act-card-dg">
+            <div class="fin-rest-card-header">
+              <div>
+                <div class="fin-rest-name">Daily Guest / Popup</div>
+                <div class="fin-rest-role">Rotating restaurant — lunch &amp; dinner popup share</div>
+              </div>
+              <div class="fin-rest-badge" id="act-badge-dg">—</div>
+            </div>
+            <div class="fin-rest-min-row">
+              <span class="fin-rest-min-label">Daily minimum</span>
+              <span class="fin-rest-min-val">$850 / day</span>
+            </div>
+            <div class="fin-rest-breakdown">
+              <div class="fin-rest-row"><span class="fin-rest-row-label">From lunch — M–F (30%) + Wknd (85%)</span><span class="fin-rest-row-val" id="adg-l">—</span></div>
+              <div class="fin-rest-row"><span class="fin-rest-row-label">From dinner — M–F only (90%)</span><span class="fin-rest-row-val" id="adg-d">—</span></div>
+              <div class="fin-rest-row fin-rest-total-row"><span class="fin-rest-row-label">Avg daily total</span><span class="fin-rest-row-val fin-threshold-val" id="adg-total">—</span></div>
+            </div>
+            <div class="fin-rest-progress-wrap">
+              <div class="fin-rest-progress-track"><div class="fin-rest-progress-fill" id="act-prog-dg"></div></div>
+              <div class="fin-rest-progress-label" id="act-prog-dg-label">—</div>
+            </div>
+          </div>
+
+          <!-- STATUS -->
+          <div class="fin-status-block" id="act-status-block">
+            <div class="fin-status-title" id="act-status-title">—</div>
+            <div class="fin-status-sub" id="act-status-sub">—</div>
+          </div>
+
+          <!-- COMPARISON NOTE -->
+          <div class="act-compare-note">
+            <div class="act-compare-note-title">How this differs from the Revenue Projections tab</div>
+            <div class="act-compare-note-body">The Revenue Projections model uses simplified per-daypart splits. This Actual Model uses Fooda's real allocation logic — including separate weekend splits for lunch (85% popup vs 30% weekday), the Grab &amp; Go market as a distinct revenue stream, and 90% of dinner going to the popup restaurant. This more accurately reflects what each resident partner actually receives each week.</div>
+          </div>
+
+        </div><!-- /act-right -->
+      </div><!-- /act-two-col -->
+    </div><!-- /fin-actual -->
 
       <div class="staff-two-col">
 
@@ -3024,6 +3324,135 @@ function fpLoadDefault(){
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fpInit);}else{setTimeout(fpInit,100);}
 })();
 
+
+/* ── Actual Model calculation ────────────────────────────── */
+function actCalc(){
+  const abPart=parseFloat(document.getElementById('ab-part').value)/100;
+  const abCheck=parseFloat(document.getElementById('ab-check').value);
+  const alPart=parseFloat(document.getElementById('al-part').value)/100;
+  const alCheck=parseFloat(document.getElementById('al-check').value);
+  const adPart=parseFloat(document.getElementById('ad-part').value)/100;
+  const adCheck=parseFloat(document.getElementById('ad-check').value);
+  const agPart=parseFloat(document.getElementById('ag-part').value)/100;
+  const agCheck=parseFloat(document.getElementById('ag-check').value);
+
+  document.getElementById('ab-part-out').textContent=(abPart*100).toFixed(1)+'%';
+  document.getElementById('ab-check-out').textContent='$'+abCheck.toFixed(2);
+  document.getElementById('al-part-out').textContent=(alPart*100).toFixed(1)+'%';
+  document.getElementById('al-check-out').textContent='$'+alCheck.toFixed(2);
+  document.getElementById('ad-part-out').textContent=(adPart*100).toFixed(1)+'%';
+  document.getElementById('ad-check-out').textContent='$'+adCheck.toFixed(2);
+  document.getElementById('ag-part-out').textContent=(agPart*100).toFixed(1)+'%';
+  document.getElementById('ag-check-out').textContent='$'+agCheck.toFixed(2);
+
+  /* BREAKFAST — M-F 2000, Sat-Sun 1000 */
+  const bCovWd=Math.round(2000*abPart), bCovWe=Math.round(1000*abPart);
+  const bRevWd=bCovWd*abCheck, bRevWe=bCovWe*abCheck;
+  const bWeekly=(bRevWd*5)+(bRevWe*2);
+  const bResident=bWeekly*0.95, bRetail=bWeekly*0.05;
+
+  /* LUNCH — M-F split: 30% popup, 65% resident, 5% retail; Wknd: 85%, 10%, 5% */
+  const lCovWd=Math.round(2000*alPart), lCovWe=Math.round(1000*alPart);
+  const lRevWd=lCovWd*alCheck, lRevWe=lCovWe*alCheck;
+  const lWeeklyWd=lRevWd*5, lWeeklyWe=lRevWe*2;
+  const lWeekly=lWeeklyWd+lWeeklyWe;
+  const lPopup=lWeeklyWd*0.30+lWeeklyWe*0.85;
+  const lResident=lWeeklyWd*0.65+lWeeklyWe*0.10;
+  const lRetail=lWeekly*0.05;
+
+  /* DINNER — M-F only, 700 headcount; 90% popup, 5% resident, 5% retail */
+  const dCov=Math.round(700*adPart);
+  const dRevDay=dCov*adCheck;
+  const dWeekly=dRevDay*5;
+  const dPopup=dWeekly*0.90, dResident=dWeekly*0.05, dRetail=dWeekly*0.05;
+
+  /* GRAB & GO — M-F 2000, Sat-Sun 800 */
+  const gCovWd=Math.round(2000*agPart), gCovWe=Math.round(800*agPart);
+  const gRevWd=gCovWd*agCheck, gRevWe=gCovWe*agCheck;
+  const gWeekly=(gRevWd*5)+(gRevWe*2);
+  const gResident=gWeekly*0.35, gRetail=gWeekly*0.65;
+
+  const totWeekly=bWeekly+lWeekly+dWeekly+gWeekly;
+  const totPopup=lPopup+dPopup;
+  const totResident=bResident+lResident+dResident+gResident;
+  const totRetail=bRetail+lRetail+dRetail+gRetail;
+  const totAnnual=totWeekly*52;
+  const clientPct=((285323/totAnnual)*100).toFixed(1);
+
+  /* Update split displays */
+  document.getElementById('ab-resident').textContent=finFmt(bResident)+'/wk';
+  document.getElementById('ab-retail').textContent=finFmt(bRetail)+'/wk';
+  document.getElementById('ab-weekly').textContent=finFmtK(bWeekly);
+  document.getElementById('al-popup').textContent=finFmt(lPopup)+'/wk';
+  document.getElementById('al-resident').textContent=finFmt(lResident)+'/wk';
+  document.getElementById('al-retail').textContent=finFmt(lRetail)+'/wk';
+  document.getElementById('al-weekly').textContent=finFmtK(lWeekly);
+  document.getElementById('ad-popup').textContent=finFmt(dPopup)+'/wk';
+  document.getElementById('ad-resident').textContent=finFmt(dResident)+'/wk';
+  document.getElementById('ad-retail').textContent=finFmt(dRetail)+'/wk';
+  document.getElementById('ad-weekly').textContent=finFmtK(dWeekly);
+  document.getElementById('ag-resident').textContent=finFmt(gResident)+'/wk';
+  document.getElementById('ag-retail').textContent=finFmt(gRetail)+'/wk';
+  document.getElementById('ag-weekly').textContent=finFmtK(gWeekly);
+
+  document.getElementById('at-popup').textContent=finFmtK(totPopup);
+  document.getElementById('at-resident').textContent=finFmtK(totResident);
+  document.getElementById('at-retail').textContent=finFmtK(totRetail);
+  document.getElementById('at-gfs').textContent=finFmtK(totWeekly);
+  document.getElementById('at-annual-gfs').textContent=finFmtM(totAnnual);
+  document.getElementById('at-client-pct').textContent=clientPct+'%';
+
+  /* Resident allocations — R1 gets 95% breakfast, 32.5% wkday/5% wknd lunch, 2.5% dinner, 17.5% G&G */
+  const r1_b=bWeekly*0.95;
+  const r1_l=lWeeklyWd*0.325+lWeeklyWe*0.05;
+  const r1_d=dWeekly*0.025;
+  const r1_g=gWeekly*0.175;
+  const r1_total=r1_b+r1_l+r1_d+r1_g;
+
+  /* R2 gets 0% breakfast, 32.5% wkday/5% wknd lunch, 2.5% dinner, 17.5% G&G */
+  const r2_l=lWeeklyWd*0.325+lWeeklyWe*0.05;
+  const r2_d=dWeekly*0.025;
+  const r2_g=gWeekly*0.175;
+  const r2_total=r2_l+r2_d+r2_g;
+
+  /* Daily Guest — lunch popup + dinner popup / 7 days */
+  const dg_l_weekly=lPopup;
+  const dg_d_weekly=dPopup;
+  const dg_daily=(dg_l_weekly+dg_d_weekly)/7;
+
+  const R1_MIN=9000,R2_MIN=6000,DG_MIN=850;
+
+  document.getElementById('ar1-b').textContent=finFmt(r1_b);
+  document.getElementById('ar1-l').textContent=finFmt(r1_l);
+  document.getElementById('ar1-d').textContent=finFmt(r1_d);
+  document.getElementById('ar1-g').textContent=finFmt(r1_g);
+  setThreshold('ar1-total',r1_total,R1_MIN,false);
+  setBadge('act-badge-r1','act-card-r1',r1_total>=R1_MIN);
+  setProgress('act-prog-r1','act-prog-r1-label',r1_total,R1_MIN);
+
+  document.getElementById('ar2-l').textContent=finFmt(r2_l);
+  document.getElementById('ar2-d').textContent=finFmt(r2_d);
+  document.getElementById('ar2-g').textContent=finFmt(r2_g);
+  setThreshold('ar2-total',r2_total,R2_MIN,false);
+  setBadge('act-badge-r2','act-card-r2',r2_total>=R2_MIN);
+  setProgress('act-prog-r2','act-prog-r2-label',r2_total,R2_MIN);
+
+  document.getElementById('adg-l').textContent=finFmt(dg_l_weekly/7)+'/day';
+  document.getElementById('adg-d').textContent=finFmt(dg_d_weekly/7)+'/day';
+  setThreshold('adg-total',dg_daily,DG_MIN,true);
+  setBadge('act-badge-dg','act-card-dg',dg_daily>=DG_MIN);
+  setProgress('act-prog-dg','act-prog-dg-label',dg_daily,DG_MIN);
+
+  const allMet=r1_total>=R1_MIN&&r2_total>=R2_MIN&&dg_daily>=DG_MIN;
+  const noneMet=r1_total<R1_MIN&&r2_total<R2_MIN&&dg_daily<DG_MIN;
+  const sb=document.getElementById('act-status-block');
+  const st=document.getElementById('act-status-title');
+  const ss=document.getElementById('act-status-sub');
+  if(allMet){sb.style.background='#1e6b3a';st.textContent='All minimums met at these participation rates';ss.textContent='R1: '+finFmt(r1_total)+'/wk · R2: '+finFmt(r2_total)+'/wk · Daily Guest: '+finFmt(dg_daily)+'/day';}
+  else if(noneMet){sb.style.background='#9b1c1c';st.textContent='No minimums met — increase participation to reach targets';ss.textContent='Try raising lunch, dinner or grab & go participation rates.';}
+  else{sb.style.background='#7a5a00';st.textContent='Some minimums met — adjust sliders to close gaps';const gaps=[];if(r1_total<R1_MIN)gaps.push('R1 needs '+finFmt(R1_MIN-r1_total)+' more/wk');if(r2_total<R2_MIN)gaps.push('R2 needs '+finFmt(R2_MIN-r2_total)+' more/wk');if(dg_daily<DG_MIN)gaps.push('Daily Guest needs '+finFmt(DG_MIN-dg_daily)+' more/day');ss.textContent=gaps.join(' · ');}
+}
+document.addEventListener('DOMContentLoaded',function(){if(document.getElementById('ab-part'))actCalc();});
 
 /* ── Financial model ─────────────────────────────────────── */
 function finFmtK(n){return n>=1000000?'$'+(n/1000000).toFixed(2)+'M':n>=1000?'$'+(n/1000).toFixed(1)+'K':'$'+Math.round(n);}
