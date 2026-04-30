@@ -563,19 +563,62 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
 }
 
 /* ─── ACTUAL MODEL ─────────────────────────────────────── */
-.act-intro { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: start; margin-bottom: 1.75rem; background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: 4px; padding: 1.25rem; }
-.act-compare-badge { background: var(--navy-dark); border-radius: 4px; padding: .85rem 1.25rem; text-align: center; min-width: 240px; }
+.act-intro { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: stretch; margin-bottom: 1.5rem; background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: 4px; padding: 1.25rem; }
+.act-intro-text { display: flex; flex-direction: column; justify-content: center; }
+.act-compare-badge { background: var(--navy-dark); border-radius: 4px; padding: 1rem 1.25rem; text-align: center; min-width: 220px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: .5rem; }
 .act-compare-label { font-family: var(--sans); font-size: .75rem; font-weight: 700; color: var(--gold); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
 .act-compare-sub { font-family: var(--sans); font-size: .72rem; color: rgba(255,255,255,.5); line-height: 1.4; }
 .act-cover-big {
-  font-family: var(--serif); font-size: 2.4rem; font-weight: 400;
-  color: var(--navy); line-height: 1; transition: all .3s;
+  font-family: var(--sans); font-size: 1.4rem; font-weight: 700;
+  color: var(--navy); line-height: 1.2; transition: all .3s;
+  white-space: nowrap;
 }
 .act-cover-label {
   font-family: var(--sans); font-size: .65rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: .08em; color: var(--stone);
   margin-top: 2px;
 }
+.act-assumptions {
+  background: var(--navy-dark); border-radius: 6px; padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.act-assume-title {
+  font-family: var(--sans); font-size: .68rem; font-weight: 700;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1rem;
+}
+.act-assume-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+.act-assume-card {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 4px; padding: 1rem 1.25rem;
+}
+.act-assume-mf { border-top: 3px solid var(--gold); }
+.act-assume-we { border-top: 3px solid rgba(245,196,0,.4); }
+.act-assume-days {
+  font-family: var(--sans); font-size: .72rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: rgba(255,255,255,.6); margin-bottom: .85rem;
+}
+.act-assume-meals-row {
+  display: flex; align-items: center; gap: 1rem;
+}
+.act-assume-meal-block { flex: 1; text-align: center; }
+.act-assume-count {
+  font-family: var(--serif); font-size: 2.2rem; color: #fff;
+  line-height: 1; margin-bottom: 4px;
+}
+.act-assume-na { color: rgba(255,255,255,.3) !important; font-size: 1.5rem !important; }
+.act-assume-meal-label {
+  font-family: var(--sans); font-size: .72rem; color: rgba(255,255,255,.5);
+  line-height: 1.3;
+}
+.act-assume-divider {
+  width: 1px; height: 50px; background: rgba(255,255,255,.15); flex-shrink: 0;
+}
+@media (max-width: 768px) { .act-assume-grid { grid-template-columns: 1fr; } }
+
 .act-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
 .act-left {}
 .act-right {}
@@ -2443,11 +2486,46 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
         <div class="act-intro-text">
           <div class="section-eyebrow">Fooda Financial Model — Actual Allocation</div>
           <h2 class="section-title" style="font-size:1.6rem;margin-bottom:.3rem">Actual Model Projections</h2>
-          <p class="section-sub" style="margin-bottom:0">Based on the Fooda Daily Gross Food Sales model. Adjust participation sliders — sales flow to Popup, Resident, and Retail buckets using actual allocation splits from the spreadsheet. Compare resident partner projections against minimums in real time.</p>
+          <p class="section-sub" style="margin-bottom:0">Based on the Fooda Daily Gross Food Sales model. Adjust participation sliders — sales flow to Popup, Resident, and Retail buckets using actual allocation splits. Compare resident partner projections against minimums in real time.</p>
         </div>
         <div class="act-compare-badge">
-          <div class="act-compare-label">Comparing vs. Revenue Projections tab</div>
-          <div class="act-compare-sub">Same employee counts · Same minimums · Different allocation logic</div>
+          <div class="act-compare-label">Comparing vs. Revenue Projections</div>
+          <div class="act-compare-sub">Same minimums · Actual Fooda allocation logic</div>
+        </div>
+      </div>
+
+      <!-- BASE ASSUMPTIONS — large clean grid -->
+      <div class="act-assumptions">
+        <div class="act-assume-title">Employee headcount by meal period</div>
+        <div class="act-assume-grid">
+          <div class="act-assume-card act-assume-mf">
+            <div class="act-assume-days">Monday – Friday</div>
+            <div class="act-assume-meals-row">
+              <div class="act-assume-meal-block">
+                <div class="act-assume-count">2,000</div>
+                <div class="act-assume-meal-label">Breakfast &amp; Lunch</div>
+              </div>
+              <div class="act-assume-divider"></div>
+              <div class="act-assume-meal-block">
+                <div class="act-assume-count">700</div>
+                <div class="act-assume-meal-label">Dinner</div>
+              </div>
+            </div>
+          </div>
+          <div class="act-assume-card act-assume-we">
+            <div class="act-assume-days">Saturday &amp; Sunday</div>
+            <div class="act-assume-meals-row">
+              <div class="act-assume-meal-block">
+                <div class="act-assume-count">1,000</div>
+                <div class="act-assume-meal-label">Breakfast &amp; Lunch</div>
+              </div>
+              <div class="act-assume-divider"></div>
+              <div class="act-assume-meal-block">
+                <div class="act-assume-count act-assume-na">—</div>
+                <div class="act-assume-meal-label">Dinner (no service)</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -2455,16 +2533,6 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
 
         <!-- ── LEFT: SLIDERS + DAYPART TABLES ── -->
         <div class="act-left">
-
-          <div class="fin-assumptions">
-            <div class="fin-assume-label">Base assumptions</div>
-            <div class="fin-assume-grid">
-              <div class="fin-assume-item"><span class="fin-assume-val">2,000</span><span class="fin-assume-sub">Employees M–F (B & L)</span></div>
-              <div class="fin-assume-item"><span class="fin-assume-val">1,000</span><span class="fin-assume-sub">Employees Sat–Sun (B & L)</span></div>
-              <div class="fin-assume-item"><span class="fin-assume-val">700</span><span class="fin-assume-sub">Employees (dinner, M–F)</span></div>
-              <div class="fin-assume-item"><span class="fin-assume-val">28%</span><span class="fin-assume-sub">Grab & Go participation</span></div>
-            </div>
-          </div>
 
           <!-- BREAKFAST SLIDER -->
           <div class="fin-meal-block" style="border-left-color:#2a5298">
@@ -3375,7 +3443,8 @@ function actCalc(){
   const bRevWd=bCovWd*abCheck, bRevWe=bCovWe*abCheck;
   const bWeekly=(bRevWd*5)+(bRevWe*2);
   const bResident=bWeekly*0.95, bRetail=bWeekly*0.05;
-  const bAvgDaily=Math.round((bCovWd*5+bCovWe*2)/7);
+  /* Covers: strictly participation% × employees on site — show weekday and weekend separately */
+  const bCoverDisplay = bCovWd + ' (M–F) / ' + bCovWe + ' (Wknd)';
 
   /* LUNCH — M-F split: 30% popup, 65% resident, 5% retail; Wknd: 85%, 10%, 5% */
   const lCovWd=Math.round(2000*alPart), lCovWe=Math.round(1000*alPart);
@@ -3385,7 +3454,7 @@ function actCalc(){
   const lPopup=lWeeklyWd*0.30+lWeeklyWe*0.85;
   const lResident=lWeeklyWd*0.65+lWeeklyWe*0.10;
   const lRetail=lWeekly*0.05;
-  const lAvgDaily=Math.round((lCovWd*5+lCovWe*2)/7);
+  const lCoverDisplay = lCovWd + ' (M–F) / ' + lCovWe + ' (Wknd)';
 
   /* DINNER — M-F only (5 days), 700 headcount; 90% popup, 5% resident, 5% retail */
   const dCov=Math.round(700*adPart);
@@ -3400,7 +3469,7 @@ function actCalc(){
   const gRevWd=gCovWd*agCheck, gRevWe=gCovWe*agCheck;
   const gWeekly=(gRevWd*5)+(gRevWe*2);
   const gResident=gWeekly*0.35, gRetail=gWeekly*0.65;
-  const gAvgDaily=Math.round((gCovWd*5+gCovWe*2)/7);
+  const gCoverDisplay = gCovWd + ' (M–F) / ' + gCovWe + ' (Wknd)';
 
   const totWeekly=bWeekly+lWeekly+dWeekly+gWeekly;
   const totPopup=lPopup+dPopup;
@@ -3409,12 +3478,12 @@ function actCalc(){
   const totAnnual=totWeekly*52;
   const clientPct=((285323/totAnnual)*100).toFixed(1);
 
-  /* Update cover count displays */
+  /* Update cover count displays — strictly participation% × employees on site */
   const setEl=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
-  setEl('act-b-covers', bAvgDaily.toLocaleString());
-  setEl('act-l-covers', lAvgDaily.toLocaleString());
+  setEl('act-b-covers', bCoverDisplay);
+  setEl('act-l-covers', lCoverDisplay);
   setEl('act-d-covers', dCov.toLocaleString());
-  setEl('act-g-covers', gAvgDaily.toLocaleString());
+  setEl('act-g-covers', gCoverDisplay);
 
   /* Update split displays */
   setEl('ab-resident',finFmt(bResident)+'/wk');
