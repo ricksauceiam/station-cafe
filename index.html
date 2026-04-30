@@ -2205,7 +2205,7 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
           <div class="fin-alloc-title">Revenue allocation rules</div>
           <div class="fin-alloc-row"><span class="fin-alloc-meal">Breakfast</span><span class="fin-alloc-desc">95% → Resident #1 · 5% → Resident #2</span></div>
           <div class="fin-alloc-row"><span class="fin-alloc-meal">Lunch</span><span class="fin-alloc-desc">32.5% → Resident #1 · 32.5% → Resident #2 · 30% → Daily Guest · 5% other</span></div>
-          <div class="fin-alloc-row"><span class="fin-alloc-meal">Dinner</span><span class="fin-alloc-desc">32.5% → Resident #1 · 32.5% → Resident #2 · 30% → Daily Guest · 5% other</span></div>
+          <div class="fin-alloc-row"><span class="fin-alloc-meal">Dinner</span><span class="fin-alloc-desc">2.5% → Resident #1 · 2.5% → Resident #2 · 90% → Daily Guest · 5% other</span></div>
         </div>
 
         <!-- RESIDENT #1 -->
@@ -2224,7 +2224,7 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
           <div class="fin-rest-breakdown">
             <div class="fin-rest-row"><span class="fin-rest-row-label">From breakfast (95%)</span><span class="fin-rest-row-val" id="r1-from-b">—</span></div>
             <div class="fin-rest-row"><span class="fin-rest-row-label">From lunch (32.5%)</span><span class="fin-rest-row-val" id="r1-from-l">—</span></div>
-            <div class="fin-rest-row"><span class="fin-rest-row-label">From dinner (32.5%)</span><span class="fin-rest-row-val" id="r1-from-d">—</span></div>
+            <div class="fin-rest-row"><span class="fin-rest-row-label">From dinner (2.5%)</span><span class="fin-rest-row-val" id="r1-from-d">—</span></div>
             <div class="fin-rest-row fin-rest-total-row"><span class="fin-rest-row-label">Weekly total</span><span class="fin-rest-row-val fin-threshold-val" id="r1-total">—</span></div>
           </div>
           <div class="fin-rest-progress-wrap">
@@ -2249,7 +2249,7 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
           <div class="fin-rest-breakdown">
             <div class="fin-rest-row"><span class="fin-rest-row-label">From breakfast (5%)</span><span class="fin-rest-row-val" id="r2-from-b">—</span></div>
             <div class="fin-rest-row"><span class="fin-rest-row-label">From lunch (32.5%)</span><span class="fin-rest-row-val" id="r2-from-l">—</span></div>
-            <div class="fin-rest-row"><span class="fin-rest-row-label">From dinner (32.5%)</span><span class="fin-rest-row-val" id="r2-from-d">—</span></div>
+            <div class="fin-rest-row"><span class="fin-rest-row-label">From dinner (2.5%)</span><span class="fin-rest-row-val" id="r2-from-d">—</span></div>
             <div class="fin-rest-row fin-rest-total-row"><span class="fin-rest-row-label">Weekly total</span><span class="fin-rest-row-val fin-threshold-val" id="r2-total">—</span></div>
           </div>
           <div class="fin-rest-progress-wrap">
@@ -2273,7 +2273,7 @@ body { font-family: var(--sans); background: var(--navy-dark); color: var(--text
           </div>
           <div class="fin-rest-breakdown">
             <div class="fin-rest-row"><span class="fin-rest-row-label">From lunch (30%)</span><span class="fin-rest-row-val" id="dg-from-l">—</span></div>
-            <div class="fin-rest-row"><span class="fin-rest-row-label">From dinner (30%)</span><span class="fin-rest-row-val" id="dg-from-d">—</span></div>
+            <div class="fin-rest-row"><span class="fin-rest-row-label">From dinner (90%)</span><span class="fin-rest-row-val" id="dg-from-d">—</span></div>
             <div class="fin-rest-row fin-rest-total-row"><span class="fin-rest-row-label">Avg daily total</span><span class="fin-rest-row-val fin-threshold-val" id="dg-total">—</span></div>
           </div>
           <div class="fin-rest-progress-wrap">
@@ -2573,9 +2573,9 @@ function finCalc(){
 
   /* Restaurant allocations */
   const R1_MIN=9000,R2_MIN=6000,DG_MIN_DAILY=850;
-  const r1_b=bWeekly*0.95,r1_l=lWeekly*0.325,r1_d=dWeekly*0.325,r1_total=r1_b+r1_l+r1_d;
-  const r2_b=bWeekly*0.05,r2_l=lWeekly*0.325,r2_d=dWeekly*0.325,r2_total=r2_b+r2_l+r2_d;
-  const dg_l=lWeekly*0.30,dg_d=dWeekly*0.30,dg_daily=(dg_l+dg_d)/7;
+  const r1_b=bWeekly*0.95,r1_l=lWeekly*0.325,r1_d=dWeekly*0.025,r1_total=r1_b+r1_l+r1_d;
+  const r2_b=bWeekly*0.05,r2_l=lWeekly*0.325,r2_d=dWeekly*0.025,r2_total=r2_b+r2_l+r2_d;
+  const dg_l=lWeekly*0.30,dg_d=dWeekly*0.90,dg_daily=(dg_l+dg_d)/7;
   document.getElementById('r1-from-b').textContent=finFmt(r1_b);
   document.getElementById('r1-from-l').textContent=finFmt(r1_l);
   document.getElementById('r1-from-d').textContent=finFmt(r1_d);
